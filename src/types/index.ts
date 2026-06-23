@@ -76,3 +76,60 @@ export interface ContactMessage {
   subject?: string
   message: string
 }
+
+// === NEW TYPES FOR REDESIGN ===
+
+export interface OpeningStatementContent {
+  headline: string
+  subtitle: string
+  badge: string
+}
+
+export interface StrugglePoint {
+  id: string
+  number: string
+  title: string
+  description: string
+  icon: string
+}
+
+export interface PillarDetail {
+  id: string
+  number: string
+  title: string
+  subtitle: string
+  description: string
+  metrics: { value: string; label: string }[]
+  variant: 'split' | 'full-width' | 'diagonal' | 'grid' | 'split-mirrored'
+  visualType: string
+}
+
+export interface Framework {
+  id: string
+  name: string
+  description: string
+  type: 'ladder' | 'loop' | 'matrix'
+  steps: { label: string; description: string }[]
+}
+
+export interface JourneyMilestone {
+  year: number
+  title: string
+  organization: string
+  description: string
+  visualAccent: string
+  color: string
+}
+
+export interface PodcastTheme {
+  id: string
+  label: string
+}
+
+export interface VoiceCard {
+  name: string
+  role: string
+  organization?: string
+  quote: string
+  featured?: boolean
+}

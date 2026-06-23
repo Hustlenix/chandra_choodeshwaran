@@ -19,16 +19,15 @@ export default function PillarCard({
   icon,
   isActive,
   onActivate,
-  index,
 }: PillarCardProps) {
   return (
     <motion.button
       className={cn(
-        'group relative flex cursor-pointer flex-col items-start justify-center px-8 py-12 text-left transition-all duration-500',
+        'group relative flex cursor-pointer flex-col px-6 transition-all duration-500',
         isActive
-          ? 'flex-[3] bg-gradient-to-b from-gold-500/10 to-transparent'
-          : 'flex-1 hover:flex-[1.5] bg-white/[0.02] hover:bg-white/[0.04]',
-        'border-r border-white/5 last:border-r-0'
+          ? 'flex-[3] border-l-2 border-gold-500 bg-white/[0.05] items-start text-left'
+          : 'flex-1 items-center justify-center text-center bg-transparent hover:bg-white/[0.02] border-l border-white/5 first:border-l-0',
+        'hover:shadow-[0_0_30px_rgba(212,175,55,0.08)]'
       )}
       onMouseEnter={onActivate}
       onClick={onActivate}
@@ -37,34 +36,49 @@ export default function PillarCard({
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      style={{ transitionDelay: `${index * 0.1}s` }}
     >
-      {/* Gold accent line at top on active */}
+      {/* Background glow on active */}
+      {isActive && (
+        <motion.div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-gold-500/5 to-transparent"
+          layoutId="pillar-glow-bg"
+          transition={{ duration: 0.4 }}
+        />
+      )}
+
+      {/* Top gold bar accent for active card */}
       <motion.div
-        className="absolute left-0 top-0 h-1 bg-gold-500"
-        initial={{ width: 0 }}
-        animate={{ width: isActive ? '100%' : 0 }}
-        transition={{ duration: 0.4 }}
+        className="absolute left-0 top-0 h-full w-0.5 bg-gold-500"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isActive ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
       />
 
-      {/* Icon */}
-      <div className="mb-6">
+      {/* Icon — moves to top on active */}
+      <motion.div
+        className={cn(
+          'transition-all duration-500',
+          isActive ? 'mb-4 mt-6' : 'mb-2'
+        )}
+        layout
+      >
         <PillarIcon icon={icon} isActive={isActive} />
-      </div>
+      </motion.div>
 
       {/* Title */}
-      <h3
+      <motion.h3
         className={cn(
-          'font-serif text-xl transition-all duration-500',
-          isActive ? 'text-gold-400' : 'text-white/80'
+          'font-serif transition-all duration-500',
+          isActive ? 'text-gold-400 text-lg' : 'text-white/70 text-sm'
         )}
+        layout
       >
         {title}
-      </h3>
+      </motion.h3>
 
-      {/* Description - visible only when active */}
+      {/* Description — visible only when active */}
       <motion.div
-        className="mt-4 overflow-hidden"
+        className="w-full overflow-hidden"
         initial={false}
         animate={{
           height: isActive ? 'auto' : 0,
@@ -72,13 +86,10 @@ export default function PillarCard({
         }}
         transition={{ duration: 0.4, ease: 'easeInOut' }}
       >
-        <p className="text-sm leading-relaxed text-muted">{description}</p>
+        <p className="mt-3 pb-6 text-sm leading-relaxed text-muted">
+          {description}
+        </p>
       </motion.div>
-
-      {/* Index number */}
-      <span className="absolute bottom-6 right-6 font-mono text-xs text-white/10">
-        {String(index + 1).padStart(2, '0')}
-      </span>
     </motion.button>
   )
 }
