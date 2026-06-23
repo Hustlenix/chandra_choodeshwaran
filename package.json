@@ -26,7 +26,8 @@
     "tailwind-merge": "2.6.0",
     "lucide-react": "0.460.0",
     "zod": "3.24.0",
-    "sanity": "3.64.0"
+    "sanity": "^3.99.0",
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
     "@types/node": "20.17.0",
