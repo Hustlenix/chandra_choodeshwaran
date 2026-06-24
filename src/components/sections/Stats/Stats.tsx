@@ -26,9 +26,7 @@ export function Stats() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <div className="font-serif text-number-lg font-normal text-pink-500 leading-none">
-                <AnimatedCounter value={String(stat.value) + stat.suffix} label={stat.label} />
-              </div>
+              <AnimatedCounter value={String(stat.value) + stat.suffix} label={stat.label} />
             </motion.div>
           ))}
         </div>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { PODCAST } from '@/content/podcast'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
@@ -42,38 +43,43 @@ export function EpisodeGrid() {
 
       {/* Episode grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {episodes.map((episode, i) => (
-          <motion.div
-            key={episode.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05, duration: 0.4 }}
-          >
-            <Card variant="interactive" padding="md" className="h-full">
-              <div className="flex items-start justify-between mb-3">
-                <Badge variant="rose" size="sm">Ep {episode.episodeNumber}</Badge>
-                <span className="text-xs text-text-muted">{episode.duration}</span>
-              </div>
-              <h3 className="font-serif text-heading-4 text-text-primary mb-2">
-                {episode.title}
-                {episode.featured && (
-                  <span className="ml-2 inline-flex items-center rounded-full bg-pink-100 px-2 py-0.5 text-xs font-medium text-pink-600">
-                    Featured
-                  </span>
-                )}
-              </h3>
-              <p className="text-body-sm text-text-muted line-clamp-2 mb-3">{episode.description}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {episode.themes.map((theme) => (
-                  <span key={theme} className="rounded-full bg-pink-50 px-2.5 py-0.5 text-xs text-pink-600">
-                    {themeLabels[theme] || theme}
-                  </span>
-                ))}
-              </div>
-            </Card>
-          </motion.div>
-        ))}
+        {episodes.map((episode, i) => {
+          const slug = episode.title.toLowerCase().replace(/\s+/g, '-')
+          return (
+            <motion.div
+              key={episode.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.4 }}
+            >
+              <Link href={`/podcast/${slug}`} className="block h-full">
+                <Card variant="interactive" padding="md" className="h-full">
+                  <div className="flex items-start justify-between mb-3">
+                    <Badge variant="rose" size="sm">Ep {episode.episodeNumber}</Badge>
+                    <span className="text-xs text-text-muted">{episode.duration}</span>
+                  </div>
+                  <h3 className="font-serif text-heading-4 text-text-primary mb-2">
+                    {episode.title}
+                    {episode.featured && (
+                      <span className="ml-2 inline-flex items-center rounded-full bg-pink-100 px-2 py-0.5 text-xs font-medium text-pink-600">
+                        Featured
+                      </span>
+                    )}
+                  </h3>
+                  <p className="text-body-sm text-text-muted line-clamp-2 mb-3">{episode.description}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {episode.themes.map((theme) => (
+                      <span key={theme} className="rounded-full bg-pink-50 px-2.5 py-0.5 text-xs text-pink-600">
+                        {themeLabels[theme] || theme}
+                      </span>
+                    ))}
+                  </div>
+                </Card>
+              </Link>
+            </motion.div>
+          )
+        })}
       </div>
     </div>
   )

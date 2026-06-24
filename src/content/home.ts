@@ -9,6 +9,7 @@ export const HOME_HERO = {
   trustItems: [
     'Times Edu Ex Award 2024',
     'Outstanding National Trainer — ISTD',
+    'Outstanding JCI Senator 2022',
     '15+ Years of Impact',
     '1000+ Lives Transformed',
   ],
@@ -29,4 +30,11 @@ export const HOME_CTA = {
   subtitle: 'No commitment required. Just a conversation about your goals.',
   ctaLabel: 'Book a Free Discovery Call',
   ctaUrl: '/contact',
+}
+
+// Legacy export for OpeningStatement component backward compatibility
+export const OPENING_CONTENT = {
+  badge: 'CHANDRACHOODESHWARAN M',
+  headline: 'A Decade of Understanding What Makes People Thrive',
+  subtitle: 'The quality of your life follows the quality of your thinking.',
 }

@@ -5,7 +5,8 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { cn } from '@/lib/utils'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ExternalLink } from 'lucide-react'
+import Link from 'next/link'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -193,7 +194,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
             strokeWidth="1"
             strokeDasharray="4 4"
           />
-          {/* Golden arc accent (static, complements step reveal) */}
+          {/* Pink arc accent (static, complements step reveal) */}
           <circle
             cx="50"
             cy="50"
@@ -411,6 +412,23 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
             </>
           )}
           {framework.type === 'matrix' && renderMatrix()}
+        </motion.div>
+
+        {/* CTA per framework */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mt-8 text-center"
+        >
+          <Link
+            href="/contact"
+            className="group inline-flex items-center gap-2 rounded-full border border-pink-400/30 px-6 py-3 text-sm font-medium text-pink-500 transition-all duration-300 hover:border-pink-400 hover:bg-pink-50 hover:shadow-sm"
+          >
+            <span>Explore this framework in a session</span>
+            <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+          </Link>
         </motion.div>
       </div>
     </motion.section>

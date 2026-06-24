@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { Badge } from '@/components/ui/Badge'
+import { BreadcrumbSchema } from '@/components/ui/JsonLd'
 import { Button } from '@/components/ui/Button'
 import { SpotifyEmbed } from '@/components/pages/Podcast/SpotifyEmbed'
 import { PODCAST } from '@/content/podcast'
@@ -47,6 +48,7 @@ export default async function EpisodeDetailPage({ params }: Props) {
 
   return (
     <PageLayout background="blush">
+      <BreadcrumbSchema items={[{ name: 'Home', href: '/' }, { name: 'Podcast', href: '/podcast' }, { name: episode.title, href: `/podcast/${slug}` }]} />
       <Link
         href="/podcast"
         className="mb-8 inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-pink-500"

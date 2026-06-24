@@ -1,6 +1,6 @@
 import { SITE } from '@/config/site'
 import { SocialLinks } from '@/components/ui/SocialLinks'
-import { MapPin, Mail, Phone } from 'lucide-react'
+import { MapPin, Mail, Globe } from 'lucide-react'
 
 export function ContactInfo() {
   return (
@@ -23,7 +23,7 @@ export function ContactInfo() {
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <Phone className="mt-0.5 h-5 w-5 shrink-0 text-pink-400" />
+            <Globe className="mt-0.5 h-5 w-5 shrink-0 text-pink-400" />
             <div>
               <p className="text-sm font-medium text-text-primary">Languages</p>
               <p className="text-sm text-text-muted">{SITE.languages.join(', ')}</p>

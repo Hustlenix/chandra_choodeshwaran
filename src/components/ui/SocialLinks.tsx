@@ -1,5 +1,3 @@
-'use client'
-
 import { SOCIAL_LINKS } from '@/config/social'
 import { cn } from '@/lib/utils'
 

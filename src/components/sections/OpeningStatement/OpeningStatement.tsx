@@ -4,7 +4,7 @@ import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { OPENING_CONTENT } from '@/lib/constants'
+import { OPENING_CONTENT } from '@/content/home'
 import ScrollIndicator from './ScrollIndicator'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -111,13 +111,13 @@ export default function OpeningStatement() {
           </motion.p>
 
           {/* Massive headline — word-by-word GSAP clip-path reveal */}
-          <h1
+          <h2
             ref={headlineRef}
             className="font-serif text-[clamp(2.8rem,9vw,9rem)] leading-[0.85] tracking-[-0.05em] text-text-primary"
           >
             {words.map((word, i) => (
               <span
-                key={i}
+                key={`${word}-${i}`}
                 className="reveal-word inline-block will-change-[clip-path]"
                 style={{ clipPath: 'inset(0 100% 0 0)' }}
               >
@@ -125,7 +125,7 @@ export default function OpeningStatement() {
                 {i < words.length - 1 && '\u00A0'}
               </span>
             ))}
-          </h1>
+          </h2>
 
           {/* Subtitle — fades in after delay */}
           <motion.p

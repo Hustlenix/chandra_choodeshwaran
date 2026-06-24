@@ -19,7 +19,7 @@ export default function MobileNav({ onClose }: MobileNavProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-40 flex flex-col bg-white/98 backdrop-blur-xl md:hidden"
+      className="fixed inset-0 z-40 flex flex-col bg-white/95 backdrop-blur-xl md:hidden"
       initial={{ opacity: 0, clipPath: 'circle(0% at 95% 5%)' }}
       animate={{ opacity: 1, clipPath: 'circle(150% at 95% 5%)' }}
       exit={{ opacity: 0, clipPath: 'circle(0% at 95% 5%)' }}

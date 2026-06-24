@@ -49,7 +49,7 @@ module.exports = {
       fontFamily: {
         serif: ['var(--font-serif)', 'DM Serif Display', 'Georgia', 'serif'],
         sans: ['var(--font-sans)', 'Figtree', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        mono: ['var(--font-mono)', 'JetBrains Mono', 'Fira Code', 'monospace'],
       },
       spacing: {
         section: '6rem',

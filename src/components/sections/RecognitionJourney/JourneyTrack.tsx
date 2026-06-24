@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { JOURNEY_MILESTONES } from '@/lib/constants'
+import { JOURNEY_MILESTONES } from '@/content/awards'
 import JourneyMilestone from './JourneyMilestone'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -160,7 +160,7 @@ export default function JourneyTrack() {
 
               {/* Mobile milestone */}
               <div className="relative flex min-h-[60vh] flex-col items-start justify-center pl-20 pr-6 py-16">
-                {/* Gold dot */}
+                {/* Pink dot */}
                 <div className="absolute left-[calc(2rem-5px)] top-1/2 z-10 h-2.5 w-2.5 -translate-y-1/2 rounded-full border-2 border-pink-400 bg-surface-white" />
 
                 {/* Year badge */}

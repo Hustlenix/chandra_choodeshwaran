@@ -41,16 +41,22 @@ export function AnimatedCounter({ value, label, className = '' }: AnimatedCounte
     const duration = 2000
     const startTime = Date.now()
 
+    let rafId: number
+
     const animate = () => {
       const elapsed = Date.now() - startTime
       const progress = Math.min(elapsed / duration, 1)
       const eased = 1 - Math.pow(1 - progress, 3) // easeOutCubic
       const current = Math.floor(eased * targetNum)
       setDisplayValue(`${current}${suffix}`)
-      if (progress < 1) requestAnimationFrame(animate)
+      if (progress < 1) {
+        rafId = requestAnimationFrame(animate)
+      }
     }
 
-    requestAnimationFrame(animate)
+    rafId = requestAnimationFrame(animate)
+
+    return () => cancelAnimationFrame(rafId)
   }, [hasAnimated, value])
 
   return (

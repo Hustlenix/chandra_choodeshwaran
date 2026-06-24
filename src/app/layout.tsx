@@ -25,12 +25,16 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://chandrachoodeshwaran.com'),
   title: {
     default: 'Chandra Choodeshwaran M | Emotional Intelligence & Soft Skills Trainer',
     template: '%s | Chandra Choodeshwaran M',
   },
   description:
     'Helping people communicate, lead, and grow through emotional intelligence. Soft Skills Trainer in Hosur, Tamil Nadu.',
+  icons: {
+    icon: '/favicon.svg',
+  },
   openGraph: {
     title: 'Chandra Choodeshwaran M | Emotional Intelligence & Soft Skills Trainer',
     description:
@@ -38,12 +42,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     siteName: 'Chandra Choodeshwaran M',
+    images: [{ url: '/images/og-default.svg', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Chandra Choodeshwaran M | Emotional Intelligence & Soft Skills Trainer',
     description:
       'Helping people communicate, lead, and grow through emotional intelligence.',
+    images: ['/images/og-default.svg'],
   },
   robots: {
     index: true,

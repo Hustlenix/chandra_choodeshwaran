@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { SITE } from '@/config/site'
 
 export const dynamic = 'force-static'
 
@@ -9,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/studio/'],
     },
-    sitemap: 'https://chandrachoodeshwaran.com/sitemap.xml',
+    sitemap: `${SITE.baseUrl}/sitemap.xml`,
   }
 }

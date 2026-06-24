@@ -106,4 +106,3 @@ export const PODCAST = {
   episodes: PODCAST_EPISODES,
 }
 
-export const PODCAST_DATA = PODCAST_PAGE

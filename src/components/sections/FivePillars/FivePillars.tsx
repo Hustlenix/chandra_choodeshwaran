@@ -1,9 +1,18 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FIVE_PILLARS } from '@/lib/constants'
+import { FIVE_PILLARS } from '@/content/pillars'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { cn } from '@/lib/utils'
+import { Eye, Heart, MessageCircle, Zap, TrendingUp } from 'lucide-react'
+
+const pillarIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  mirror: Eye,
+  waves: Heart,
+  network: MessageCircle,
+  compass: Zap,
+  ascent: TrendingUp,
+}
 
 export default function FivePillars() {
   return (
@@ -63,9 +72,14 @@ export default function FivePillars() {
                   )}
                 </div>
 
-                {/* Visual placeholder */}
+                {/* Visual column with icon */}
                 <div className="flex-1">
-                  <div className="aspect-square rounded-3xl border border-border-light bg-gradient-to-br from-pink-400/5 to-transparent backdrop-blur-sm" />
+                  <div className="flex aspect-square items-center justify-center rounded-3xl border border-border-light bg-gradient-to-br from-pink-400/5 to-transparent backdrop-blur-sm">
+                    {(() => {
+                      const Icon = pillarIcons[pillar.visualType]
+                      return Icon ? <Icon className="h-24 w-24 text-pink-300/40" /> : null
+                    })()}
+                  </div>
                 </div>
               </div>
             </div>

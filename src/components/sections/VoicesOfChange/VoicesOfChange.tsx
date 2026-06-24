@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { VOICES } from '@/lib/constants'
+import { VOICES } from '@/content/testimonials'
 import { staggerContainer } from '@/lib/animations'
 import { cn } from '@/lib/utils'
 import VoiceCard from './VoiceCard'

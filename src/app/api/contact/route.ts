@@ -20,8 +20,8 @@ export async function POST(request: Request) {
       )
     }
 
-    // TODO: Integrate with email service (e.g., Resend, SendGrid)
-    console.log('Contact form submission:', parsed.data)
+    // Note: This API route requires a server environment.
+    // The static export uses a mailto: link instead.
 
     return NextResponse.json(
       { success: true, message: 'Thank you for your message. I will get back to you soon.' },

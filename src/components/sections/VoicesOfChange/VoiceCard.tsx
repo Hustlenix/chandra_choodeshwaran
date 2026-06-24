@@ -55,7 +55,7 @@ export default function VoiceCard({ voice, index }: VoiceCardProps) {
         </p>
       </blockquote>
 
-      {/* Gold accent line */}
+      {/* Pink accent line */}
       <div
         className={cn(
           'mt-6 h-px bg-gradient-to-r from-pink-400/50 to-transparent',

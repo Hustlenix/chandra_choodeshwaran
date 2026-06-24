@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Container } from '@/components/ui/Container'
-import { PODCAST_DATA } from '@/lib/constants'
+import { PODCAST } from '@/content/podcast'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import ThemeFilter from './ThemeFilter'
 import EpisodeCard from './EpisodeCard'
@@ -13,7 +13,7 @@ export default function PodcastUniverse() {
   const [activeTheme, setActiveTheme] = useState<string | null>(null)
 
   const { badge, title, subtitle, spotifyUrl, tamilMotto, themes, episodes } =
-    PODCAST_DATA
+    PODCAST
 
   const filteredEpisodes = useMemo(() => {
     if (!activeTheme || activeTheme === 'all') return episodes
@@ -108,7 +108,7 @@ export default function PodcastUniverse() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="sticky top-24 overflow-hidden rounded-2xl border border-border-light bg-surface-blush/30 backdrop-blur-sm"
+              className="lg:sticky lg:top-24 overflow-hidden rounded-2xl border border-border-light bg-surface-blush/30 backdrop-blur-sm"
             >
               <iframe
                 src={spotifyUrl.replace('/show/', '/embed/show/')}
@@ -116,6 +116,7 @@ export default function PodcastUniverse() {
                 height="232"
                 allow="encrypted-media"
                 className="w-full"
+                title="Chandru's Psychology In Tamil on Spotify"
               />
             </motion.div>
 

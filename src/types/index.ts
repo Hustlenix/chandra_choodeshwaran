@@ -50,11 +50,6 @@ export interface ExperienceItem {
   description?: string
 }
 
-export interface NavItem {
-  label: string
-  href: string
-}
-
 export interface Pillar {
   title: string
   description: string

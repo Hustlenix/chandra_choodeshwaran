@@ -38,13 +38,13 @@ export function buildMetadata({
       type: ogType,
       locale: DEFAULT_SEO.locale,
       ...(publishedTime && { publishedTime }),
-      images: images || [{ url: `${SITE.baseUrl}/images/og-default.jpg`, width: 1200, height: 630 }],
+      images: images || [{ url: `${SITE.baseUrl}/images/og-default.svg`, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: siteTitle,
       description,
-      images: images || [`${SITE.baseUrl}/images/og-default.jpg`],
+      images: images || [`${SITE.baseUrl}/images/og-default.svg`],
     },
   }
 }

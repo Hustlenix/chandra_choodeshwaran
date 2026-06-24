@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { Badge } from '@/components/ui/Badge'
+import { BreadcrumbSchema } from '@/components/ui/JsonLd'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { FIVE_PILLARS } from '@/content/pillars'
@@ -53,6 +54,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
   return (
     <PageLayout background="blush">
+      <BreadcrumbSchema items={[{ name: 'Home', href: '/' }, { name: 'Services', href: '/services' }, { name: pillar.title, href: `/services/${slug}` }]} />
       <Link
         href="/services"
         className="mb-8 inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-pink-500"

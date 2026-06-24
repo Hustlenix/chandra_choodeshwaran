@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { HeroBackground } from './HeroBackground'
 import { Button } from '@/components/ui/Button'
 import { HOME_HERO } from '@/content/home'
+import { SITE } from '@/config/site'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -37,13 +38,21 @@ export function Hero() {
           </span>
         </motion.div>
 
+        {/* Tagline - states profession explicitly */}
+        <motion.p
+          className="mb-8 font-mono text-sm tracking-[0.15em] text-pink-500/80"
+          variants={itemVariants}
+        >
+          {SITE.tagline}
+        </motion.p>
+
         {/* Headline - Word by word reveal */}
         <motion.h1
           className="max-w-4xl font-serif text-display-sm font-normal leading-[1] tracking-[-0.03em] text-text-primary md:text-display lg:text-display-lg"
           variants={itemVariants}
         >
           {HOME_HERO.headline.split(' ').map((word, i) => (
-            <span key={i} className="inline-block overflow-hidden">
+            <span key={`${word}-${i}`} className="inline-block overflow-hidden">
               <motion.span
                 className="inline-block"
                 initial={{ y: '100%' }}
@@ -91,12 +100,23 @@ export function Hero() {
           className="mt-16 flex flex-wrap gap-x-8 gap-y-3"
           variants={itemVariants}
         >
-          {HOME_HERO.trustItems.map((item, i) => (
-            <div key={i} className="flex items-center gap-2">
+          {HOME_HERO.trustItems.map((item, i) => {
+            const href = item.includes('Times') || item.includes('National Trainer')
+              ? '/awards'
+              : item.includes('15+ Years')
+                ? '/experience'
+                : '/about'
+            return (
+            <Link
+              key={`${item}-${i}`}
+              href={href}
+              className="flex items-center gap-2 group"
+            >
               <span className="h-1.5 w-1.5 rounded-full bg-pink-400" aria-hidden="true" />
-              <span className="text-sm text-text-secondary">{item}</span>
-            </div>
-          ))}
+              <span className="text-sm text-text-secondary transition-colors duration-300 group-hover:text-pink-500">{item}</span>
+            </Link>
+            )
+          })}
         </motion.div>
 
         {/* Scroll indicator */}

@@ -42,7 +42,7 @@ export default function JourneyMilestone({
         {year}
       </span>
 
-      {/* Gold dot on timeline (desktop only) */}
+      {/* Pink dot on timeline (desktop only) */}
       {!isMobile && (
         <div
           className={cn(

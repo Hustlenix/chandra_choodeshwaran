@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
-import { BOOK_CONVERSATION } from '@/lib/constants'
+import { BOOK_CONVERSATION } from '@/content/contact'
 import { staggerContainer, fadeSlideUp } from '@/lib/animations'
 
 export default function BookConversation() {
@@ -15,7 +15,7 @@ export default function BookConversation() {
       {/* Grid pattern background */}
       <div className="absolute inset-0 grid-pattern" />
 
-      {/* Gold radial glow */}
+      {/* Pink radial glow */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <div className="h-[500px] w-[500px] rounded-full bg-pink-400/10 blur-[120px]" />
       </div>
