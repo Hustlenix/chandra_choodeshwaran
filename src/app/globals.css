@@ -4,7 +4,7 @@
 
 @layer base {
   * {
-    @apply border-white/5;
+    @apply border-border-light;
   }
 
   html {
@@ -12,7 +12,7 @@
   }
 
   body {
-    @apply bg-navy-900 font-sans text-white antialiased;
+    @apply bg-surface-white font-sans text-text-primary antialiased;
     overflow-x: hidden;
   }
 
@@ -23,30 +23,30 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-navy-900;
+    @apply bg-surface-blush;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-white/10;
+    @apply rounded-full bg-pink-200;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-white/20;
+    @apply bg-pink-300;
   }
 
   /* Selection */
   ::selection {
-    @apply bg-gold-500/30 text-white;
+    @apply bg-pink-200 text-pink-900;
   }
 
   /* Focus styles */
   *:focus-visible {
-    @apply outline-none ring-2 ring-gold-500 ring-offset-2 ring-offset-navy-900;
+    @apply outline-none ring-2 ring-pink-400 ring-offset-2 ring-offset-white;
   }
 
   /* Skip to content */
   .skip-to-content {
-    @apply absolute left-4 top-4 z-[100] -translate-y-full rounded bg-gold-500 px-4 py-2 text-sm font-medium text-navy-900 transition-transform focus:translate-y-0;
+    @apply absolute left-4 top-4 z-[100] -translate-y-full rounded bg-pink-400 px-4 py-2 text-sm font-medium text-white transition-transform focus:translate-y-0;
   }
 }
 
@@ -66,19 +66,19 @@
   }
 
   /* Text gradient */
-  .text-gradient-gold {
-    @apply bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 bg-clip-text text-transparent;
+  .text-gradient-pink {
+    @apply bg-gradient-to-r from-pink-400 via-pink-500 to-pink-400 bg-clip-text text-transparent;
   }
 
   /* Glass effect */
   .glass {
-    @apply bg-white/5 backdrop-blur-xl;
+    @apply bg-white/80 backdrop-blur-xl;
   }
 
-  /* Gold glow */
-  .gold-glow {
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.15),
-      0 0 60px rgba(212, 175, 55, 0.05);
+  /* Pink glow */
+  .pink-glow {
+    box-shadow: 0 0 30px rgba(224, 123, 140, 0.15),
+      0 0 60px rgba(224, 123, 140, 0.05);
   }
 
   /* Shimmer effect for loading */
@@ -86,7 +86,7 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(212, 175, 55, 0.05) 50%,
+      rgba(224, 123, 140, 0.08) 50%,
       transparent 100%
     );
     background-size: 200% 100%;
@@ -100,7 +100,7 @@
 
   /* Editorial drop cap */
   .editorial-dropcap::first-letter {
-    @apply float-left pr-3 text-gold-500;
+    @apply float-left pr-3 text-pink-500;
     font-size: 4em;
     line-height: 0.8;
     font-family: var(--font-serif);
@@ -108,16 +108,16 @@
 
   /* Display text treatment */
   .display-text {
-    @apply font-serif leading-[0.9] tracking-[-0.04em] text-white;
+    @apply font-serif leading-[0.9] tracking-[-0.04em] text-text-primary;
   }
 
-  /* Gold underline accent */
-  .gold-underline {
+  /* Pink underline accent */
+  .pink-underline {
     @apply relative inline-block;
   }
-  .gold-underline::after {
+  .pink-underline::after {
     content: '';
-    @apply absolute bottom-0 left-0 h-px w-full bg-gold-500/60;
+    @apply absolute bottom-0 left-0 h-px w-full bg-pink-400/60;
   }
 
   /* Noise overlay */
@@ -139,19 +139,19 @@
   /* Grid background pattern */
   .grid-pattern {
     background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(212, 123, 140, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 123, 140, 0.05) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
   /* Section separator */
   .section-separator {
-    @apply mx-auto h-px w-24 bg-gradient-to-r from-transparent via-gold-500/30 to-transparent;
+    @apply mx-auto h-px w-24 bg-gradient-to-r from-transparent via-pink-400/30 to-transparent;
   }
 
   /* Active nav indicator */
   .nav-indicator {
-    @apply absolute -bottom-px left-0 h-px bg-gold-500 transition-all duration-300;
+    @apply absolute -bottom-px left-0 h-px bg-pink-500 transition-all duration-300;
   }
 
   /* Gradient border */
@@ -164,7 +164,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(212,175,55,0.3), transparent, rgba(212,175,55,0.1));
+    background: linear-gradient(135deg, rgba(224,123,140,0.3), transparent, rgba(224,123,140,0.1));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -175,7 +175,7 @@
   .spotlight {
     background: radial-gradient(
       600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(212, 175, 55, 0.03),
+      rgba(224, 123, 140, 0.05),
       transparent 40%
     );
   }

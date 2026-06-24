@@ -1,3 +1,5 @@
+import { Hero } from '@/components/sections/Hero/Hero'
+import { Stats } from '@/components/sections/Stats/Stats'
 import OpeningStatement from '@/components/sections/OpeningStatement/OpeningStatement'
 import HumanOS from '@/components/sections/HumanOS/HumanOS'
 import FivePillars from '@/components/sections/FivePillars/FivePillars'
@@ -10,11 +12,13 @@ import BookConversation from '@/components/sections/BookConversation/BookConvers
 export default function HomePage() {
   return (
     <>
+      <Hero />
       <OpeningStatement />
       <section id="human-os">
         <HumanOS />
       </section>
       <FivePillars />
+      <Stats />
       <Frameworks />
       <RecognitionJourney />
       <PodcastUniverse />

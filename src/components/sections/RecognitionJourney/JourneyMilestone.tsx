@@ -34,7 +34,7 @@ export default function JourneyMilestone({
       {/* Massive year in background */}
       <span
         className={cn(
-          'pointer-events-none absolute inset-0 flex items-center justify-center font-bold text-white select-none',
+          'pointer-events-none absolute inset-0 flex items-center justify-center font-bold text-text-primary select-none',
           isMobile ? 'text-number-lg' : 'text-number-massive'
         )}
         style={{ opacity: isMobile ? 0.05 : isActive ? 0.12 : 0.06 }}
@@ -48,8 +48,8 @@ export default function JourneyMilestone({
           className={cn(
             'absolute left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-all duration-700 ease-out',
             isActive
-              ? 'h-4 w-4 border-gold-500 bg-gold-500 shadow-[0_0_20px_rgba(212,175,55,0.6)]'
-              : 'h-3 w-3 border-gold-500/60 bg-navy-900'
+              ? 'h-4 w-4 border-pink-400 bg-pink-400 shadow-[0_0_20px_rgba(236,72,153,0.4)]'
+              : 'h-3 w-3 border-pink-400/60 bg-surface-white'
           )}
           style={{ top: '65%' }}
         />
@@ -64,17 +64,17 @@ export default function JourneyMilestone({
         transition={{ duration: 0.6, delay: isMobile ? index * 0.1 : 0 }}
       >
         {/* Organization label */}
-        <span className="mb-3 block font-mono text-xs uppercase tracking-[0.3em] text-gold-500">
+        <span className="mb-3 block font-mono text-xs uppercase tracking-[0.3em] text-pink-500">
           {organization}
         </span>
 
         {/* Title */}
-        <h3 className="font-serif text-heading-2 text-white sm:text-heading-1">
+        <h3 className="font-serif text-heading-2 text-text-primary sm:text-heading-1">
           {title}
         </h3>
 
         {/* Description */}
-        <p className="mt-6 text-body-lg leading-relaxed text-muted">
+        <p className="mt-6 text-body-lg leading-relaxed text-text-muted">
           {description}
         </p>
       </motion.div>
@@ -82,11 +82,11 @@ export default function JourneyMilestone({
       {/* Mobile timeline indicator */}
       {isMobile && (
         <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-2 pb-8">
-          <span className="font-mono text-xs uppercase tracking-[0.2em] text-gold-500/60">
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-pink-400/60">
             Milestone {index + 1}
           </span>
-          <span className="h-px w-8 bg-gold-500/30" />
-          <span className="font-mono text-xs text-white/40">{year}</span>
+          <span className="h-px w-8 bg-pink-400/30" />
+          <span className="font-mono text-xs text-text-primary/40">{year}</span>
         </div>
       )}
     </div>

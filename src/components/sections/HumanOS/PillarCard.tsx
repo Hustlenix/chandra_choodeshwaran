@@ -25,9 +25,9 @@ export default function PillarCard({
       className={cn(
         'group relative flex cursor-pointer flex-col px-6 transition-all duration-500',
         isActive
-          ? 'flex-[3] border-l-2 border-gold-500 bg-white/[0.05] items-start text-left'
-          : 'flex-1 items-center justify-center text-center bg-transparent hover:bg-white/[0.02] border-l border-white/5 first:border-l-0',
-        'hover:shadow-[0_0_30px_rgba(212,175,55,0.08)]'
+          ? 'flex-[3] border-l-2 border-pink-400 bg-pink-50/50 items-start text-left'
+          : 'flex-1 items-center justify-center text-center bg-transparent hover:bg-pink-50/20 border-l border-border-light first:border-l-0',
+        'hover:shadow-[0_0_30px_rgba(236,72,153,0.08)]'
       )}
       onMouseEnter={onActivate}
       onClick={onActivate}
@@ -40,15 +40,15 @@ export default function PillarCard({
       {/* Background glow on active */}
       {isActive && (
         <motion.div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-gold-500/5 to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-pink-400/5 to-transparent"
           layoutId="pillar-glow-bg"
           transition={{ duration: 0.4 }}
         />
       )}
 
-      {/* Top gold bar accent for active card */}
+      {/* Top pink bar accent for active card */}
       <motion.div
-        className="absolute left-0 top-0 h-full w-0.5 bg-gold-500"
+        className="absolute left-0 top-0 h-full w-0.5 bg-pink-400"
         initial={{ opacity: 0 }}
         animate={{ opacity: isActive ? 1 : 0 }}
         transition={{ duration: 0.3 }}
@@ -69,7 +69,7 @@ export default function PillarCard({
       <motion.h3
         className={cn(
           'font-serif transition-all duration-500',
-          isActive ? 'text-gold-400 text-lg' : 'text-white/70 text-sm'
+          isActive ? 'text-pink-500 text-lg' : 'text-text-primary/70 text-sm'
         )}
         layout
       >
@@ -86,7 +86,7 @@ export default function PillarCard({
         }}
         transition={{ duration: 0.4, ease: 'easeInOut' }}
       >
-        <p className="mt-3 pb-6 text-sm leading-relaxed text-muted">
+        <p className="mt-3 pb-6 text-sm leading-relaxed text-text-muted">
           {description}
         </p>
       </motion.div>

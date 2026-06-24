@@ -55,10 +55,10 @@ export function AnimatedCounter({ value, label, className = '' }: AnimatedCounte
 
   return (
     <div ref={ref} className={className}>
-      <span className="block font-serif text-number-lg text-gradient-gold leading-none">
+      <span className="block font-serif text-number-lg text-gradient-pink leading-none">
         {displayValue}
       </span>
-      <span className="mt-2 block text-body-sm text-muted">{label}</span>
+      <span className="mt-2 block text-body-sm text-text-muted">{label}</span>
     </div>
   )
 }

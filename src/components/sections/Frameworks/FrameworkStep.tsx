@@ -47,8 +47,8 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
     gsap.set(steps, {
       opacity: 0.2,
       scale: 0.92,
-      borderColor: 'rgba(255,255,255,0.08)',
-      backgroundColor: 'rgba(255,255,255,0.03)',
+      borderColor: 'rgba(0,0,0,0.08)',
+      backgroundColor: 'rgba(236,72,153,0.03)',
     })
 
     gsap.set(lines, {
@@ -73,8 +73,8 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
         {
           opacity: 1,
           scale: 1,
-          borderColor: '#D4AF37',
-          backgroundColor: 'rgba(212, 175, 55, 0.12)',
+          borderColor: '#ec4899',
+          backgroundColor: 'rgba(236, 72, 153, 0.12)',
           duration: 0.5,
           ease: 'power2.out',
         },
@@ -108,7 +108,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
   const renderLadder = () => (
     <div className="relative mx-auto max-w-2xl">
       {/* Vertical centre rail (decorative background) */}
-      <div className="absolute left-6 top-0 h-full w-px bg-white/[0.04] md:left-1/2 md:-translate-x-1/2" />
+      <div className="absolute left-6 top-0 h-full w-px bg-text-muted/10 md:left-1/2 md:-translate-x-1/2" />
 
       <div className="relative flex flex-col">
         {framework.steps.map((step, i) => {
@@ -120,7 +120,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
                 <div
                   data-fw-line={i - 1}
                   data-dir="v"
-                  className="absolute left-6 top-0 h-5 w-px -translate-y-0 bg-white/10 md:left-1/2 md:-translate-x-1/2"
+                  className="absolute left-6 top-0 h-5 w-px -translate-y-0 bg-text-muted/20 md:left-1/2 md:-translate-x-1/2"
                 />
               )}
 
@@ -137,10 +137,10 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
                     isLeft ? 'text-right' : 'text-right md:text-left',
                   )}
                 >
-                  <p className="text-sm font-semibold text-white md:text-base">
+                  <p className="text-sm font-semibold text-text-primary md:text-base">
                     {step.label}
                   </p>
-                  <p className="mt-0.5 text-xs text-muted/70 md:text-sm">
+                  <p className="mt-0.5 text-xs text-text-muted/70 md:text-sm">
                     {step.description}
                   </p>
                 </div>
@@ -148,7 +148,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
                 {/* Step circle */}
                 <div
                   data-fw-step
-                  className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 text-base font-bold text-white transition-all duration-500 md:h-14 md:w-14 md:text-lg"
+                  className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 text-base font-bold text-text-primary transition-all duration-500 md:h-14 md:w-14 md:text-lg"
                 >
                   {i + 1}
                 </div>
@@ -189,7 +189,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
             cx="50"
             cy="50"
             r="44"
-            stroke="rgba(255,255,255,0.06)"
+            stroke="rgba(0,0,0,0.08)"
             strokeWidth="1"
             strokeDasharray="4 4"
           />
@@ -198,7 +198,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
             cx="50"
             cy="50"
             r="44"
-            stroke="#D4AF37"
+            stroke="#ec4899"
             strokeWidth="1"
             strokeDasharray="4 8"
             strokeLinecap="round"
@@ -214,7 +214,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
               animation: 'spin 10s linear infinite',
             }}
           >
-            <svg className="h-10 w-10 text-gold-500/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="h-10 w-10 text-pink-400/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
               <path d="M21 3v5h-5" />
             </svg>
@@ -223,7 +223,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
 
         {/* Centre label */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted/40">
+          <span className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted/40">
             Continuous<br />Feedback<br />Cycle
           </span>
         </div>
@@ -237,10 +237,10 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
           >
             <div
               data-fw-step
-              className="flex h-[72px] w-[72px] flex-col items-center justify-center rounded-full border-2 bg-white/5 text-center transition-all duration-500"
+              className="flex h-[72px] w-[72px] flex-col items-center justify-center rounded-full border-2 bg-pink-50/30 text-center transition-all duration-500"
             >
-              <span className="text-lg font-bold leading-none text-white">{i + 1}</span>
-              <span className="mt-1 text-[10px] font-medium uppercase tracking-wider text-white/70">
+              <span className="text-lg font-bold leading-none text-text-primary">{i + 1}</span>
+              <span className="mt-1 text-[10px] font-medium uppercase tracking-wider text-text-primary/70">
                 {step.label}
               </span>
             </div>
@@ -252,7 +252,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
                 transform: `rotate(${positions[(i + 1) % count].angle - 90}deg)`,
               }}
             >
-              <ArrowRight className="h-3 w-3 text-gold-500/40" />
+              <ArrowRight className="h-3 w-3 text-pink-400/40" />
             </div>
           </div>
         ))}
@@ -266,21 +266,21 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
         <div key={i} className="flex w-full max-w-sm items-center gap-4">
           <div
             data-fw-step
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 bg-white/5 text-base font-bold text-white transition-all duration-500"
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 bg-pink-50/30 text-base font-bold text-text-primary transition-all duration-500"
           >
             {i + 1}
           </div>
           <div className="flex-1">
-            <p className="text-sm font-semibold text-white">{step.label}</p>
-            <p className="text-xs text-muted/70">{step.description}</p>
+            <p className="text-sm font-semibold text-text-primary">{step.label}</p>
+            <p className="text-xs text-text-muted/70">{step.description}</p>
           </div>
           {i < framework.steps.length - 1 && (
-            <div data-fw-line={i} data-dir="v" className="h-6 w-px bg-white/10" />
+            <div data-fw-line={i} data-dir="v" className="h-6 w-px bg-text-muted/20" />
           )}
         </div>
       ))}
-      <div className="mt-2 flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted/40">
-        <svg className="h-3 w-3 text-muted/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <div className="mt-2 flex items-center gap-2 text-[10px] uppercase tracking-widest text-text-muted/40">
+        <svg className="h-3 w-3 text-text-muted/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
           <path d="M21 3v5h-5" />
         </svg> Continuous Cycle
@@ -301,10 +301,10 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
       <div className="mx-auto max-w-xl">
         {/* Column headers */}
         <div className="mb-2 hidden grid-cols-2 gap-4 md:grid">
-          <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted/40">
+          <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted/40">
             Sender
           </div>
-          <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted/40">
+          <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted/40">
             Message
           </div>
         </div>
@@ -315,23 +315,23 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
             <div
               key={i}
               data-fw-step
-              className="group relative overflow-hidden rounded-xl border-2 bg-white/[0.02] p-5 text-center transition-all duration-500 md:p-7"
+              className="group relative overflow-hidden rounded-xl border-2 bg-pink-50/20 p-5 text-center transition-all duration-500 md:p-7"
             >
               {/* Corner accent */}
-              <div className="absolute -right-6 -top-6 h-12 w-12 rounded-full bg-white/[0.02]" />
+              <div className="absolute -right-6 -top-6 h-12 w-12 rounded-full bg-pink-50/20" />
 
               {/* Number badge */}
-              <span className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/10 bg-white/5 text-sm font-bold text-white transition-all duration-500">
+              <span className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border-2 border-border-light bg-pink-50/30 text-sm font-bold text-text-primary transition-all duration-500">
                 {i + 1}
               </span>
 
-              <h4 className="text-sm font-semibold text-white md:text-base">{step.label}</h4>
-              <p className="mt-1.5 text-xs leading-relaxed text-muted/70 md:text-sm">
+              <h4 className="text-sm font-semibold text-text-primary md:text-base">{step.label}</h4>
+              <p className="mt-1.5 text-xs leading-relaxed text-text-muted/70 md:text-sm">
                 {step.description}
               </p>
 
               {/* Grid axis hint */}
-              <span className="mt-3 block font-mono text-[9px] uppercase tracking-[0.15em] text-muted/30">
+              <span className="mt-3 block font-mono text-[9px] uppercase tracking-[0.15em] text-text-muted/30">
                 {gridLabels[i].axisY} &middot; {gridLabels[i].axisX}
               </span>
             </div>
@@ -340,24 +340,24 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
 
         {/* Row labels */}
         <div className="mt-3 hidden grid-cols-2 gap-4 md:grid">
-          <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted/40">
+          <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted/40">
             Receiver
           </div>
-          <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted/40">
+          <div className="text-center font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted/40">
             Outcome
           </div>
         </div>
 
         {/* Flow legend */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted/50">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-text-muted/50">
           <span className="flex items-center gap-1">
             Intent <ArrowRight className="h-3 w-3" /> Expression
           </span>
-          <span className="hidden text-white/10 sm:inline">|</span>
+          <span className="hidden text-text-muted/20 sm:inline">|</span>
           <span className="flex items-center gap-1">
             Perception <ArrowRight className="h-3 w-3" /> Impact
           </span>
-          <span className="hidden text-white/10 sm:inline">|</span>
+          <span className="hidden text-text-muted/20 sm:inline">|</span>
           <span className="flex items-center gap-1">
             Intent <ArrowRight className="h-3 w-3" /> Impact
           </span>
@@ -384,13 +384,13 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-12 md:mb-16"
         >
-          <span className="mb-3 inline-block font-mono text-xs uppercase tracking-[0.25em] text-gold-500/60">
+          <span className="mb-3 inline-block font-mono text-xs uppercase tracking-[0.25em] text-pink-400/60">
             Framework {String(index + 1).padStart(2, '0')}
           </span>
-          <h2 className="font-serif text-heading-2 leading-tight text-white">
+          <h2 className="font-serif text-heading-2 leading-tight text-text-primary">
             {framework.name}
           </h2>
-          <p className="mt-4 max-w-2xl text-body-lg text-muted">
+          <p className="mt-4 max-w-2xl text-body-lg text-text-muted">
             {framework.description}
           </p>
         </motion.div>

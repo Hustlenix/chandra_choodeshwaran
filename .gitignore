@@ -8,5 +8,4 @@ instance/
 __pycache__/
 *.pyc
 .DS_Store
-public/
 tsconfig.tsbuildinfo

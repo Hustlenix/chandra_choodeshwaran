@@ -53,8 +53,8 @@ export default function ThemeFilter({
               className={cn(
                 'shrink-0 rounded-full px-5 py-2 text-xs font-medium uppercase tracking-wider transition-all duration-300',
                 isActive
-                  ? 'border border-gold-500 bg-gold-500/10 text-gold-400 shadow-lg shadow-gold-500/10'
-                  : 'border border-white/10 bg-white/5 text-muted backdrop-blur-sm hover:border-white/20 hover:text-white'
+                  ? 'border border-pink-400 bg-pink-100/30 text-pink-500 shadow-lg shadow-pink-400/10'
+                  : 'border border-border-light bg-pink-50/20 text-text-muted backdrop-blur-sm hover:border-border-medium hover:text-text-primary'
               )}
             >
               {theme.label}

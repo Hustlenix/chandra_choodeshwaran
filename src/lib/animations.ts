@@ -45,7 +45,7 @@ export const scaleIn: Variants = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
 }
 
-export const scaleInGold: Variants = {
+export const scaleInPink: Variants = {
   hidden: { opacity: 0, scale: 0.8, filter: 'blur(10px)' },
   visible: {
     opacity: 1,

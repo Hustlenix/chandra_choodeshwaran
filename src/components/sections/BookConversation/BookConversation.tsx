@@ -10,14 +10,14 @@ export default function BookConversation() {
   return (
     <section
       id="connect"
-      className="relative min-h-screen overflow-hidden bg-navy-900"
+      className="relative min-h-screen overflow-hidden bg-surface-white"
     >
       {/* Grid pattern background */}
       <div className="absolute inset-0 grid-pattern" />
 
       {/* Gold radial glow */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="h-[500px] w-[500px] rounded-full bg-gold-500/10 blur-[120px]" />
+        <div className="h-[500px] w-[500px] rounded-full bg-pink-400/10 blur-[120px]" />
       </div>
 
       {/* Content */}
@@ -32,7 +32,7 @@ export default function BookConversation() {
           {/* Badge */}
           <motion.span
             variants={fadeSlideUp}
-            className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-gold-500"
+            className="mb-6 block font-mono text-xs uppercase tracking-[0.3em] text-pink-500"
           >
             {BOOK_CONVERSATION.badge}
           </motion.span>
@@ -40,7 +40,7 @@ export default function BookConversation() {
           {/* Heading */}
           <motion.h2
             variants={fadeSlideUp}
-            className="font-serif text-heading-1 leading-tight text-white"
+            className="font-serif text-heading-1 leading-tight text-text-primary"
           >
             {BOOK_CONVERSATION.title}
           </motion.h2>
@@ -48,7 +48,7 @@ export default function BookConversation() {
           {/* Subtitle */}
           <motion.p
             variants={fadeSlideUp}
-            className="mt-6 text-body-lg text-muted"
+            className="mt-6 text-body-lg text-text-muted"
           >
             {BOOK_CONVERSATION.subtitle}
           </motion.p>
@@ -56,7 +56,7 @@ export default function BookConversation() {
           {/* Decorative divider */}
           <motion.div
             variants={fadeSlideUp}
-            className="mx-auto mt-8 h-px w-16 bg-gradient-to-r from-gold-500/50 to-transparent"
+            className="mx-auto mt-8 h-px w-16 bg-gradient-to-r from-pink-400/50 to-transparent"
           />
 
           {/* CTA Button */}
@@ -75,7 +75,7 @@ export default function BookConversation() {
           {/* Email */}
           <motion.p
             variants={fadeSlideUp}
-            className="mt-8 text-micro text-muted"
+            className="mt-8 text-micro text-text-muted"
           >
             {BOOK_CONVERSATION.email}
           </motion.p>
@@ -83,7 +83,7 @@ export default function BookConversation() {
           {/* Location */}
           <motion.p
             variants={fadeSlideUp}
-            className="mt-1 text-micro text-muted"
+            className="mt-1 text-micro text-text-muted"
           >
             {BOOK_CONVERSATION.location}
           </motion.p>

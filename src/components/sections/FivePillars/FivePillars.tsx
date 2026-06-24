@@ -37,26 +37,26 @@ export default function FivePillars() {
               >
                 {/* Content */}
                 <div className="flex-1">
-                  <span className="mb-3 block font-mono text-xs uppercase tracking-[0.3em] text-gold-500/60">
+                  <span className="mb-3 block font-mono text-xs uppercase tracking-[0.3em] text-pink-400/60">
                     {pillar.number}
                   </span>
-                  <h2 className="font-serif text-heading-2 leading-tight text-white sm:text-heading-1">
+                  <h2 className="font-serif text-heading-2 leading-tight text-text-primary sm:text-heading-1">
                     {pillar.title}
                   </h2>
-                  <p className="mt-2 text-lg text-gold-400/80 sm:text-xl">
+                  <p className="mt-2 text-lg text-pink-400/80 sm:text-xl">
                     {pillar.subtitle}
                   </p>
-                  <p className="mt-6 text-body-lg leading-relaxed text-muted">
+                  <p className="mt-6 text-body-lg leading-relaxed text-text-muted">
                     {pillar.description}
                   </p>
                   {pillar.metrics && (
                     <div className="mt-8 flex flex-wrap gap-6">
                       {pillar.metrics.map((m) => (
                         <div key={m.label}>
-                          <span className="font-serif text-3xl font-bold text-gold-500 sm:text-4xl">
+                          <span className="font-serif text-3xl font-bold text-pink-500 sm:text-4xl">
                             {m.value}
                           </span>
-                          <p className="mt-1 text-sm text-muted">{m.label}</p>
+                          <p className="mt-1 text-sm text-text-muted">{m.label}</p>
                         </div>
                       ))}
                     </div>
@@ -65,7 +65,7 @@ export default function FivePillars() {
 
                 {/* Visual placeholder */}
                 <div className="flex-1">
-                  <div className="aspect-square rounded-3xl border border-white/5 bg-gradient-to-br from-gold-500/5 to-transparent backdrop-blur-sm" />
+                  <div className="aspect-square rounded-3xl border border-border-light bg-gradient-to-br from-pink-400/5 to-transparent backdrop-blur-sm" />
                 </div>
               </div>
             </div>

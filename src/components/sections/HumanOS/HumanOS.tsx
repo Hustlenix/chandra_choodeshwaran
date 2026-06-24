@@ -108,8 +108,8 @@ function HumanOSDiagram({
         stroke: (i: number) => {
           const [a, b] = CONNECTIONS[i]
           return a === activePillar || b === activePillar
-            ? '#D4AF37'
-            : 'rgba(255,255,255,0.1)'
+            ? '#ec4899'
+            : 'rgba(0,0,0,0.08)'
         },
         'stroke-width': (i: number) => {
           const [a, b] = CONNECTIONS[i]
@@ -143,7 +143,7 @@ function HumanOSDiagram({
             }}
             d={d}
             fill="none"
-            stroke="rgba(255,255,255,0.1)"
+            stroke="rgba(0,0,0,0.08)"
             strokeWidth={0.5}
             strokeLinecap="round"
           />
@@ -176,8 +176,8 @@ function HumanOSDiagram({
                 'h-14 w-14 rounded-full sm:h-16 sm:w-16',
                 'border-2 transition-colors duration-300',
                 activePillar === i
-                  ? 'border-gold-500 bg-gold-500/20 shadow-[0_0_20px_rgba(212,175,55,0.3)]'
-                  : 'border-white/20 bg-navy-800/80 hover:border-white/40',
+                  ? 'border-pink-400 bg-pink-100/30 shadow-[0_0_20px_rgba(236,72,153,0.2)]'
+                  : 'border-border-light bg-surface-blush/80 hover:border-border-medium',
               )}
               style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
               onClick={() => onActivate(i)}
@@ -188,12 +188,12 @@ function HumanOSDiagram({
                   ? {
                       scale: [1, 1.08, 1],
                       boxShadow: [
-                        '0 0 15px rgba(212,175,55,0.3)',
-                        '0 0 30px rgba(212,175,55,0.5)',
-                        '0 0 15px rgba(212,175,55,0.3)',
+                        '0 0 15px rgba(236,72,153,0.3)',
+                        '0 0 30px rgba(236,72,153,0.5)',
+                        '0 0 15px rgba(236,72,153,0.3)',
                       ],
                     }
-                  : { scale: 1, boxShadow: '0 0 0px rgba(212,175,55,0)' }
+                  : { scale: 1, boxShadow: '0 0 0px rgba(236,72,153,0)' }
               }
               transition={
                 activePillar === i
@@ -229,7 +229,7 @@ function DetailPanel({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-50px' }}
-      className="flex h-[320px] overflow-hidden rounded-lg border border-white/5"
+      className="flex h-[320px] overflow-hidden rounded-lg border border-border-light"
     >
       {pillars.map((pillar, i) => (
         <PillarCard
@@ -264,8 +264,8 @@ function PillarCardMobile({
   return (
     <motion.button
       className={cn(
-        'w-full border border-white/10 px-6 py-5 text-left transition-all duration-300',
-        isActive ? 'border-gold-500/30 bg-gold-500/10' : 'bg-white/[0.02]',
+        'w-full border border-border-light px-6 py-5 text-left transition-all duration-300',
+        isActive ? 'border-pink-400/30 bg-pink-50/50' : 'bg-pink-50/20',
       )}
       onClick={onActivate}
       layout
@@ -275,7 +275,7 @@ function PillarCardMobile({
         <h3
           className={cn(
             'font-serif text-lg transition-colors duration-300',
-            isActive ? 'text-gold-400' : 'text-white/80',
+            isActive ? 'text-pink-500' : 'text-text-primary/80',
           )}
         >
           {title}
@@ -290,7 +290,7 @@ function PillarCardMobile({
         }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
-        <p className="mt-4 text-sm leading-relaxed text-muted">
+        <p className="mt-4 text-sm leading-relaxed text-text-muted">
           {description}
         </p>
       </motion.div>
@@ -311,11 +311,11 @@ export default function HumanOS() {
   return (
     <section
       id="philosophy"
-      className="relative min-h-screen bg-navy-900 py-section-lg"
+      className="relative min-h-screen bg-surface-white py-section-lg"
     >
       {/* Background accent */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/2 translate-x-1/2 rounded-full bg-gold-500/5 blur-[120px]" />
+        <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/2 translate-x-1/2 rounded-full bg-pink-400/5 blur-[120px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1200px] px-6 md:px-8 lg:px-12">

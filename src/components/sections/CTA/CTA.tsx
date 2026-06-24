@@ -15,10 +15,10 @@ export default function CTA() {
   }
 
   return (
-    <section id="contact" className="relative min-h-screen overflow-hidden bg-navy-900">
+    <section id="contact" className="relative min-h-screen overflow-hidden bg-surface-white">
       {/* Background glow */}
       <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2">
-        <div className="h-full w-full rounded-full bg-gold-500/5 blur-[120px]" />
+        <div className="h-full w-full rounded-full bg-pink-400/5 blur-[120px]" />
       </div>
 
       {/* Subtle grid */}
@@ -40,7 +40,7 @@ export default function CTA() {
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <motion.span
-            className="mb-6 inline-block font-mono text-xs uppercase tracking-[0.3em] text-gold-500"
+            className="mb-6 inline-block font-mono text-xs uppercase tracking-[0.3em] text-pink-500"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -50,7 +50,7 @@ export default function CTA() {
           </motion.span>
 
           <motion.h2
-            className="font-serif text-4xl leading-tight text-white sm:text-5xl lg:text-7xl"
+            className="font-serif text-4xl leading-tight text-text-primary sm:text-5xl lg:text-7xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -62,7 +62,7 @@ export default function CTA() {
           </motion.h2>
 
           <motion.p
-            className="mt-8 text-lg leading-relaxed text-muted sm:text-xl"
+            className="mt-8 text-lg leading-relaxed text-text-muted sm:text-xl"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -90,7 +90,7 @@ export default function CTA() {
           </motion.div>
 
           <motion.p
-            className="mt-6 text-xs text-muted"
+            className="mt-6 text-xs text-text-muted"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}

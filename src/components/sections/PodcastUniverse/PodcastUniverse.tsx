@@ -33,11 +33,11 @@ export default function PodcastUniverse() {
   return (
     <section
       id="podcast"
-      className="relative overflow-hidden bg-navy-900 py-section-lg"
+      className="relative overflow-hidden bg-surface-white py-section-lg"
     >
       {/* ── Tamil watermark ── */}
       <div className="pointer-events-none absolute inset-0 flex select-none items-center justify-center overflow-hidden">
-        <span className="whitespace-nowrap font-serif text-[clamp(6rem,20vw,20rem)] leading-none text-white/[0.02]">
+        <span className="whitespace-nowrap font-serif text-[clamp(6rem,20vw,20rem)] leading-none text-text-primary/[0.02]">
           {tamilMotto}
         </span>
       </div>
@@ -94,7 +94,7 @@ export default function PodcastUniverse() {
               </motion.div>
             ) : (
               !featuredEpisode && (
-                <p className="py-16 text-center text-body-sm text-muted">
+                <p className="py-16 text-center text-body-sm text-text-muted">
                   No episodes match the selected theme.
                 </p>
               )
@@ -108,10 +108,10 @@ export default function PodcastUniverse() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="sticky top-24 overflow-hidden rounded-2xl border border-white/5 bg-navy-800/30 backdrop-blur-sm"
+              className="sticky top-24 overflow-hidden rounded-2xl border border-border-light bg-surface-blush/30 backdrop-blur-sm"
             >
               <iframe
-                src="https://open.spotify.com/embed/show/7jte6TL6cXPKVdqgO2jqqu"
+                src={spotifyUrl.replace('/show/', '/embed/show/')}
                 width="100%"
                 height="232"
                 allow="encrypted-media"
@@ -119,7 +119,7 @@ export default function PodcastUniverse() {
               />
             </motion.div>
 
-            <p className="mt-3 text-center text-micro uppercase tracking-widest text-muted">
+            <p className="mt-3 text-center text-micro uppercase tracking-widest text-text-muted">
               Listen on Spotify
             </p>
           </div>

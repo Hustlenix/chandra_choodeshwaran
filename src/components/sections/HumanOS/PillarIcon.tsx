@@ -25,8 +25,8 @@ export default function PillarIcon({ icon, isActive, className }: PillarIconProp
       className={cn(
         'flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300',
         isActive
-          ? 'border-gold-500 bg-gold-500/10 text-gold-400'
-          : 'border-white/10 text-white/30',
+          ? 'border-pink-400 bg-pink-100/30 text-pink-500'
+          : 'border-border-light text-text-muted/40',
         className
       )}
     >

@@ -20,10 +20,10 @@ export default function ScrollIndicator() {
           ease: 'easeInOut',
         }}
       >
-        <span className="text-[10px] uppercase tracking-[0.25em] text-muted">
+        <span className="text-[10px] uppercase tracking-[0.25em] text-text-muted">
           Scroll
         </span>
-        <ChevronDown className="h-4 w-4 text-gold-500/80" />
+        <ChevronDown className="h-4 w-4 text-pink-400/80" />
       </motion.div>
     </motion.div>
   )

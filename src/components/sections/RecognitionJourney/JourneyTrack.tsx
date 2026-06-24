@@ -10,10 +10,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Translated milestone background colors for smooth CSS transitions
 const MILESTONE_BG_COLORS = [
-  'rgba(59, 130, 246, 0.06)',   // blue-500
-  'rgba(212, 175, 55, 0.06)',   // gold-500
-  'rgba(108, 92, 231, 0.06)',   // tertiary-indigo
-  'rgba(255, 107, 107, 0.06)',  // tertiary-coral
+  'rgba(236, 72, 153, 0.06)',   // pink-500
+  'rgba(244, 114, 182, 0.06)',  // pink-400
+  'rgba(219, 39, 119, 0.06)',   // pink-600
+  'rgba(251, 207, 232, 0.06)',  // pink-200
 ]
 
 const TOTAL_PANELS = JOURNEY_MILESTONES.length + 1 // 4 milestones + end cap
@@ -75,7 +75,7 @@ export default function JourneyTrack() {
             // Apply background color directly for smooth, render-free updates
             const color = MILESTONE_BG_COLORS[idx] ?? MILESTONE_BG_COLORS[0]
             bgOverlay.style.background =
-              `linear-gradient(135deg, rgba(10, 15, 30, 0) 0%, ${color} 50%, rgba(10, 15, 30, 0) 100%)`
+              `linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, ${color} 50%, rgba(255, 255, 255, 0) 100%)`
           },
         },
       })
@@ -107,7 +107,7 @@ export default function JourneyTrack() {
   return (
     <div
       ref={sectionRef}
-      className="relative overflow-hidden bg-navy-900"
+      className="relative overflow-hidden bg-surface-white"
     >
       {/* Background color overlay — animated by GSAP */}
       <div
@@ -120,7 +120,7 @@ export default function JourneyTrack() {
         <>
           {/* Glowing timeline line */}
           <div className="pointer-events-none absolute left-0 z-10 w-full" style={{ top: '65%', height: '1px' }}>
-            <div className="timeline-progress h-full w-full origin-left bg-gradient-to-r from-gold-500/20 via-gold-500/60 to-gold-500 shadow-[0_0_12px_rgba(212,175,55,0.25)]" />
+            <div className="timeline-progress h-full w-full origin-left bg-gradient-to-r from-pink-400/20 via-pink-400/60 to-pink-400 shadow-[0_0_12px_rgba(236,72,153,0.25)]" />
           </div>
 
           {/* Track */}
@@ -143,7 +143,7 @@ export default function JourneyTrack() {
             {/* End cap */}
             <div className="flex w-screen flex-shrink-0 items-center justify-center px-8">
               <div className="text-center">
-                <span className="font-serif text-2xl italic text-gold-500/60">
+                <span className="font-serif text-2xl italic text-pink-400/60">
                   The journey continues&hellip;
                 </span>
               </div>
@@ -156,30 +156,30 @@ export default function JourneyTrack() {
           {JOURNEY_MILESTONES.map((milestone, i) => (
             <div key={milestone.year} className="relative">
               {/* Vertical timeline line */}
-              <div className="absolute left-8 top-0 h-full w-px bg-gradient-to-b from-gold-500/20 via-gold-500/40 to-gold-500/20" />
+              <div className="absolute left-8 top-0 h-full w-px bg-gradient-to-b from-pink-400/20 via-pink-400/40 to-pink-400/20" />
 
               {/* Mobile milestone */}
               <div className="relative flex min-h-[60vh] flex-col items-start justify-center pl-20 pr-6 py-16">
                 {/* Gold dot */}
-                <div className="absolute left-[calc(2rem-5px)] top-1/2 z-10 h-2.5 w-2.5 -translate-y-1/2 rounded-full border-2 border-gold-500 bg-navy-900" />
+                <div className="absolute left-[calc(2rem-5px)] top-1/2 z-10 h-2.5 w-2.5 -translate-y-1/2 rounded-full border-2 border-pink-400 bg-surface-white" />
 
                 {/* Year badge */}
-                <span className="mb-3 font-mono text-4xl font-bold text-white/10 sm:text-5xl">
+                <span className="mb-3 font-mono text-4xl font-bold text-text-primary/10 sm:text-5xl">
                   {milestone.year}
                 </span>
 
                 {/* Organization */}
-                <span className="mb-2 font-mono text-xs uppercase tracking-[0.3em] text-gold-500">
+                <span className="mb-2 font-mono text-xs uppercase tracking-[0.3em] text-pink-500">
                   {milestone.organization}
                 </span>
 
                 {/* Title */}
-                <h3 className="font-serif text-heading-3 text-white sm:text-heading-2">
+                <h3 className="font-serif text-heading-3 text-text-primary sm:text-heading-2">
                   {milestone.title}
                 </h3>
 
                 {/* Description */}
-                <p className="mt-4 max-w-lg text-body leading-relaxed text-muted">
+                <p className="mt-4 max-w-lg text-body leading-relaxed text-text-muted">
                   {milestone.description}
                 </p>
               </div>

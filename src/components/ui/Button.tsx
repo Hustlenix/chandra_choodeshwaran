@@ -2,6 +2,7 @@
 import { cn } from '@/lib/utils'
 import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'ghost' | 'outline'
@@ -11,16 +12,16 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const base =
-  'inline-flex items-center justify-center font-sans font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500 cursor-pointer'
+  'inline-flex items-center justify-center font-sans font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 cursor-pointer'
 
 const variants = {
   primary:
-    'bg-gold-500 text-navy-900 hover:bg-gold-400 hover:shadow-lg hover:shadow-gold-500/25 active:bg-gold-600',
+    'bg-pink-400 text-white hover:bg-pink-500 hover:shadow-lg hover:shadow-pink-400/25 active:bg-pink-600',
   secondary:
-    'border border-gold-500/50 text-gold-400 hover:bg-gold-500/10 hover:border-gold-400',
-  ghost: 'text-muted hover:text-white hover:bg-white/5',
+    'border border-pink-400/50 text-pink-500 hover:bg-pink-50 hover:border-pink-400',
+  ghost: 'text-text-muted hover:text-pink-500 hover:bg-pink-50',
   outline:
-    'border border-white/20 text-white hover:border-gold-500/50 hover:text-gold-400',
+    'border border-pink-400/30 text-pink-500 hover:bg-pink-50 hover:border-pink-400',
 }
 
 const sizes = {
@@ -33,15 +34,26 @@ const sizes = {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', href, children, ...props }, ref) => {
     if (href) {
+      const isExternal = href.startsWith('http') || href.startsWith('mailto')
+      if (isExternal) {
+        return (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(base, variants[variant], sizes[size], className)}
+          >
+            {children}
+          </a>
+        )
+      }
       return (
-        <a
+        <Link
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
           className={cn(base, variants[variant], sizes[size], className)}
         >
           {children}
-        </a>
+        </Link>
       )
     }
 

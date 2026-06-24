@@ -4,6 +4,8 @@ import './globals.css'
 import Providers from './providers'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import { PersonSchema, PodcastSeriesSchema } from '@/components/ui/JsonLd'
+import { ScrollToTop } from '@/components/layout/ScrollToTop'
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ['latin'],
@@ -19,19 +21,29 @@ const figtree = Figtree({
 })
 
 export const viewport: Viewport = {
-  themeColor: '#0A0F1E',
+  themeColor: '#E07B8C',
 }
 
 export const metadata: Metadata = {
-  title: 'Chandrachoodeshwaran M | Mastering Human Potential',
+  title: {
+    default: 'Chandra Choodeshwaran M | Emotional Intelligence & Soft Skills Trainer',
+    template: '%s | Chandra Choodeshwaran M',
+  },
   description:
-    'Helping people communicate, lead, and grow through emotional intelligence. Emotional Intelligence Coach & Trainer.',
+    'Helping people communicate, lead, and grow through emotional intelligence. Soft Skills Trainer in Hosur, Tamil Nadu.',
   openGraph: {
-    title: 'Chandrachoodeshwaran M | Mastering Human Potential',
+    title: 'Chandra Choodeshwaran M | Emotional Intelligence & Soft Skills Trainer',
     description:
       'Helping people communicate, lead, and grow through emotional intelligence.',
     type: 'website',
     locale: 'en_IN',
+    siteName: 'Chandra Choodeshwaran M',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Chandra Choodeshwaran M | Emotional Intelligence & Soft Skills Trainer',
+    description:
+      'Helping people communicate, lead, and grow through emotional intelligence.',
   },
   robots: {
     index: true,
@@ -50,16 +62,17 @@ export default function RootLayout({
       className={`${dmSerifDisplay.variable} ${figtree.variable}`}
     >
       <body>
-        {/* Skip-to-content link for accessibility */}
+        <PersonSchema />
+        <PodcastSeriesSchema />
         <a href="#main-content" className="skip-to-content">
           Skip to content
         </a>
-
         <Providers>
           <Navbar />
           <main id="main-content">{children}</main>
           <Footer />
         </Providers>
+        <ScrollToTop />
       </body>
     </html>
   )

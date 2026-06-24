@@ -10,7 +10,7 @@ interface SectionHeadingProps {
   align?: 'left' | 'center'
   size?: 'sm' | 'md' | 'lg' | 'xl'
   as?: 'h1' | 'h2' | 'h3'
-  goldAccent?: boolean
+  pinkAccent?: boolean
   decorative?: boolean
   className?: string
 }
@@ -29,7 +29,7 @@ export function SectionHeading({
   align = 'center',
   size = 'md',
   as: Tag = 'h2',
-  goldAccent = false,
+  pinkAccent = false,
   decorative = false,
   className,
 }: SectionHeadingProps) {
@@ -45,14 +45,14 @@ export function SectionHeading({
         className
       )}
     >
-      <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-gold-500">
+      <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-pink-400">
         {badge}
       </span>
       <Tag
         className={cn(
-          'font-serif leading-tight text-white',
+          'font-serif leading-tight text-text-primary',
           titleSizes[size],
-          goldAccent ? 'text-gradient-gold' : ''
+          pinkAccent ? 'text-gradient-pink' : ''
         )}
       >
         {title}
@@ -60,7 +60,7 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={cn(
-            'mt-6 text-body-lg text-muted',
+            'mt-6 text-body-lg text-text-muted',
             align === 'center' ? 'mx-auto max-w-2xl' : 'max-w-2xl'
           )}
         >
@@ -70,7 +70,7 @@ export function SectionHeading({
       {decorative && (
         <div
           className={cn(
-            'mt-8 h-px w-16 bg-gradient-to-r from-gold-500/50 to-transparent',
+            'mt-8 h-px w-16 bg-gradient-to-r from-pink-400/50 to-transparent',
             align === 'center' ? 'mx-auto' : ''
           )}
         />

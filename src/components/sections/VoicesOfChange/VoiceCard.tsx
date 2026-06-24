@@ -15,8 +15,8 @@ export default function VoiceCard({ voice, index }: VoiceCardProps) {
   return (
     <motion.div
       className={cn(
-        'group relative border border-white/5 bg-white/[0.03] backdrop-blur-sm transition-all duration-500',
-        'hover:border-gold-500/30 hover:bg-white/[0.05]',
+        'group relative border border-border-light bg-pink-50/20 backdrop-blur-sm transition-all duration-500',
+        'hover:border-pink-400/30 hover:bg-pink-50/40',
         isFeatured ? 'p-8 md:p-10' : 'p-6 md:p-8'
       )}
       initial={{ opacity: 0, y: 40 }}
@@ -31,7 +31,7 @@ export default function VoiceCard({ voice, index }: VoiceCardProps) {
     >
       {/* Decorative opening quotation mark */}
       <span
-        className="pointer-events-none absolute select-none font-serif uppercase leading-none text-gold-500"
+        className="pointer-events-none absolute select-none font-serif uppercase leading-none text-pink-400"
         style={{
           opacity: 0.12,
           fontSize: isFeatured ? 'clamp(6rem, 12vw, 10rem)' : 'clamp(4rem, 8vw, 7rem)',
@@ -47,7 +47,7 @@ export default function VoiceCard({ voice, index }: VoiceCardProps) {
       <blockquote className="relative z-10">
         <p
           className={cn(
-            'font-serif italic leading-relaxed text-white/90',
+            'font-serif italic leading-relaxed text-text-primary/90',
             isFeatured ? 'text-body-lg md:text-heading-4' : 'text-body'
           )}
         >
@@ -58,18 +58,18 @@ export default function VoiceCard({ voice, index }: VoiceCardProps) {
       {/* Gold accent line */}
       <div
         className={cn(
-          'mt-6 h-px bg-gradient-to-r from-gold-500/50 to-transparent',
+          'mt-6 h-px bg-gradient-to-r from-pink-400/50 to-transparent',
           isFeatured ? 'mt-8 w-16' : 'mt-6 w-12'
         )}
       />
 
       {/* Author & Role */}
       <div className={cn('space-y-1', isFeatured ? 'mt-6' : 'mt-5')}>
-        <p className="font-sans font-medium text-gold-500">
+        <p className="font-sans font-medium text-pink-500">
           {voice.name}
         </p>
         {(voice.role || voice.organization) && (
-          <p className="text-body-sm text-muted">
+          <p className="text-body-sm text-text-muted">
             {[voice.role, voice.organization].filter(Boolean).join(', ')}
           </p>
         )}

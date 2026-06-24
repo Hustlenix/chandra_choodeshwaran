@@ -8,24 +8,43 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navy: {
-          900: '#0A0F1E',
-          800: '#0D1325',
-          700: '#111A2E',
-          600: '#1A2540',
+        pink: {
+          50: '#FFF5F7',
+          100: '#FFE8ED',
+          200: '#FFCED9',
+          300: '#FCA5B5',
+          400: '#E07B8C',
+          500: '#D63F6D',
+          600: '#C4536A',
+          700: '#9B3A4E',
+          800: '#78283B',
+          900: '#4A1523',
         },
-        gold: {
-          400: '#E8C54A',
-          500: '#D4AF37',
-          600: '#B8962E',
+        blush: {
+          50: '#FFF9FA',
+          100: '#FFF2F4',
+          200: '#FFE5EA',
         },
-        'off-white': '#F5F5F0',
-        muted: '#8B8FA3',
-        tertiary: {
-          teal: '#5BC0BE',
-          coral: '#FF6B6B',
-          indigo: '#6C5CE7',
+        text: {
+          primary: '#1A1A1A',
+          secondary: '#4A4A4A',
+          muted: '#8B7B7B',
+          inverse: '#FFFFFF',
         },
+        surface: {
+          white: '#FFFFFF',
+          blush: '#FFF5F7',
+          rose: '#FFE8ED',
+          dark: '#2D1B20',
+        },
+        border: {
+          light: '#FFE5EA',
+          medium: '#FFCED9',
+          accent: '#E07B8C',
+        },
+        success: '#22C55E',
+        warning: '#F59E0B',
+        error: '#EF4444',
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'DM Serif Display', 'Georgia', 'serif'],
@@ -33,8 +52,9 @@ module.exports = {
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       spacing: {
-        section: '8rem',
-        'section-lg': '12rem',
+        section: '6rem',
+        'section-lg': '10rem',
+        'page-top': '8rem',
       },
       fontSize: {
         'display-xl': ['clamp(3.5rem, 10vw, 10rem)', { lineHeight: '0.9', letterSpacing: '-0.04em' }],
@@ -60,7 +80,7 @@ module.exports = {
         'glow-pulse': 'glowPulse 3s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
         'pulse-slow': 'pulseSlow 4s ease-in-out infinite',
-        'shimmer-gold': 'shimmerGold 3s ease-in-out infinite',
+        'shimmer-pink': 'shimmerPink 3s ease-in-out infinite',
         'drift-slow': 'driftSlow 15s ease-in-out infinite',
       },
       keyframes: {
@@ -77,8 +97,8 @@ module.exports = {
           to: { opacity: '1', transform: 'translateY(0)' },
         },
         glowPulse: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.1)' },
-          '50%': { boxShadow: '0 0 40px rgba(212, 175, 55, 0.3)' },
+          '0%, 100%': { boxShadow: '0 0 20px rgba(224, 123, 140, 0.15)' },
+          '50%': { boxShadow: '0 0 40px rgba(224, 123, 140, 0.3)' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
@@ -88,7 +108,7 @@ module.exports = {
           '0%, 100%': { opacity: '0.4' },
           '50%': { opacity: '0.8' },
         },
-        shimmerGold: {
+        shimmerPink: {
           '0%': { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
         },

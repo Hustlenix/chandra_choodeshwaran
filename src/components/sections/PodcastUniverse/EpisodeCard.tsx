@@ -31,19 +31,19 @@ export default function EpisodeCard({
         'group relative overflow-hidden rounded-xl bg-gradient-to-r transition-all duration-300',
         'hover:-translate-y-0.5 hover:shadow-xl',
         featured
-          ? 'border-l-[6px] border-gold-400 from-navy-800/90 to-navy-700/50 p-8 hover:shadow-gold-500/8'
-          : 'border-l-4 border-gold-500/60 from-navy-800/80 to-navy-700/30 p-6 hover:shadow-gold-500/5'
+          ? 'border-l-[6px] border-pink-400 from-surface-blush/90 to-surface-rose/50 p-8 hover:shadow-pink-400/8'
+          : 'border-l-4 border-pink-500/60 from-surface-blush/80 to-surface-rose/30 p-6 hover:shadow-pink-400/5'
       )}
     >
       {/* ── Top section: meta + title + description ── */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 space-y-2">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-micro uppercase tracking-widest text-gold-500/70">
+            <span className="font-mono text-micro uppercase tracking-widest text-pink-500/70">
               EP {String(episode.episodeNumber).padStart(2, '0')}
             </span>
             {featured && (
-              <span className="rounded-full bg-gold-500/15 px-3 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-gold-400">
+              <span className="rounded-full bg-pink-100/50 px-3 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-pink-500">
                 Featured
               </span>
             )}
@@ -51,19 +51,19 @@ export default function EpisodeCard({
 
           <h3
             className={cn(
-              'font-serif leading-tight text-white',
+              'font-serif leading-tight text-text-primary',
               featured ? 'text-heading-2' : 'text-heading-3'
             )}
           >
             {episode.title}
           </h3>
 
-          <p className="text-body-sm leading-relaxed text-muted">
+          <p className="text-body-sm leading-relaxed text-text-muted">
             {episode.description}
           </p>
         </div>
 
-        <span className="shrink-0 whitespace-nowrap font-mono text-micro uppercase tracking-wider text-white/30">
+        <span className="shrink-0 whitespace-nowrap font-mono text-micro uppercase tracking-wider text-text-primary/30">
           {episode.duration}
         </span>
       </div>
@@ -74,7 +74,7 @@ export default function EpisodeCard({
           {episode.themes.map((theme) => (
             <span
               key={theme}
-              className="rounded-full bg-white/[0.04] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-white/35"
+              className="rounded-full bg-pink-50/30 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-text-muted/60"
             >
               {theme}
             </span>
@@ -88,8 +88,8 @@ export default function EpisodeCard({
           className={cn(
             'inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[11px] font-medium uppercase tracking-wider transition-all duration-300',
             featured
-              ? 'bg-gold-500/15 text-gold-400 hover:bg-gold-500/25'
-              : 'bg-white/[0.06] text-white/50 hover:bg-white/[0.12] hover:text-white'
+              ? 'bg-pink-100/50 text-pink-500 hover:bg-pink-100/80'
+              : 'bg-pink-50/30 text-text-muted/60 hover:bg-pink-100/50 hover:text-text-primary'
           )}
         >
           {/* Spotify icon */}

@@ -1,104 +1,115 @@
 'use client'
 
-import { useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronDown, Award, Users, Briefcase } from 'lucide-react'
-import MeshBackground from './MeshBackground'
-import HeroTitle from './HeroTitle'
-import HeroCTA from './HeroCTA'
-import { HERO_FALLBACK, PERSON_FALLBACK } from '@/lib/constants'
+import Link from 'next/link'
+import { HeroBackground } from './HeroBackground'
+import { Button } from '@/components/ui/Button'
+import { HOME_HERO } from '@/content/home'
 
-const iconMap = [Award, Users, Briefcase]
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+  },
+}
 
-export default function Hero() {
-  const scrollToPhilosophy = useCallback(() => {
-    const el = document.getElementById('philosophy')
-    if (el) {
-      const offset = 80
-      const top = el.getBoundingClientRect().top + window.scrollY - offset
-      window.scrollTo({ top, behavior: 'smooth' })
-    }
-  }, [])
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } },
+}
 
-  const scrollToJourney = useCallback(() => {
-    const el = document.getElementById('journey')
-    if (el) {
-      const offset = 80
-      const top = el.getBoundingClientRect().top + window.scrollY - offset
-      window.scrollTo({ top, behavior: 'smooth' })
-    }
-  }, [])
-
+export function Hero() {
   return (
-    <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      <MeshBackground />
-
-      <div className="relative z-10 mx-auto max-w-[1200px] px-6 md:px-8 lg:px-12">
-        <div className="max-w-5xl">
-          {/* Eyebrow tag */}
-          <motion.p
-            className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-gold-500"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            {PERSON_FALLBACK.tagline}
-          </motion.p>
-
-          {/* Main headline with word-reveal */}
-          <HeroTitle text={HERO_FALLBACK.headline} />
-
-          {/* Subtitle */}
-          <motion.p
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.8 }}
-          >
-            {HERO_FALLBACK.subtitle}
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <div className="mt-12">
-            <HeroCTA onBook={scrollToPhilosophy} onWatch={scrollToJourney} />
-          </div>
-
-          {/* Trust indicators row */}
-          <motion.div
-            className="mt-16 flex flex-wrap items-center gap-6 sm:gap-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.6, duration: 0.8 }}
-          >
-            {HERO_FALLBACK.trustItems.map((item, i) => {
-              const Icon = iconMap[i % iconMap.length]
-              return (
-                <div key={item} className="flex items-center gap-2">
-                  <Icon className="h-4 w-4 text-gold-500" />
-                  <span className="text-sm text-white/70">{item}</span>
-                </div>
-              )
-            })}
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
+    <section className="relative flex min-h-screen items-center overflow-hidden">
+      <HeroBackground />
+      
       <motion.div
-        className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
+        className="mx-auto w-full max-w-[1200px] px-6 pt-32 pb-20 md:px-8 lg:px-12"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        <motion.div
-          className="flex flex-col items-center gap-2"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <span className="text-xs uppercase tracking-[0.2em] text-muted">
-            Scroll
+        {/* Badge */}
+        <motion.div variants={itemVariants} className="mb-6">
+          <span className="inline-block font-mono text-xs uppercase tracking-[0.3em] text-pink-400">
+            {HOME_HERO.badge}
           </span>
-          <ChevronDown className="h-4 w-4 text-gold-500" />
+        </motion.div>
+
+        {/* Headline - Word by word reveal */}
+        <motion.h1
+          className="max-w-4xl font-serif text-display-sm font-normal leading-[1] tracking-[-0.03em] text-text-primary md:text-display lg:text-display-lg"
+          variants={itemVariants}
+        >
+          {HOME_HERO.headline.split(' ').map((word, i) => (
+            <span key={i} className="inline-block overflow-hidden">
+              <motion.span
+                className="inline-block"
+                initial={{ y: '100%' }}
+                animate={{ y: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.5 + i * 0.1,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+              >
+                {word}
+                {i < HOME_HERO.headline.split(' ').length - 1 ? '\u00A0' : ''}
+              </motion.span>
+            </span>
+          ))}
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          className="mt-8 max-w-2xl text-body-lg text-text-muted md:text-body-lg"
+          variants={itemVariants}
+        >
+          {HOME_HERO.subtitle}
+        </motion.p>
+
+        {/* Dual CTA Buttons */}
+        <motion.div
+          className="mt-10 flex flex-col gap-4 sm:flex-row"
+          variants={itemVariants}
+        >
+          <Link href="/contact">
+            <Button variant="primary" size="lg">
+              Book a Free Call
+            </Button>
+          </Link>
+          <Link href="/services">
+            <Button variant="secondary" size="lg">
+              Explore Services
+            </Button>
+          </Link>
+        </motion.div>
+
+        {/* Trust Indicators Row */}
+        <motion.div
+          className="mt-16 flex flex-wrap gap-x-8 gap-y-3"
+          variants={itemVariants}
+        >
+          {HOME_HERO.trustItems.map((item, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-pink-400" aria-hidden="true" />
+              <span className="text-sm text-text-secondary">{item}</span>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+        >
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-xs uppercase tracking-[0.2em] text-text-muted">Scroll</span>
+            <div className="h-8 w-[1px] bg-pink-300 animate-scroll-bounce" />
+          </div>
         </motion.div>
       </motion.div>
     </section>

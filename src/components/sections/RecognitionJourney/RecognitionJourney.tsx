@@ -8,8 +8,8 @@ const JourneyTrack = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex h-screen items-center justify-center bg-navy-900">
-        <div className="h-px w-32 animate-pulse bg-gold-500/30" />
+      <div className="flex h-screen items-center justify-center bg-surface-white">
+        <div className="h-px w-32 animate-pulse bg-pink-400/30" />
       </div>
     ),
   }
