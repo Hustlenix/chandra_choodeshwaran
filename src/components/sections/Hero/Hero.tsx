@@ -11,7 +11,7 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
   },
 }
 
@@ -25,6 +25,14 @@ export function Hero() {
     <section className="relative flex min-h-screen items-center overflow-hidden">
       <HeroBackground />
       
+      {/* Decorative floating elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="absolute left-[8%] top-[20%] h-4 w-4 rounded-full bg-pink-300/20 float-slow" />
+        <div className="absolute right-[12%] top-[30%] h-3 w-3 rounded-full bg-pink-400/15 float-medium" style={{ animationDelay: '-2s' }} />
+        <div className="absolute left-[15%] bottom-[35%] h-2 w-2 rounded-full bg-pink-300/25 float-fast" style={{ animationDelay: '-4s' }} />
+        <div className="absolute right-[20%] bottom-[25%] h-5 w-5 rounded-full bg-pink-400/10 float-slow" style={{ animationDelay: '-6s' }} />
+      </div>
+
       <motion.div
         className="mx-auto w-full max-w-[1200px] px-6 pt-32 pb-20 md:px-8 lg:px-12"
         variants={containerVariants}
@@ -33,14 +41,14 @@ export function Hero() {
       >
         {/* Badge */}
         <motion.div variants={itemVariants} className="mb-6">
-          <span className="inline-block font-mono text-xs uppercase tracking-[0.3em] text-pink-400">
+          <span className="inline-block font-mono text-[11px] uppercase tracking-[0.35em] text-pink-400/80">
             {HOME_HERO.badge}
           </span>
         </motion.div>
 
         {/* Tagline - states profession explicitly */}
         <motion.p
-          className="mb-8 font-mono text-sm tracking-[0.15em] text-pink-500/80"
+          className="mb-8 font-mono text-sm tracking-[0.15em] text-pink-500/70"
           variants={itemVariants}
         >
           {SITE.tagline}
@@ -48,18 +56,18 @@ export function Hero() {
 
         {/* Headline - Word by word reveal */}
         <motion.h1
-          className="max-w-4xl font-serif text-display-sm font-normal leading-[1] tracking-[-0.03em] text-text-primary md:text-display lg:text-display-lg"
+          className="max-w-4xl font-serif text-display-sm font-normal leading-[1] tracking-[-0.03em] md:text-display lg:text-display-lg"
           variants={itemVariants}
         >
           {HOME_HERO.headline.split(' ').map((word, i) => (
             <span key={`${word}-${i}`} className="inline-block overflow-hidden">
               <motion.span
-                className="inline-block"
+                className="inline-block text-gradient-subtle"
                 initial={{ y: '100%' }}
                 animate={{ y: 0 }}
                 transition={{
                   duration: 0.8,
-                  delay: 0.5 + i * 0.1,
+                  delay: 0.4 + i * 0.08,
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
               >
@@ -72,7 +80,7 @@ export function Hero() {
 
         {/* Subtitle */}
         <motion.p
-          className="mt-8 max-w-2xl text-body-lg text-text-muted md:text-body-lg"
+          className="mt-8 max-w-2xl text-body-lg leading-relaxed text-text-muted/90 md:text-body-lg"
           variants={itemVariants}
         >
           {HOME_HERO.subtitle}
@@ -110,10 +118,10 @@ export function Hero() {
             <Link
               key={`${item}-${i}`}
               href={href}
-              className="flex items-center gap-2 group"
+              className="link-premium flex items-center gap-2"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-pink-400" aria-hidden="true" />
-              <span className="text-sm text-text-secondary transition-colors duration-300 group-hover:text-pink-500">{item}</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-pink-400/60" aria-hidden="true" />
+              <span className="text-sm text-text-muted">{item}</span>
             </Link>
             )
           })}
@@ -127,8 +135,8 @@ export function Hero() {
           transition={{ delay: 2, duration: 1 }}
         >
           <div className="flex flex-col items-center gap-2">
-            <span className="text-xs uppercase tracking-[0.2em] text-text-muted">Scroll</span>
-            <div className="h-8 w-[1px] bg-pink-300 animate-scroll-bounce" />
+            <span className="text-[10px] uppercase tracking-[0.25em] text-text-muted/60">Scroll</span>
+            <div className="h-8 w-[1px] bg-gradient-to-b from-pink-300 to-transparent animate-scroll-bounce" />
           </div>
         </motion.div>
       </motion.div>

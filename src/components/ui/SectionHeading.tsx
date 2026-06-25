@@ -38,21 +38,27 @@ export function SectionHeading({
       variants={fadeInUp}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: '-40px' }}
       className={cn(
         'mb-16 md:mb-20',
         align === 'center' ? 'text-center' : '',
         className
       )}
     >
-      <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-pink-400">
-        {badge}
-      </span>
+      <div className={cn('relative', align === 'center' ? 'inline-block' : '')}>
+        <span className="mb-4 block font-mono text-[11px] uppercase tracking-[0.35em] text-pink-400/80">
+          {badge}
+        </span>
+        <div className={cn(
+          'mx-auto h-px w-8 bg-pink-400/30 mb-5',
+          align === 'center' ? '' : ''
+        )} />
+      </div>
       <Tag
         className={cn(
-          'font-serif leading-tight text-text-primary',
+          'font-serif leading-[1.05] tracking-[-0.02em]',
           titleSizes[size],
-          pinkAccent ? 'text-gradient-pink' : ''
+          pinkAccent ? 'text-gradient-pink' : 'text-gradient-subtle'
         )}
       >
         {title}
@@ -60,8 +66,9 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={cn(
-            'mt-6 text-body-lg text-text-muted',
-            align === 'center' ? 'mx-auto max-w-2xl' : 'max-w-2xl'
+            'mt-6 text-body-lg leading-relaxed',
+            align === 'center' ? 'mx-auto max-w-2xl' : 'max-w-2xl',
+            pinkAccent ? 'text-text-muted/90' : 'text-text-muted'
           )}
         >
           {subtitle}
@@ -70,10 +77,14 @@ export function SectionHeading({
       {decorative && (
         <div
           className={cn(
-            'mt-8 h-px w-16 bg-gradient-to-r from-pink-400/50 to-transparent',
-            align === 'center' ? 'mx-auto' : ''
+            'mt-8 flex items-center gap-3',
+            align === 'center' ? 'justify-center' : ''
           )}
-        />
+        >
+          <div className="h-px w-12 bg-gradient-to-r from-pink-400/50 to-transparent" />
+          <div className="h-1.5 w-1.5 rotate-45 rounded-sm bg-pink-400/40" />
+          <div className="h-px w-12 bg-gradient-to-l from-pink-400/50 to-transparent" />
+        </div>
       )}
     </motion.div>
   )

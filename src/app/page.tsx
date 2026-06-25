@@ -8,21 +8,34 @@ import RecognitionJourney from '@/components/sections/RecognitionJourney/Recogni
 import PodcastUniverse from '@/components/sections/PodcastUniverse/PodcastUniverse'
 import VoicesOfChange from '@/components/sections/VoicesOfChange/VoicesOfChange'
 import BookConversation from '@/components/sections/BookConversation/BookConversation'
+import { SectionWrapper } from '@/components/ui/SectionWrapper'
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <OpeningStatement />
-      <section id="human-os">
+      <SectionWrapper id="human-os" noPadding>
         <HumanOS />
-      </section>
-      <FivePillars />
-      <Stats />
-      <Frameworks />
-      <RecognitionJourney />
-      <PodcastUniverse />
-      <VoicesOfChange />
+      </SectionWrapper>
+      <SectionWrapper noPadding>
+        <FivePillars />
+      </SectionWrapper>
+      <SectionWrapper noPadding>
+        <Stats />
+      </SectionWrapper>
+      <SectionWrapper noPadding>
+        <Frameworks />
+      </SectionWrapper>
+      <SectionWrapper noPadding>
+        <RecognitionJourney />
+      </SectionWrapper>
+      <SectionWrapper noPadding>
+        <PodcastUniverse />
+      </SectionWrapper>
+      <SectionWrapper noPadding>
+        <VoicesOfChange />
+      </SectionWrapper>
       <BookConversation />
     </>
   )

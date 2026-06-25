@@ -12,23 +12,23 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const base =
-  'inline-flex items-center justify-center font-sans font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 cursor-pointer'
+  'inline-flex items-center justify-center font-sans font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 cursor-pointer relative overflow-hidden'
 
 const variants = {
   primary:
-    'bg-pink-400 text-white hover:bg-pink-500 hover:shadow-lg hover:shadow-pink-400/25 active:bg-pink-600',
+    'bg-gradient-to-r from-pink-400 to-pink-500 text-white hover:shadow-xl hover:shadow-pink-400/30 active:shadow-md active:shadow-pink-400/20 active:scale-[0.98]',
   secondary:
-    'border border-pink-400/50 text-pink-500 hover:bg-pink-50 hover:border-pink-400',
-  ghost: 'text-text-muted hover:text-pink-500 hover:bg-pink-50',
+    'border border-pink-400/50 text-pink-500 hover:bg-pink-50/80 hover:border-pink-400 hover:shadow-md hover:shadow-pink-400/10',
+  ghost: 'text-text-muted hover:text-pink-500 hover:bg-pink-50/60',
   outline:
-    'border border-pink-400/30 text-pink-500 hover:bg-pink-50 hover:border-pink-400',
+    'border border-pink-400/30 text-pink-500 hover:bg-pink-50/80 hover:border-pink-400 hover:shadow-md hover:shadow-pink-400/10',
 }
 
 const sizes = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg',
-  xl: 'px-10 py-5 text-lg',
+  sm: 'px-5 py-2.5 text-sm',
+  md: 'px-7 py-3.5 text-base',
+  lg: 'px-9 py-4.5 text-lg',
+  xl: 'px-11 py-5 text-lg',
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(

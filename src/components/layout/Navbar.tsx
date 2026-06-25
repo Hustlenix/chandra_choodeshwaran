@@ -35,22 +35,22 @@ export default function Navbar() {
     <>
       <motion.header
         className={cn(
-          'fixed left-0 right-0 top-0 z-50 transition-all duration-300',
+          'fixed left-0 right-0 top-0 z-50 transition-all duration-500',
           isScrolled
-            ? 'bg-white/90 shadow-sm shadow-pink-400/5 backdrop-blur-xl'
+            ? 'bg-white/85 shadow-lg shadow-pink-400/5 backdrop-blur-2xl border-b border-pink-100/50'
             : 'bg-transparent'
         )}
-        animate={{ y: direction === 'down' && isScrolled ? -100 : 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        animate={{ y: direction === 'down' && isScrolled ? -120 : 0 }}
+        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <nav className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-6 md:px-8 lg:px-12">
           {/* Logo */}
           <Link
             href="/"
-            className="group font-serif text-xl tracking-wide text-text-primary transition-colors duration-300 hover:text-pink-500"
+            className="group font-serif text-xl tracking-wide text-text-primary transition-all duration-300"
           >
-            <span className="text-pink-500">C</span>handra
-            <span className="text-pink-400">choo</span>deshwaran
+            <span className="bg-gradient-to-r from-pink-500 to-pink-400 bg-clip-text text-transparent">C</span>handra
+            <span className="bg-gradient-to-r from-pink-400 to-pink-300 bg-clip-text text-transparent">choo</span>deshwaran
           </Link>
 
           {/* Desktop nav links */}

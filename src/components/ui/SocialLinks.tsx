@@ -29,7 +29,7 @@ export function SocialLinks({
   return (
     <div
       className={cn(
-        variant === 'row' ? 'flex flex-wrap gap-3' : 'grid grid-cols-2 gap-3',
+        variant === 'row' ? 'flex flex-wrap gap-2' : 'grid grid-cols-2 gap-2',
         className
       )}
     >
@@ -42,14 +42,14 @@ export function SocialLinks({
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              'group inline-flex items-center gap-2 transition-all duration-300',
-              'rounded-full border border-border-light',
-              'text-text-muted hover:text-pink-500 hover:border-pink-300 hover:bg-pink-50',
-              showLabels ? 'px-4 py-2' : 'flex items-center justify-center ' + sizeClasses[size]
+              'group inline-flex items-center gap-2.5 transition-all duration-300',
+              showLabels
+                ? 'rounded-xl border border-white/10 px-4 py-2.5 text-white/60 hover:text-pink-300 hover:border-pink-400/30 hover:bg-white/5'
+                : 'flex items-center justify-center ' + sizeClasses[size] + ' rounded-full border border-border-light text-text-muted hover:text-pink-500 hover:border-pink-300 hover:bg-pink-50 hover:shadow-md hover:shadow-pink-400/10'
             )}
             aria-label={link.ariaLabel}
           >
-            <Icon className={cn(iconSizes[size], 'shrink-0')} />
+            <Icon className={cn(iconSizes[size], 'shrink-0 transition-transform duration-300 group-hover:scale-110')} />
             {showLabels && (
               <span className="text-sm font-medium">{link.label}</span>
             )}

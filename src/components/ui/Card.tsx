@@ -9,16 +9,16 @@ interface CardProps {
 }
 
 const variants = {
-  default: 'bg-white border border-border-light shadow-sm',
-  elevated: 'bg-white shadow-lg border-border-medium',
-  interactive: 'bg-white border border-border-light shadow-sm hover:border-pink-300 hover:shadow-md hover:shadow-pink-400/10 transition-all duration-300 cursor-pointer',
+  default: 'card-premium',
+  elevated: 'card-premium hover:shadow-xl hover:shadow-pink-400/10',
+  interactive: 'card-premium hover:shadow-xl hover:shadow-pink-400/10 cursor-pointer group',
 }
 
 const paddings = {
   none: '',
-  sm: 'p-4',
-  md: 'p-6',
-  lg: 'p-8',
+  sm: 'p-5',
+  md: 'p-7',
+  lg: 'p-9',
 }
 
 export function Card({
@@ -29,7 +29,7 @@ export function Card({
   padding = 'md',
 }: CardProps) {
   return (
-    <Tag className={cn('rounded-2xl', variants[variant], paddings[padding], className)}>
+    <Tag className={cn(variants[variant], paddings[padding], className)}>
       {children}
     </Tag>
   )
