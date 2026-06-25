@@ -90,13 +90,13 @@
 
   /* Pink glow */
   .pink-glow {
-    box-shadow: 0 0 30px rgba(224, 123, 140, 0.15),
-      0 0 60px rgba(224, 123, 140, 0.05);
+    box-shadow: 0 0 30px rgba(184, 90, 76, 0.15),
+      0 0 60px rgba(184, 90, 76, 0.05);
   }
 
   .pink-glow-lg {
-    box-shadow: 0 0 60px rgba(224, 123, 140, 0.2),
-      0 0 120px rgba(224, 123, 140, 0.08);
+    box-shadow: 0 0 60px rgba(184, 90, 76, 0.2),
+      0 0 120px rgba(184, 90, 76, 0.08);
   }
 
   /* Shimmer effect for loading */
@@ -104,7 +104,7 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(224, 123, 140, 0.08) 50%,
+      rgba(184, 90, 76, 0.08) 50%,
       transparent 100%
     );
     background-size: 200% 100%;
@@ -157,8 +157,8 @@
   /* Grid background pattern */
   .grid-pattern {
     background-image:
-      linear-gradient(rgba(212, 123, 140, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(212, 123, 140, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(184, 90, 76, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184, 90, 76, 0.05) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
@@ -182,7 +182,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(224,123,140,0.3), transparent, rgba(224,123,140,0.1));
+    background: linear-gradient(135deg, rgba(184,90,76,0.3), transparent, rgba(184,90,76,0.1));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -193,7 +193,7 @@
   .spotlight {
     background: radial-gradient(
       600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(224, 123, 140, 0.05),
+      rgba(184, 90, 76, 0.05),
       transparent 40%
     );
   }
@@ -205,7 +205,7 @@
   .image-frame::after {
     content: '';
     @apply absolute inset-0 rounded-2xl;
-    box-shadow: inset 0 0 0 1px rgba(224,123,140,0.1);
+    box-shadow: inset 0 0 0 1px rgba(184,90,76,0.1);
   }
 
   /* Section reveal */
@@ -251,28 +251,28 @@
   .card-premium {
     @apply relative overflow-hidden rounded-2xl bg-white transition-all duration-500;
     box-shadow:
-      0 1px 3px rgba(224,123,140,0.06),
-      0 4px 12px rgba(224,123,140,0.04),
-      0 12px 40px rgba(224,123,140,0.02);
+      0 1px 3px rgba(184,90,76,0.06),
+      0 4px 12px rgba(184,90,76,0.04),
+      0 12px 40px rgba(184,90,76,0.02);
   }
   .card-premium:hover {
     box-shadow:
-      0 1px 3px rgba(224,123,140,0.08),
-      0 8px 24px rgba(224,123,140,0.08),
-      0 24px 60px rgba(224,123,140,0.04);
+      0 1px 3px rgba(184,90,76,0.08),
+      0 8px 24px rgba(184,90,76,0.08),
+      0 24px 60px rgba(184,90,76,0.04);
     @apply -translate-y-1;
   }
 
   /* Pink gradient border card */
   .card-gradient {
     @apply relative rounded-2xl;
-    background: linear-gradient(135deg, rgba(224,123,140,0.06), transparent, rgba(224,123,140,0.03));
+    background: linear-gradient(135deg, rgba(184,90,76,0.06), transparent, rgba(184,90,76,0.03));
   }
   .card-gradient::before {
     content: '';
     @apply absolute inset-0 rounded-2xl;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(224,123,140,0.2), transparent, rgba(224,123,140,0.08));
+    background: linear-gradient(135deg, rgba(184,90,76,0.2), transparent, rgba(184,90,76,0.08));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -282,7 +282,7 @@
   /* Section transition curve */
   .section-curve {
     @apply absolute left-0 right-0 h-24;
-    background: radial-gradient(ellipse 120% 100% at 50% 0%, rgba(224,123,140,0.03) 0%, transparent 70%);
+    background: radial-gradient(ellipse 120% 100% at 50% 0%, rgba(184,90,76,0.03) 0%, transparent 70%);
   }
 
   /* Pulse ring */
@@ -293,7 +293,7 @@
     content: '';
     @apply absolute inset-0 rounded-full;
     animation: pulseRing 2s ease-out infinite;
-    border: 1px solid rgba(224,123,140,0.2);
+    border: 1px solid rgba(184,90,76,0.2);
   }
 
   @keyframes pulseRing {

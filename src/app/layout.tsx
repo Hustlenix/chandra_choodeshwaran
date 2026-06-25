@@ -21,7 +21,7 @@ const figtree = Figtree({
 })
 
 export const viewport: Viewport = {
-  themeColor: '#E07B8C',
+  themeColor: '#B85A4C',
 }
 
 export const metadata: Metadata = {

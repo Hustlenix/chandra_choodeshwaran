@@ -48,7 +48,7 @@ export default function JourneyMilestone({
           className={cn(
             'absolute left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-all duration-700 ease-out',
             isActive
-              ? 'h-4 w-4 border-pink-400 bg-pink-400 shadow-[0_0_20px_rgba(236,72,153,0.4)]'
+              ? 'h-4 w-4 border-pink-400 bg-pink-400 shadow-[0_0_20px_rgba(184,90,76,0.4)]'
               : 'h-3 w-3 border-pink-400/60 bg-surface-white'
           )}
           style={{ top: '65%' }}

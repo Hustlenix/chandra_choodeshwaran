@@ -27,7 +27,7 @@ export default function PillarCard({
         isActive
           ? 'flex-[3] border-l-2 border-pink-400 bg-pink-50/50 items-start text-left'
           : 'flex-1 items-center justify-center text-center bg-transparent hover:bg-pink-50/20 border-l border-border-light first:border-l-0',
-        'hover:shadow-[0_0_30px_rgba(236,72,153,0.08)]'
+        'hover:shadow-[0_0_30px_rgba(184,90,76,0.08)]'
       )}
       onMouseEnter={onActivate}
       onClick={onActivate}

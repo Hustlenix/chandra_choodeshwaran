@@ -67,10 +67,10 @@ export default function OpeningStatement() {
           className="absolute inset-0 animate-gradient-drift opacity-60"
           style={{
             background: `
-              radial-gradient(ellipse 100% 70% at 15% 20%, rgba(236, 72, 153, 0.10) 0%, transparent 60%),
+              radial-gradient(ellipse 100% 70% at 15% 20%, rgba(184, 90, 76, 0.10) 0%, transparent 60%),
               radial-gradient(ellipse 80% 100% at 85% 30%, rgba(244, 114, 182, 0.07) 0%, transparent 60%),
               radial-gradient(ellipse 60% 60% at 50% 80%, rgba(255, 240, 245, 0.9) 0%, transparent 100%),
-              radial-gradient(ellipse 50% 50% at 70% 60%, rgba(236, 72, 153, 0.04) 0%, transparent 50%)
+              radial-gradient(ellipse 50% 50% at 70% 60%, rgba(184, 90, 76, 0.04) 0%, transparent 50%)
             `,
             backgroundSize: '200% 200%',
           }}
@@ -79,11 +79,11 @@ export default function OpeningStatement() {
         {/* Pink accent blobs */}
         <div
           className="absolute left-1/4 top-1/3 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 animate-drift-slow rounded-full opacity-[0.03] blur-[120px]"
-          style={{ backgroundColor: '#ec4899' }}
+          style={{ backgroundColor: '#B85A4C' }}
         />
         <div
           className="absolute right-1/4 top-1/2 h-[400px] w-[400px] translate-x-1/2 -translate-y-1/2 animate-drift-slow rounded-full opacity-[0.02] blur-[100px]"
-          style={{ backgroundColor: '#ec4899', animationDelay: '-7s' }}
+          style={{ backgroundColor: '#B85A4C', animationDelay: '-7s' }}
         />
 
         {/* Subtle grid overlay */}
@@ -91,7 +91,7 @@ export default function OpeningStatement() {
           className="absolute inset-0 opacity-[0.015]"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(236,72,153,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(236,72,153,0.06) 1px, transparent 1px)',
+                'linear-gradient(rgba(184,90,76,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(184,90,76,0.06) 1px, transparent 1px)',
             backgroundSize: '80px 80px',
           }}
         />

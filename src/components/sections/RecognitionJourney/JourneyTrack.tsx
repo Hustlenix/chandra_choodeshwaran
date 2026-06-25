@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Translated milestone background colors for smooth CSS transitions
 const MILESTONE_BG_COLORS = [
-  'rgba(236, 72, 153, 0.06)',   // pink-500
+  'rgba(184, 90, 76, 0.06)',   // terracotta
   'rgba(244, 114, 182, 0.06)',  // pink-400
   'rgba(219, 39, 119, 0.06)',   // pink-600
   'rgba(251, 207, 232, 0.06)',  // pink-200
@@ -120,7 +120,7 @@ export default function JourneyTrack() {
         <>
           {/* Glowing timeline line */}
           <div className="pointer-events-none absolute left-0 z-10 w-full" style={{ top: '65%', height: '1px' }}>
-            <div className="timeline-progress h-full w-full origin-left bg-gradient-to-r from-pink-400/20 via-pink-400/60 to-pink-400 shadow-[0_0_12px_rgba(236,72,153,0.25)]" />
+            <div className="timeline-progress h-full w-full origin-left bg-gradient-to-r from-pink-400/20 via-pink-400/60 to-pink-400 shadow-[0_0_12px_rgba(184,90,76,0.25)]" />
           </div>
 
           {/* Track */}

@@ -51,7 +51,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
         opacity: 0.2,
         scale: 0.92,
         borderColor: 'rgba(0,0,0,0.08)',
-        backgroundColor: 'rgba(236,72,153,0.03)',
+        backgroundColor: 'rgba(184,90,76,0.03)',
       })
 
       gsap.set(lines, {
@@ -76,8 +76,8 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
           {
             opacity: 1,
             scale: 1,
-            borderColor: '#ec4899',
-            backgroundColor: 'rgba(236, 72, 153, 0.12)',
+            borderColor: '#B85A4C',
+            backgroundColor: 'rgba(184, 90, 76, 0.12)',
             duration: 0.5,
             ease: 'power2.out',
           },
@@ -199,7 +199,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
             cx="50"
             cy="50"
             r="44"
-            stroke="#ec4899"
+            stroke="#B85A4C"
             strokeWidth="1"
             strokeDasharray="4 8"
             strokeLinecap="round"

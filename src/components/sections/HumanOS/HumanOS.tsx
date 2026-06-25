@@ -112,7 +112,7 @@ function HumanOSDiagram({
           stroke: (i: number) => {
             const [a, b] = CONNECTIONS[i]
             return a === activePillar || b === activePillar
-              ? '#ec4899'
+              ? '#B85A4C'
               : 'rgba(0,0,0,0.08)'
           },
           'stroke-width': (i: number) => {
@@ -184,7 +184,7 @@ function HumanOSDiagram({
                 'h-14 w-14 rounded-full sm:h-16 sm:w-16',
                 'border-2 transition-colors duration-300',
                 activePillar === i
-                  ? 'border-pink-400 bg-pink-100/30 shadow-[0_0_20px_rgba(236,72,153,0.2)]'
+                  ? 'border-pink-400 bg-pink-100/30 shadow-[0_0_20px_rgba(184,90,76,0.2)]'
                   : 'border-border-light bg-surface-blush/80 hover:border-border-medium',
               )}
               style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
@@ -196,12 +196,12 @@ function HumanOSDiagram({
                   ? {
                       scale: [1, 1.08, 1],
                       boxShadow: [
-                        '0 0 15px rgba(236,72,153,0.3)',
-                        '0 0 30px rgba(236,72,153,0.5)',
-                        '0 0 15px rgba(236,72,153,0.3)',
+                        '0 0 15px rgba(184,90,76,0.3)',
+                        '0 0 30px rgba(184,90,76,0.5)',
+                        '0 0 15px rgba(184,90,76,0.3)',
                       ],
                     }
-                  : { scale: 1, boxShadow: '0 0 0px rgba(236,72,153,0)' }
+                  : { scale: 1, boxShadow: '0 0 0px rgba(184,90,76,0)' }
               }
               transition={
                 activePillar === i
