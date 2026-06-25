@@ -1,14 +1,16 @@
+import dynamic from 'next/dynamic'
 import { Hero } from '@/components/sections/Hero/Hero'
-import { Stats } from '@/components/sections/Stats/Stats'
-import OpeningStatement from '@/components/sections/OpeningStatement/OpeningStatement'
-import HumanOS from '@/components/sections/HumanOS/HumanOS'
-import FivePillars from '@/components/sections/FivePillars/FivePillars'
-import Frameworks from '@/components/sections/Frameworks/Frameworks'
-import RecognitionJourney from '@/components/sections/RecognitionJourney/RecognitionJourney'
-import PodcastUniverse from '@/components/sections/PodcastUniverse/PodcastUniverse'
-import VoicesOfChange from '@/components/sections/VoicesOfChange/VoicesOfChange'
-import BookConversation from '@/components/sections/BookConversation/BookConversation'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
+
+const OpeningStatement = dynamic(() => import('@/components/sections/OpeningStatement/OpeningStatement'))
+const HumanOS = dynamic(() => import('@/components/sections/HumanOS/HumanOS'))
+const FivePillars = dynamic(() => import('@/components/sections/FivePillars/FivePillars'))
+const Stats = dynamic(() => import('@/components/sections/Stats/Stats').then(m => m.Stats))
+const Frameworks = dynamic(() => import('@/components/sections/Frameworks/Frameworks'))
+const RecognitionJourney = dynamic(() => import('@/components/sections/RecognitionJourney/RecognitionJourney'))
+const PodcastUniverse = dynamic(() => import('@/components/sections/PodcastUniverse/PodcastUniverse'))
+const VoicesOfChange = dynamic(() => import('@/components/sections/VoicesOfChange/VoicesOfChange'))
+const BookConversation = dynamic(() => import('@/components/sections/BookConversation/BookConversation'))
 
 export default function HomePage() {
   return (

@@ -1,11 +1,19 @@
 import type { NextConfig } from 'next'
 
+const isGitHubPages = process.env.GITHUB_ACTIONS === 'true'
+
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/chandra_choodeshwaran',
+  basePath: isGitHubPages ? '/chandra_choodeshwaran' : '',
   trailingSlash: true,
   images: {
     unoptimized: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 }
 

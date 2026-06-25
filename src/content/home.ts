@@ -3,7 +3,7 @@
 // ====================================================================
 
 export const HOME_HERO = {
-  badge: 'CHANDRACHOODESHWARAN M',
+  badge: 'Chandra Choodeshwaran M',
   headline: 'Understanding People Changes Everything',
   subtitle: 'The quality of your life follows the quality of your thinking.',
   trustItems: [
@@ -34,7 +34,7 @@ export const HOME_CTA = {
 
 // Legacy export for OpeningStatement component backward compatibility
 export const OPENING_CONTENT = {
-  badge: 'CHANDRACHOODESHWARAN M',
+  badge: 'Chandra Choodeshwaran M',
   headline: 'A Decade of Understanding What Makes People Thrive',
   subtitle: 'The quality of your life follows the quality of your thinking.',
 }

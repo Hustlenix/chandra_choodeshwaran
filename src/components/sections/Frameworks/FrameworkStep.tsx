@@ -8,7 +8,9 @@ import { cn } from '@/lib/utils'
 import { ArrowRight, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 
-gsap.registerPlugin(ScrollTrigger)
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 // ─── Types ──────────────────────────────────────────────────────────
 interface FrameworkStep {
@@ -40,68 +42,66 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
     const diagram = diagramRef.current
     if (!section || !diagram) return
 
-    const steps = diagram.querySelectorAll<HTMLElement>('[data-fw-step]')
-    const lines = diagram.querySelectorAll<HTMLElement>('[data-fw-line]')
-    if (!steps.length) return
+    const ctx = gsap.context(() => {
+      const steps = diagram.querySelectorAll<HTMLElement>('[data-fw-step]')
+      const lines = diagram.querySelectorAll<HTMLElement>('[data-fw-line]')
+      if (!steps.length) return
 
-    // Initial muted state
-    gsap.set(steps, {
-      opacity: 0.2,
-      scale: 0.92,
-      borderColor: 'rgba(0,0,0,0.08)',
-      backgroundColor: 'rgba(236,72,153,0.03)',
-    })
+      gsap.set(steps, {
+        opacity: 0.2,
+        scale: 0.92,
+        borderColor: 'rgba(0,0,0,0.08)',
+        backgroundColor: 'rgba(236,72,153,0.03)',
+      })
 
-    gsap.set(lines, {
-      scaleX: 0,
-      scaleY: 0,
-      opacity: 0,
-    })
+      gsap.set(lines, {
+        scaleX: 0,
+        scaleY: 0,
+        opacity: 0,
+      })
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 75%',
-        end: 'bottom 25%',
-        scrub: 1.2,
-        invalidateOnRefresh: true,
-      },
-    })
-
-    steps.forEach((el, i) => {
-      tl.to(
-        el,
-        {
-          opacity: 1,
-          scale: 1,
-          borderColor: '#ec4899',
-          backgroundColor: 'rgba(236, 72, 153, 0.12)',
-          duration: 0.5,
-          ease: 'power2.out',
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          end: 'bottom 25%',
+          scrub: 1.2,
+          invalidateOnRefresh: true,
         },
-        i * 0.25,
-      )
+      })
 
-      if (i < lines.length) {
-        const line = lines[i]
-        const vert = line.dataset.dir === 'v'
+      steps.forEach((el, i) => {
         tl.to(
-          line,
+          el,
           {
-            [vert ? 'scaleY' : 'scaleX']: 1,
             opacity: 1,
-            duration: 0.4,
+            scale: 1,
+            borderColor: '#ec4899',
+            backgroundColor: 'rgba(236, 72, 153, 0.12)',
+            duration: 0.5,
             ease: 'power2.out',
           },
-          i * 0.25 + 0.2,
+          i * 0.25,
         )
-      }
-    })
 
-    return () => {
-      tl.scrollTrigger?.kill()
-      tl.kill()
-    }
+        if (i < lines.length) {
+          const line = lines[i]
+          const vert = line.dataset.dir === 'v'
+          tl.to(
+            line,
+            {
+              [vert ? 'scaleY' : 'scaleX']: 1,
+              opacity: 1,
+              duration: 0.4,
+              ease: 'power2.out',
+            },
+            i * 0.25 + 0.2,
+          )
+        }
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

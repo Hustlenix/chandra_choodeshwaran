@@ -4,7 +4,7 @@
 
 export const ABOUT_HERO = {
   badge: 'ABOUT',
-  name: 'Chandrachoodeshwaran M',
+  name: 'Chandra Choodeshwaran M',
   tagline: 'Trainer · Counsellor · Emotional Intelligence Specialist',
   positioning:
     'Helping people communicate, lead, and grow through emotional intelligence.',
@@ -21,9 +21,9 @@ export const ABOUT_BIO = {
   badge: 'STORY',
   title: 'The Journey Within',
   paragraphs: [
-    'With over 15 years of experience in training, counselling, and instructional design, Chandrachoodeshwaran M has dedicated his life to understanding what makes people grow — and what holds them back. His work sits at the intersection of emotional intelligence, communication, and leadership development.',
+    'With over 15 years of experience in training, counselling, and instructional design, Chandra Choodeshwaran M has dedicated his life to understanding what makes people grow — and what holds them back. His work sits at the intersection of emotional intelligence, communication, and leadership development.',
     'Trained thousands of individuals across corporates, academic institutions, and community organizations. His approach blends evidence-based psychology with practical, real-world application. Every session, workshop, or conversation is designed to create lasting transformation — not just temporary inspiration.',
-    'Awarded the Times Edu Ex Award 2024, recognized as an Outstanding National Trainer by ISTD, and honoured as an Outstanding JCI Senator, Chandrachoodeshwaran brings both credibility and compassion to every interaction.',
+    'Awarded the Times Edu Ex Award 2024, recognized as an Outstanding National Trainer by ISTD, and honoured as an Outstanding JCI Senator, Chandra Choodeshwaran brings both credibility and compassion to every interaction.',
   ],
 }
 

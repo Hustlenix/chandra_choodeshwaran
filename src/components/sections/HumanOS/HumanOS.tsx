@@ -77,52 +77,60 @@ function HumanOSDiagram({
   onActivate: (i: number) => void
 }) {
   const linesRef = useRef<(SVGPathElement | null)[]>([])
-  const hasDrawn = useRef(false)
+  const diagramRef = useRef<HTMLDivElement>(null)
 
-  // GSAP: initial line draw
+  // GSAP: initial line draw + cleanup
   useEffect(() => {
-    const els = linesRef.current.filter(Boolean) as SVGPathElement[]
-    if (els.length === 0 || hasDrawn.current) return
-    hasDrawn.current = true
+    const ctx = gsap.context(() => {
+      const els = linesRef.current.filter(Boolean) as SVGPathElement[]
+      if (els.length === 0) return
 
-    els.forEach((el) => {
-      const len = el.getTotalLength()
-      gsap.set(el, { strokeDasharray: len, strokeDashoffset: len })
-    })
+      els.forEach((el) => {
+        const len = el.getTotalLength()
+        gsap.set(el, { strokeDasharray: len, strokeDashoffset: len })
+      })
 
-    gsap.to(els, {
-      strokeDashoffset: 0,
-      duration: 1.5,
-      ease: 'power2.out',
-      stagger: 0.04,
-    })
+      gsap.to(els, {
+        strokeDashoffset: 0,
+        duration: 1.5,
+        ease: 'power2.out',
+        stagger: 0.04,
+      })
+    }, diagramRef)
+
+    return () => ctx.revert()
   }, [])
 
   // GSAP: highlight lines connected to active pillar
   useEffect(() => {
-    const els = linesRef.current.filter(Boolean) as SVGPathElement[]
-    if (els.length === 0) return
+    const ctx = gsap.context(() => {
+      const els = linesRef.current.filter(Boolean) as SVGPathElement[]
+      if (els.length === 0) return
 
-    gsap.to(els, {
-      attr: {
-        stroke: (i: number) => {
-          const [a, b] = CONNECTIONS[i]
-          return a === activePillar || b === activePillar
-            ? '#ec4899'
-            : 'rgba(0,0,0,0.08)'
+      gsap.to(els, {
+        attr: {
+          stroke: (i: number) => {
+            const [a, b] = CONNECTIONS[i]
+            return a === activePillar || b === activePillar
+              ? '#ec4899'
+              : 'rgba(0,0,0,0.08)'
+          },
+          'stroke-width': (i: number) => {
+            const [a, b] = CONNECTIONS[i]
+            return a === activePillar || b === activePillar ? 2 : 0.5
+          },
         },
-        'stroke-width': (i: number) => {
-          const [a, b] = CONNECTIONS[i]
-          return a === activePillar || b === activePillar ? 2 : 0.5
-        },
-      },
-      duration: 0.5,
-      ease: 'power2.out',
-    })
+        duration: 0.5,
+        ease: 'power2.out',
+      })
+    }, diagramRef)
+
+    return () => ctx.revert()
   }, [activePillar])
 
   return (
     <motion.div
+      ref={diagramRef}
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
