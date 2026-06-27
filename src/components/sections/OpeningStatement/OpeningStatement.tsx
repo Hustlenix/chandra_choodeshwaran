@@ -1,21 +1,25 @@
+'use client'
+
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { OPENING_CONTENT } from '@/content/home'
-import ScrollIndicator from './ScrollIndicator'
 
 export default function OpeningStatement() {
   const words = OPENING_CONTENT.headline.split(' ')
 
   return (
-    <section
-      id="opening"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-white"
-    >
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 md:px-8 lg:px-16">
-        <div className="max-w-6xl">
-          <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.35em] text-accent-400 sm:mb-8">
-            {OPENING_CONTENT.badge}
-          </p>
+    <section className="relative min-h-screen overflow-hidden bg-surface-white">
+      <div className="bg-glow-radial-warm pointer-events-none absolute inset-0" aria-hidden="true" />
+      <div className="bg-glow-section pointer-events-none absolute inset-0" aria-hidden="true" />
 
-          <h2 className="font-display text-[clamp(2.8rem,8vw,8rem)] leading-[0.85] tracking-[-0.05em] text-text-primary">
+      <div className="relative mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center px-6 py-32 lg:px-16">
+        <ScrollReveal>
+          <span className="mb-8 inline-block font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
+            {OPENING_CONTENT.badge}
+          </span>
+        </ScrollReveal>
+
+        <ScrollReveal delay={150}>
+          <h2 className="font-display text-[clamp(2.8rem,8vw,7rem)] leading-[0.88] tracking-[-0.05em] text-text-primary">
             {words.map((word, i) => (
               <span key={`${word}-${i}`} className="inline-block">
                 {word}
@@ -23,14 +27,14 @@ export default function OpeningStatement() {
               </span>
             ))}
           </h2>
+        </ScrollReveal>
 
-          <p className="mt-6 max-w-2xl text-balance text-base leading-relaxed text-text-muted sm:mt-8 sm:text-lg md:text-xl">
+        <ScrollReveal delay={300}>
+          <p className="mt-10 max-w-3xl text-body-lg leading-relaxed text-text-secondary">
             {OPENING_CONTENT.subtitle}
           </p>
-        </div>
+        </ScrollReveal>
       </div>
-
-      <ScrollIndicator />
     </section>
   )
 }
