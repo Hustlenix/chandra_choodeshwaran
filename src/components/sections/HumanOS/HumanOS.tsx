@@ -1,373 +1,214 @@
 'use client'
 
-import { useState, useCallback, useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import gsap from 'gsap'
-import { cn } from '@/lib/utils'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { HUMAN_OS, HUMAN_OS_PILLARS } from '@/content/pillars'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { HUMAN_OS } from '@/content/pillars'
-import { staggerContainer } from '@/lib/animations'
-import PillarCard from './PillarCard'
-import PillarIcon from './PillarIcon'
+import { fadeInUp, staggerItem } from '@/lib/animations'
+import { cn } from '@/lib/utils'
+import { Eye, Heart, MessageCircle, Zap, TrendingUp, ChevronDown } from 'lucide-react'
 
-// ─── Pentagon geometry (percentage-based, viewBox 0-100) ──────────
-const NODE_POSITIONS = [
-  { x: 50, y: 15 },     // 0: top
-  { x: 83.3, y: 39.2 }, // 1: top-right
-  { x: 70.6, y: 78.3 }, // 2: bottom-right
-  { x: 29.4, y: 78.3 }, // 3: bottom-left
-  { x: 16.7, y: 39.2 }, // 4: top-left
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  eye: Eye,
+  heart: Heart,
+  'message-circle': MessageCircle,
+  zap: Zap,
+  'trending-up': TrendingUp,
+}
+
+// ─── Pentagon geometry ─────────────────────────────────────────────
+// Regular pentagon vertices centred at (200,200), radius 160
+const VERTICES = [
+  { x: 200, y: 40 },    // top
+  { x: 352.2, y: 150.6 }, // top-right
+  { x: 294.1, y: 329.4 }, // bottom-right
+  { x: 105.9, y: 329.4 }, // bottom-left
+  { x: 47.8, y: 150.6 },  // top-left
 ]
 
-const CONNECTIONS: [number, number][] = [
-  [0, 1], [1, 2], [2, 3], [3, 4], [4, 0], // perimeter
-  [0, 2], [2, 4], [4, 1], [1, 3], [3, 0], // star (pentagram)
-]
+const CENTRE = { x: 200, y: 200 }
 
-const CENTER = { x: 50, y: 50 }
+const PENTAGON_PATH = `M ${VERTICES.map((v) => `${v.x} ${v.y}`).join(' L ')} Z`
 
-// ─── Curved path helper ──────────────────────────────────────────
-function getCurvedPath(
-  ax: number,
-  ay: number,
-  bx: number,
-  by: number,
-  cx: number,
-  cy: number,
-): string {
-  const mx = (ax + bx) / 2
-  const my = (ay + by) / 2
-  // Direction from centre to midpoint → push outward
-  const dx = mx - cx
-  const dy = my - cy
-  const len = Math.sqrt(dx * dx + dy * dy)
-  if (len < 0.01) {
-    // Edge passes through centre — offset perpendicular
-    const px = -(by - ay)
-    const py = bx - ax
-    const pl = Math.sqrt(px * px + py * py) || 1
-    const curve = Math.sqrt((bx - ax) ** 2 + (by - ay) ** 2) * 0.15
-    return `M ${ax} ${ay} Q ${mx + (px / pl) * curve} ${my + (py / pl) * curve} ${bx} ${by}`
-  }
-  const nx = dx / len
-  const ny = dy / len
-  const curve = Math.sqrt((bx - ax) ** 2 + (by - ay) ** 2) * 0.12
-  return `M ${ax} ${ay} Q ${mx + nx * curve} ${my + ny * curve} ${bx} ${by}`
-}
+const WEB_PATHS = VERTICES.map((v) => `M ${CENTRE.x} ${CENTRE.y} L ${v.x} ${v.y}`)
 
-// Pre-compute paths
-const LINE_PATHS = CONNECTIONS.map(([i, j]) =>
-  getCurvedPath(
-    NODE_POSITIONS[i].x,
-    NODE_POSITIONS[i].y,
-    NODE_POSITIONS[j].x,
-    NODE_POSITIONS[j].y,
-    CENTER.x,
-    CENTER.y,
-  ),
-)
-
-// ─── Sub-components ──────────────────────────────────────────────
-
-function HumanOSDiagram({
-  activePillar,
-  onActivate,
-}: {
-  activePillar: number
-  onActivate: (i: number) => void
-}) {
-  const linesRef = useRef<(SVGPathElement | null)[]>([])
-  const diagramRef = useRef<HTMLDivElement>(null)
-
-  // GSAP: initial line draw + cleanup
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const els = linesRef.current.filter(Boolean) as SVGPathElement[]
-      if (els.length === 0) return
-
-      els.forEach((el) => {
-        const len = el.getTotalLength()
-        gsap.set(el, { strokeDasharray: len, strokeDashoffset: len })
-      })
-
-      gsap.to(els, {
-        strokeDashoffset: 0,
-        duration: 1.5,
-        ease: 'power2.out',
-        stagger: 0.04,
-      })
-    }, diagramRef)
-
-    return () => ctx.revert()
-  }, [])
-
-  // GSAP: highlight lines connected to active pillar
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const els = linesRef.current.filter(Boolean) as SVGPathElement[]
-      if (els.length === 0) return
-
-      gsap.to(els, {
-        attr: {
-          stroke: (i: number) => {
-            const [a, b] = CONNECTIONS[i]
-            return a === activePillar || b === activePillar
-              ? '#B85A4C'
-              : 'rgba(0,0,0,0.08)'
-          },
-          'stroke-width': (i: number) => {
-            const [a, b] = CONNECTIONS[i]
-            return a === activePillar || b === activePillar ? 2 : 0.5
-          },
-        },
-        duration: 0.5,
-        ease: 'power2.out',
-      })
-    }, diagramRef)
-
-    return () => ctx.revert()
-  }, [activePillar])
-
-  return (
-    <motion.div
-      ref={diagramRef}
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      className="relative mx-auto aspect-square w-full max-w-[460px]"
-    >
-      {/* SVG lines layer */}
-      <svg
-        viewBox="0 0 100 100"
-        className="absolute inset-0 h-full w-full"
-        aria-hidden
-      >
-        {LINE_PATHS.map((d, i) => (
-          <path
-            key={i}
-            ref={(el) => {
-              linesRef.current[i] = el
-            }}
-            d={d}
-            fill="none"
-            stroke="rgba(0,0,0,0.08)"
-            strokeWidth={0.5}
-            strokeLinecap="round"
-          />
-        ))}
-      </svg>
-
-      {/* Nodes layer */}
-      <div className="absolute inset-0 h-full w-full">
-        {HUMAN_OS.pillars.map((pillar, i) => {
-          const pos = NODE_POSITIONS[i]
-          return (
-            <motion.button
-              key={pillar.id}
-              variants={{
-                hidden: { opacity: 0, scale: 0 },
-                visible: {
-                  opacity: 1,
-                  scale: 1,
-                  transition: {
-                    delay: i * 0.15,
-                    type: 'spring',
-                    stiffness: 200,
-                    damping: 15,
-                  },
-                },
-              }}
-              className={cn(
-                'absolute -translate-x-1/2 -translate-y-1/2',
-                'flex items-center justify-center',
-                'h-14 w-14 rounded-full sm:h-16 sm:w-16',
-                'border-2 transition-colors duration-300',
-                activePillar === i
-                  ? 'border-pink-400 bg-pink-100/30 shadow-[0_0_20px_rgba(184,90,76,0.2)]'
-                  : 'border-border-light bg-surface-blush/80 hover:border-border-medium',
-              )}
-              style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
-              onClick={() => onActivate(i)}
-              whileHover={{ scale: 1.12 }}
-              whileTap={{ scale: 0.95 }}
-              animate={
-                activePillar === i
-                  ? {
-                      scale: [1, 1.08, 1],
-                      boxShadow: [
-                        '0 0 15px rgba(184,90,76,0.3)',
-                        '0 0 30px rgba(184,90,76,0.5)',
-                        '0 0 15px rgba(184,90,76,0.3)',
-                      ],
-                    }
-                  : { scale: 1, boxShadow: '0 0 0px rgba(184,90,76,0)' }
-              }
-              transition={
-                activePillar === i
-                  ? { duration: 2, repeat: Infinity, ease: 'easeInOut' }
-                  : { duration: 0.3 }
-              }
-            >
-              <PillarIcon
-                icon={pillar.icon}
-                isActive={activePillar === i}
-                className="h-10 w-10 sm:h-12 sm:w-12"
-              />
-            </motion.button>
-          )
-        })}
-      </div>
-    </motion.div>
-  )
-}
-
-function DetailPanel({
-  pillars,
-  activePillar,
-  onActivate,
-}: {
-  pillars: typeof HUMAN_OS.pillars
-  activePillar: number
-  onActivate: (i: number) => void
-}) {
-  return (
-    <motion.div
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      className="flex h-[320px] overflow-hidden rounded-lg border border-border-light"
-    >
-      {pillars.map((pillar, i) => (
-        <PillarCard
-          key={pillar.id}
-          title={pillar.title}
-          description={pillar.description}
-          icon={pillar.icon}
-          isActive={activePillar === i}
-          onActivate={() => onActivate(i)}
-          index={i}
-        />
-      ))}
-    </motion.div>
-  )
-}
-
-// ─── Mobile accordion (preserved from original) ──────────────────
-function PillarCardMobile({
-  title,
-  description,
-  icon,
-  isActive,
-  onActivate,
-}: {
-  title: string
-  description: string
-  icon: string
-  isActive: boolean
-  onActivate: () => void
-  index: number
-}) {
-  return (
-    <motion.button
-      className={cn(
-        'w-full border border-border-light px-6 py-5 text-left transition-all duration-300',
-        isActive ? 'border-pink-400/30 bg-pink-50/50' : 'bg-pink-50/20',
-      )}
-      onClick={onActivate}
-      layout
-    >
-      <div className="flex items-center gap-4">
-        <PillarIcon icon={icon} isActive={isActive} />
-        <h3
-          className={cn(
-            'font-serif text-lg transition-colors duration-300',
-            isActive ? 'text-pink-500' : 'text-text-primary/80',
-          )}
-        >
-          {title}
-        </h3>
-      </div>
-      <motion.div
-        className="overflow-hidden"
-        initial={false}
-        animate={{
-          height: isActive ? 'auto' : 0,
-          opacity: isActive ? 1 : 0,
-        }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-      >
-        <p className="mt-4 text-sm leading-relaxed text-text-muted">
-          {description}
-        </p>
-      </motion.div>
-    </motion.button>
-  )
-}
-
-// ─── Main component ──────────────────────────────────────────────
 export default function HumanOS() {
-  const [activePillar, setActivePillar] = useState<number>(0)
+  const [activePillar, setActivePillar] = useState<string | null>(null)
+  const [mobileOpen, setMobileOpen] = useState<string | null>(null)
 
-  const handleActivate = useCallback((index: number) => {
-    setActivePillar(index)
-  }, [])
-
-  const { badge, title, subtitle, pillars } = HUMAN_OS
+  const activeData = activePillar
+    ? HUMAN_OS_PILLARS.find((p) => p.id === activePillar)
+    : null
 
   return (
-    <section
-      id="philosophy"
-      className="relative min-h-screen bg-surface-white py-section-lg"
-    >
-      {/* Background accent */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/2 translate-x-1/2 rounded-full bg-pink-400/5 blur-[120px]" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-[1200px] px-6 md:px-8 lg:px-12">
+    <section id="human-os" className="relative overflow-hidden py-section-lg">
+      <div className="mx-auto max-w-[1200px] px-6 md:px-8 lg:px-12">
         <SectionHeading
-          badge={badge}
-          title={title}
-          subtitle={subtitle}
+          badge={HUMAN_OS.badge}
+          title={HUMAN_OS.title}
+          subtitle={HUMAN_OS.subtitle}
           align="center"
         />
+      </div>
 
-        {/* ── Desktop ─────────────────────────────────────────── */}
+      {/* ── Desktop: Pentagon ───────────────────────────────────── */}
+      <div className="hidden md:block">
+        <div className="relative mx-auto max-w-[600px]">
+          {/* SVG pentagon + web lines */}
+          <svg
+            viewBox="0 0 400 400"
+            className="h-full w-full"
+            aria-hidden="true"
+          >
+            {/* Web lines (inner spokes) */}
+            {WEB_PATHS.map((d, i) => (
+              <motion.path
+                key={`web-${i}`}
+                d={d}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                className="text-accent-200/30"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 + i * 0.08, ease: 'easeInOut' }}
+              />
+            ))}
 
-        {/* Pentagon diagram */}
-        <div className="hidden md:block">
-          <HumanOSDiagram
-            activePillar={activePillar}
-            onActivate={handleActivate}
-          />
-        </div>
-
-        {/* Detail panel with selected description */}
-        <div className="hidden md:mt-10 md:block">
-          <DetailPanel
-            pillars={pillars}
-            activePillar={activePillar}
-            onActivate={handleActivate}
-          />
-        </div>
-
-        {/* ── Mobile: vertical accordion ──────────────────────── */}
-        <div className="flex flex-col gap-2 md:hidden">
-          {pillars.map((pillar, i) => (
-            <PillarCardMobile
-              key={pillar.id}
-              title={pillar.title}
-              description={pillar.description}
-              icon={pillar.icon}
-              isActive={activePillar === i}
-              onActivate={() =>
-                handleActivate(activePillar === i ? -1 : i)
-              }
-              index={i}
+            {/* Pentagon outline */}
+            <motion.path
+              d={PENTAGON_PATH}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              className="text-accent-300/50"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: 'easeInOut' }}
             />
-          ))}
+          </svg>
+
+          {/* Pillar nodes at vertices */}
+          {HUMAN_OS_PILLARS.map((pillar, i) => {
+            const Icon = iconMap[pillar.icon]
+            const isActive = activePillar === pillar.id
+            const pos = VERTICES[i]
+
+            return (
+              <motion.button
+                key={pillar.id}
+                onClick={() =>
+                  setActivePillar((prev) => (prev === pillar.id ? null : pillar.id))
+                }
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.6 + i * 0.12 }}
+                className={cn(
+                  'absolute flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center gap-2 transition-colors duration-300',
+                  'group',
+                )}
+                style={{ left: `${(pos.x / 400) * 100}%`, top: `${(pos.y / 400) * 100}%` }}
+              >
+                <span
+                  className={cn(
+                    'flex h-14 w-14 items-center justify-center rounded-full border-2 transition-all duration-300',
+                    isActive
+                      ? 'border-accent-400 bg-accent-100 text-accent-600'
+                      : 'border-border-light bg-white text-text-muted hover:border-accent-300 hover:text-accent-500',
+                  )}
+                >
+                  {Icon && <Icon className="h-6 w-6" />}
+                </span>
+                <span
+                  className={cn(
+                    'whitespace-nowrap text-xs font-medium transition-colors duration-300',
+                    isActive ? 'text-accent-600' : 'text-text-muted group-hover:text-text-primary',
+                  )}
+                >
+                  {pillar.title}
+                </span>
+              </motion.button>
+            )
+          })}
+        </div>
+
+        {/* Active pillar detail */}
+        <AnimatePresence mode="wait">
+          {activeData && (
+            <motion.div
+              key={activeData.id}
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
+              className="mx-auto mt-12 max-w-2xl text-center"
+            >
+              <p className="text-body-lg leading-relaxed text-text-muted">
+                {activeData.description}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* ── Mobile: Accordion cards ─────────────────────────────── */}
+      <div className="mx-auto max-w-[600px] px-6 md:hidden">
+        <div className="flex flex-col gap-3">
+          {HUMAN_OS_PILLARS.map((pillar, i) => {
+            const Icon = iconMap[pillar.icon]
+            const isOpen = mobileOpen === pillar.id
+
+            return (
+              <motion.div
+                key={pillar.id}
+                variants={staggerItem}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+              >
+                <button
+                  onClick={() =>
+                    setMobileOpen((prev) => (prev === pillar.id ? null : pillar.id))
+                  }
+                  className="flex w-full items-center justify-between rounded-xl border border-border-light bg-white px-5 py-4 text-left transition-colors duration-200 hover:border-accent-300"
+                >
+                  <span className="flex items-center gap-3">
+                    {Icon && <Icon className="h-5 w-5 text-accent-400" />}
+                    <span className="text-sm font-semibold text-text-primary">
+                      {pillar.title}
+                    </span>
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      'h-4 w-4 text-text-muted transition-transform duration-200',
+                      isOpen && 'rotate-180',
+                    )}
+                  />
+                </button>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="border-x border-b border-border-light rounded-b-xl px-5 pb-5 pt-3">
+                        <p className="text-sm leading-relaxed text-text-muted">
+                          {pillar.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

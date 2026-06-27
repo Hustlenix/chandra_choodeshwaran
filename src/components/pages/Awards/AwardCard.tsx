@@ -17,7 +17,7 @@ export function AwardCard({ award, index }: AwardCardProps) {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <div className="mb-2 flex items-center gap-3">
-            <Badge variant="pink" size="md">{award.year}</Badge>
+            <Badge variant="accent" size="md">{award.year}</Badge>
             <span className="text-sm font-medium text-text-muted">{award.organization}</span>
           </div>
           <h3 className="font-serif text-heading-4 text-text-primary">{award.title}</h3>

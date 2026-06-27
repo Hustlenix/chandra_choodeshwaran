@@ -1,16 +1,8 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { cn } from '@/lib/utils'
-import { ArrowRight, ExternalLink } from 'lucide-react'
-import Link from 'next/link'
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
+import { ArrowRight } from 'lucide-react'
 
 // ─── Types ──────────────────────────────────────────────────────────
 interface FrameworkStep {
@@ -33,78 +25,6 @@ interface FrameworkStepProps {
 
 // ─── Component ──────────────────────────────────────────────────────
 export default function FrameworkStep({ framework, index }: FrameworkStepProps) {
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const diagramRef = useRef<HTMLDivElement>(null)
-
-  // ── GSAP ScrollTrigger step reveal ──────────────────────────────
-  useEffect(() => {
-    const section = sectionRef.current
-    const diagram = diagramRef.current
-    if (!section || !diagram) return
-
-    const ctx = gsap.context(() => {
-      const steps = diagram.querySelectorAll<HTMLElement>('[data-fw-step]')
-      const lines = diagram.querySelectorAll<HTMLElement>('[data-fw-line]')
-      if (!steps.length) return
-
-      gsap.set(steps, {
-        opacity: 0.2,
-        scale: 0.92,
-        borderColor: 'rgba(0,0,0,0.08)',
-        backgroundColor: 'rgba(184,90,76,0.03)',
-      })
-
-      gsap.set(lines, {
-        scaleX: 0,
-        scaleY: 0,
-        opacity: 0,
-      })
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 75%',
-          end: 'bottom 25%',
-          scrub: 1.2,
-          invalidateOnRefresh: true,
-        },
-      })
-
-      steps.forEach((el, i) => {
-        tl.to(
-          el,
-          {
-            opacity: 1,
-            scale: 1,
-            borderColor: '#B85A4C',
-            backgroundColor: 'rgba(184, 90, 76, 0.12)',
-            duration: 0.5,
-            ease: 'power2.out',
-          },
-          i * 0.25,
-        )
-
-        if (i < lines.length) {
-          const line = lines[i]
-          const vert = line.dataset.dir === 'v'
-          tl.to(
-            line,
-            {
-              [vert ? 'scaleY' : 'scaleX']: 1,
-              opacity: 1,
-              duration: 0.4,
-              ease: 'power2.out',
-            },
-            i * 0.25 + 0.2,
-          )
-        }
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   // ── Render: LADDER ──────────────────────────────────────────────
   const renderLadder = () => (
     <div className="relative mx-auto max-w-2xl">
@@ -118,9 +38,11 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
             <div key={i} className="relative flex items-center py-5 md:py-6">
               {/* Vertical connecting line to previous step */}
               {i > 0 && (
-                <div
-                  data-fw-line={i - 1}
-                  data-dir="v"
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: (i - 1) * 0.15 + 0.2 }}
                   className="absolute left-6 top-0 h-5 w-px -translate-y-0 bg-text-muted/20 md:left-1/2 md:-translate-x-1/2"
                 />
               )}
@@ -147,12 +69,15 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
                 </div>
 
                 {/* Step circle */}
-                <div
-                  data-fw-step
-                  className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 text-base font-bold text-text-primary transition-all duration-500 md:h-14 md:w-14 md:text-lg"
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.15 }}
+                  className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-accent-300 bg-accent-100/30 text-base font-bold text-text-primary transition-colors duration-500 md:h-14 md:w-14 md:text-lg"
                 >
                   {i + 1}
-                </div>
+                </motion.div>
 
                 {/* Spacer */}
                 <div className="hidden flex-1 md:block" />
@@ -194,12 +119,13 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
             strokeWidth="1"
             strokeDasharray="4 4"
           />
-          {/* Pink arc accent (static, complements step reveal) */}
+          {/* Accent arc (static, complements step reveal) */}
           <circle
             cx="50"
             cy="50"
             r="44"
-            stroke="#B85A4C"
+            stroke="currentColor"
+            className="text-accent-400"
             strokeWidth="1"
             strokeDasharray="4 8"
             strokeLinecap="round"
@@ -215,7 +141,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
               animation: 'spin 10s linear infinite',
             }}
           >
-            <svg className="h-10 w-10 text-pink-400/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="h-10 w-10 text-accent-400/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
               <path d="M21 3v5h-5" />
             </svg>
@@ -236,15 +162,18 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
             className="absolute -translate-x-1/2 -translate-y-1/2"
             style={{ top: `${positions[i].top}%`, left: `${positions[i].left}%` }}
           >
-            <div
-              data-fw-step
-              className="flex h-[72px] w-[72px] flex-col items-center justify-center rounded-full border-2 bg-pink-50/30 text-center transition-all duration-500"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
+              className="flex h-[72px] w-[72px] flex-col items-center justify-center rounded-full border-2 border-accent-300 bg-accent-100/30 text-center transition-colors duration-500"
             >
               <span className="text-lg font-bold leading-none text-text-primary">{i + 1}</span>
               <span className="mt-1 text-[10px] font-medium uppercase tracking-wider text-text-primary/70">
                 {step.label}
               </span>
-            </div>
+            </motion.div>
 
             {/* Direction arrow next to step */}
             <div
@@ -253,7 +182,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
                 transform: `rotate(${positions[(i + 1) % count].angle - 90}deg)`,
               }}
             >
-              <ArrowRight className="h-3 w-3 text-pink-400/40" />
+              <ArrowRight className="h-3 w-3 text-accent-400/40" />
             </div>
           </div>
         ))}
@@ -265,18 +194,27 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
     <div className="flex flex-col items-center gap-5 md:hidden">
       {framework.steps.map((step, i) => (
         <div key={i} className="flex w-full max-w-sm items-center gap-4">
-          <div
-            data-fw-step
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 bg-pink-50/30 text-base font-bold text-text-primary transition-all duration-500"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.15 }}
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-accent-300 bg-accent-100/30 text-base font-bold text-text-primary transition-colors duration-500"
           >
             {i + 1}
-          </div>
+          </motion.div>
           <div className="flex-1">
             <p className="text-sm font-semibold text-text-primary">{step.label}</p>
             <p className="text-xs text-text-muted/70">{step.description}</p>
           </div>
           {i < framework.steps.length - 1 && (
-            <div data-fw-line={i} data-dir="v" className="h-6 w-px bg-text-muted/20" />
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.15 + 0.2 }}
+              className="h-6 w-px bg-text-muted/20"
+            />
           )}
         </div>
       ))}
@@ -313,16 +251,19 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
         {/* 2x2 Grid */}
         <div className="grid grid-cols-2 gap-3 md:gap-4">
           {framework.steps.map((step, i) => (
-            <div
+            <motion.div
               key={i}
-              data-fw-step
-              className="group relative overflow-hidden rounded-xl border-2 bg-pink-50/20 p-5 text-center transition-all duration-500 md:p-7"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              className="group relative overflow-hidden rounded-xl border-2 border-accent-200 bg-accent-100/20 p-5 text-center transition-colors duration-500 md:p-7"
             >
               {/* Corner accent */}
-              <div className="absolute -right-6 -top-6 h-12 w-12 rounded-full bg-pink-50/20" />
+              <div className="absolute -right-6 -top-6 h-12 w-12 rounded-full bg-accent-100/40" />
 
               {/* Number badge */}
-              <span className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border-2 border-border-light bg-pink-50/30 text-sm font-bold text-text-primary transition-all duration-500">
+              <span className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full border-2 border-accent-300 bg-accent-100/40 text-sm font-bold text-text-primary transition-colors duration-500">
                 {i + 1}
               </span>
 
@@ -335,7 +276,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
               <span className="mt-3 block font-mono text-[9px] uppercase tracking-[0.15em] text-text-muted/30">
                 {gridLabels[i].axisY} &middot; {gridLabels[i].axisX}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -370,7 +311,6 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
   // ── Return ───────────────────────────────────────────────────────
   return (
     <motion.section
-      ref={sectionRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-80px' }}
@@ -385,7 +325,7 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-12 md:mb-16"
         >
-          <span className="mb-3 inline-block font-mono text-xs uppercase tracking-[0.25em] text-pink-400/60">
+          <span className="mb-3 inline-block font-mono text-xs uppercase tracking-[0.25em] text-accent-400/60">
             Framework {String(index + 1).padStart(2, '0')}
           </span>
           <h2 className="font-serif text-heading-2 leading-tight text-text-primary">
@@ -398,7 +338,6 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
 
         {/* Diagram */}
         <motion.div
-          ref={diagramRef}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -412,23 +351,6 @@ export default function FrameworkStep({ framework, index }: FrameworkStepProps) 
             </>
           )}
           {framework.type === 'matrix' && renderMatrix()}
-        </motion.div>
-
-        {/* CTA per framework */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mt-8 text-center"
-        >
-          <Link
-            href="/contact"
-            className="group inline-flex items-center gap-2 rounded-full border border-pink-400/30 px-6 py-3 text-sm font-medium text-pink-500 transition-all duration-300 hover:border-pink-400 hover:bg-pink-50 hover:shadow-sm"
-          >
-            <span>Explore this framework in a session</span>
-            <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </Link>
         </motion.div>
       </div>
     </motion.section>

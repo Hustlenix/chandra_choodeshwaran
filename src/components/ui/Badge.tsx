@@ -2,15 +2,14 @@ import { cn } from '@/lib/utils'
 
 interface BadgeProps {
   children: React.ReactNode
-  variant?: 'pink' | 'rose' | 'outline'
+  variant?: 'accent' | 'outline'
   size?: 'sm' | 'md'
   className?: string
 }
 
 const variants = {
-  pink: 'bg-pink-100 text-pink-700 border border-pink-200',
-  rose: 'bg-rose-50 text-pink-600 border border-pink-200',
-  outline: 'bg-transparent text-pink-500 border border-pink-300',
+  accent: 'bg-accent-100 text-accent-700 border border-accent-200',
+  outline: 'bg-transparent text-accent-500 border border-accent-300',
 }
 
 const sizes = {
@@ -20,7 +19,7 @@ const sizes = {
 
 export function Badge({
   children,
-  variant = 'pink',
+  variant = 'accent',
   size = 'sm',
   className,
 }: BadgeProps) {

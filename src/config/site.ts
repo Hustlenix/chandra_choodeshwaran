@@ -6,7 +6,6 @@ export const SITE = {
   positioning: 'Helping people communicate, lead, and grow through emotional intelligence.',
   location: 'Hosur, Tamil Nadu, India',
   email: 'chandrachoodeshwaran@gmail.com',
-  phone: '',
   baseUrl: 'https://chandrachoodeshwaran.com',
   foundedYear: 2010,
   languages: ['Tamil', 'English'],

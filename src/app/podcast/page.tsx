@@ -29,7 +29,7 @@ export default function PodcastPage() {
       />
 
       <div className="mb-12">
-        <p className="text-center font-serif text-2xl text-pink-400">
+        <p className="text-center font-serif text-2xl text-accent-400">
           {PODCAST.tamilMotto}
         </p>
       </div>
@@ -42,8 +42,8 @@ export default function PodcastPage() {
 
       <div className="mt-16 border-t border-border-light pt-12 text-center">
         <p className="text-text-muted">
-          Explore our <Link href="/services" className="text-pink-500 hover:underline">services</Link> or{' '}
-          <Link href="/about" className="text-pink-500 hover:underline">learn about Chandra</Link>.
+          Explore my <Link href="/philosophy" className="text-accent-500 hover:underline">philosophy</Link> or{' '}
+          <Link href="/about" className="text-accent-500 hover:underline">learn about me</Link>.
         </p>
       </div>
     </PageLayout>

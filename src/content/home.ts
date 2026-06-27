@@ -1,7 +1,3 @@
-// ====================================================================
-// HOME PAGE — Hero, Stats, and CTA data
-// ====================================================================
-
 export const HOME_HERO = {
   badge: 'Chandra Choodeshwaran M',
   headline: 'Understanding People Changes Everything',
@@ -24,15 +20,6 @@ export const HOME_STATS = {
   ],
 }
 
-export const HOME_CTA = {
-  badge: 'BEGIN',
-  title: 'Book A Conversation',
-  subtitle: 'No commitment required. Just a conversation about your goals.',
-  ctaLabel: 'Book a Free Discovery Call',
-  ctaUrl: '/contact',
-}
-
-// Legacy export for OpeningStatement component backward compatibility
 export const OPENING_CONTENT = {
   badge: 'Chandra Choodeshwaran M',
   headline: 'A Decade of Understanding What Makes People Thrive',

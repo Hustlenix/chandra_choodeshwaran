@@ -1,12 +1,10 @@
 import { Instagram, Music2, Linkedin, Mail } from 'lucide-react'
-import type { ComponentType, SVGProps } from 'react'
-
-type IconType = ComponentType<SVGProps<SVGSVGElement>>
+import type { LucideIcon } from 'lucide-react'
 
 export interface SocialLink {
   label: string
   href: string
-  icon: IconType
+  icon: LucideIcon
   ariaLabel: string
   platform: string
 }
@@ -30,7 +28,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'LinkedIn',
     href: 'https://linkedin.com/in/chandrachoodeshwaran',
     icon: Linkedin,
-    ariaLabel: 'Connect with Chandra Choodeshwaran on LinkedIn',
+    ariaLabel: 'Connect on LinkedIn',
     platform: 'LinkedIn',
   },
   {

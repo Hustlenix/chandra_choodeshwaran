@@ -33,8 +33,8 @@ export function CredentialsGrid() {
           const Icon = item.icon
           return (
             <Card key={item.title} variant="elevated" padding="lg">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-pink-50">
-                <Icon className="h-6 w-6 text-pink-500" />
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-50">
+                <Icon className="h-6 w-6 text-accent-500" />
               </div>
               <h3 className="mb-2 font-serif text-heading-4 text-text-primary">{item.title}</h3>
               <p className="text-body-sm text-text-muted">{item.description}</p>

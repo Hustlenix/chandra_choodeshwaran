@@ -5,11 +5,34 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', href: '/', isActive: (pathname) => pathname === '/' },
-  { label: 'About', href: '/about', isActive: (pathname) => pathname.startsWith('/about') },
-  { label: 'Services', href: '/services', isActive: (pathname) => pathname.startsWith('/services') },
-  { label: 'Podcast', href: '/podcast', isActive: (pathname) => pathname.startsWith('/podcast') },
-  { label: 'Awards', href: '/awards', isActive: (pathname) => pathname.startsWith('/awards') },
-  { label: 'Experience', href: '/experience', isActive: (pathname) => pathname.startsWith('/experience') },
-  { label: 'Contact', href: '/contact', isActive: (pathname) => pathname.startsWith('/contact') },
+  {
+    label: 'Home',
+    href: '/',
+    isActive: (pathname) => pathname === '/',
+  },
+  {
+    label: 'About',
+    href: '/about',
+    isActive: (pathname) => pathname === '/about',
+  },
+  {
+    label: 'Philosophy',
+    href: '/philosophy',
+    isActive: (pathname) => pathname.startsWith('/philosophy'),
+  },
+  {
+    label: 'Podcast',
+    href: '/podcast',
+    isActive: (pathname) => pathname.startsWith('/podcast'),
+  },
+  {
+    label: 'Journey',
+    href: '/journey',
+    isActive: (pathname) => pathname === '/journey',
+  },
+  {
+    label: 'Connect',
+    href: '/connect',
+    isActive: (pathname) => pathname === '/connect',
+  },
 ]

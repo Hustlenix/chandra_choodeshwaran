@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { NAV_ITEMS } from '@/config/navigation'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
-import { Button } from '@/components/ui/Button'
 import MobileNav from './MobileNav'
 
 export default function Navbar() {
@@ -37,7 +36,7 @@ export default function Navbar() {
         className={cn(
           'fixed left-0 right-0 top-0 z-50 transition-all duration-500',
           isScrolled
-            ? 'bg-white/85 shadow-lg shadow-pink-400/5 backdrop-blur-2xl border-b border-pink-100/50'
+            ? 'bg-white/85 shadow-lg backdrop-blur-2xl border-b border-gray-100/50'
             : 'bg-transparent'
         )}
         animate={{ y: direction === 'down' && isScrolled ? -120 : 0 }}
@@ -47,10 +46,10 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="group font-serif text-xl tracking-wide text-text-primary transition-all duration-300"
+            className="font-serif text-xl tracking-wide text-text-primary transition-all duration-300"
           >
-            <span className="bg-gradient-to-r from-pink-500 to-pink-400 bg-clip-text text-transparent">C</span>handra
-            <span className="bg-gradient-to-r from-pink-400 to-pink-300 bg-clip-text text-transparent">choo</span>deshwaran
+            <span className="text-accent-500">C</span>handra
+            <span>choo</span>deshwaran
           </Link>
 
           {/* Desktop nav links */}
@@ -63,28 +62,19 @@ export default function Navbar() {
                   href={item.href}
                   className={cn(
                     'group relative py-2 text-sm uppercase tracking-[0.15em] transition-colors duration-300',
-                    active ? 'text-pink-500' : 'text-text-muted hover:text-pink-400'
+                    active ? 'text-accent-500' : 'text-text-muted hover:text-accent-400'
                   )}
                 >
                   {item.label}
                   <span
                     className={cn(
                       'absolute bottom-0 left-0 h-px transition-all duration-300',
-                      active ? 'w-full bg-pink-500' : 'w-0 bg-pink-400 group-hover:w-full'
+                      active ? 'w-full bg-accent-500' : 'w-0 bg-accent-400 group-hover:w-full'
                     )}
                   />
                 </Link>
               )
             })}
-          </div>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
-            <Link href="/contact">
-              <Button variant="primary" size="sm">
-                Book a Session
-              </Button>
-            </Link>
           </div>
 
           {/* Mobile hamburger */}

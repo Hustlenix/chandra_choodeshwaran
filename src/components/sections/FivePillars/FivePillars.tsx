@@ -46,13 +46,13 @@ export default function FivePillars() {
               >
                 {/* Content */}
                 <div className="flex-1">
-                  <span className="mb-3 block font-mono text-xs uppercase tracking-[0.3em] text-pink-400/60">
+                  <span className="mb-3 block font-mono text-xs uppercase tracking-[0.3em] text-accent-400/60">
                     {pillar.number}
                   </span>
                   <h2 className="font-serif text-heading-2 leading-tight text-text-primary sm:text-heading-1">
                     {pillar.title}
                   </h2>
-                  <p className="mt-2 text-lg text-pink-400/80 sm:text-xl">
+                  <p className="mt-2 text-lg text-accent-400/80 sm:text-xl">
                     {pillar.subtitle}
                   </p>
                   <p className="mt-6 text-body-lg leading-relaxed text-text-muted">
@@ -62,7 +62,7 @@ export default function FivePillars() {
                     <div className="mt-8 flex flex-wrap gap-6">
                       {pillar.metrics.map((m) => (
                         <div key={m.label}>
-                          <span className="font-serif text-3xl font-bold text-pink-500 sm:text-4xl">
+                          <span className="font-serif text-3xl font-bold text-accent-500 sm:text-4xl">
                             {m.value}
                           </span>
                           <p className="mt-1 text-sm text-text-muted">{m.label}</p>
@@ -74,10 +74,10 @@ export default function FivePillars() {
 
                 {/* Visual column with icon */}
                 <div className="flex-1">
-                  <div className="flex aspect-square items-center justify-center rounded-3xl border border-border-light bg-gradient-to-br from-pink-400/5 to-transparent backdrop-blur-sm">
+                  <div className="flex aspect-square items-center justify-center rounded-3xl border border-border-light bg-accent-100/40">
                     {(() => {
                       const Icon = pillarIcons[pillar.visualType]
-                      return Icon ? <Icon className="h-24 w-24 text-pink-300/40" /> : null
+                      return Icon ? <Icon className="h-24 w-24 text-accent-400/60" /> : null
                     })()}
                   </div>
                 </div>

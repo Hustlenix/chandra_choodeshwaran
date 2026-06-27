@@ -10,8 +10,8 @@ interface CardProps {
 
 const variants = {
   default: 'card-premium',
-  elevated: 'card-premium hover:shadow-xl hover:shadow-pink-400/10',
-  interactive: 'card-premium hover:shadow-xl hover:shadow-pink-400/10 cursor-pointer group',
+  elevated: 'card-premium hover:shadow-xl hover:shadow-accent-400/10',
+  interactive: 'card-premium hover:shadow-xl hover:shadow-accent-400/10 cursor-pointer group',
 }
 
 const paddings = {

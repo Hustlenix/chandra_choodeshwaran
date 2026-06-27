@@ -1,7 +1,3 @@
-// ====================================================================
-// ABOUT PAGE — Biography, Credentials, Philosophy
-// ====================================================================
-
 export const ABOUT_HERO = {
   badge: 'ABOUT',
   name: 'Chandra Choodeshwaran M',

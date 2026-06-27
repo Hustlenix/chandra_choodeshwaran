@@ -31,9 +31,9 @@ export default function AboutPage() {
       <CredentialsGrid />
       <div className="mt-16 border-t border-border-light pt-12 text-center">
         <p className="text-text-muted">
-          Learn about my <Link href="/services" className="text-pink-500 hover:underline">services</Link>,{' '}
-          <Link href="/experience" className="text-pink-500 hover:underline">professional journey</Link>, or{' '}
-          <Link href="/awards" className="text-pink-500 hover:underline">awards & recognition</Link>.
+          Explore my <Link href="/philosophy" className="text-accent-500 hover:underline">philosophy</Link>,{' '}
+          <Link href="/journey" className="text-accent-500 hover:underline">professional journey</Link>, or{' '}
+          <Link href="/podcast" className="text-accent-500 hover:underline">listen to the podcast</Link>.
         </p>
       </div>
     </PageLayout>

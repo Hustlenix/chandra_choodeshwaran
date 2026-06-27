@@ -3,13 +3,12 @@ import { cn } from '@/lib/utils'
 interface PageLayoutProps {
   children: React.ReactNode
   className?: string
-  background?: 'white' | 'blush' | 'rose'
+  background?: 'white' | 'blush'
 }
 
 const bgClasses = {
   white: 'bg-surface-white',
   blush: 'bg-surface-blush',
-  rose: 'bg-surface-rose',
 }
 
 export function PageLayout({

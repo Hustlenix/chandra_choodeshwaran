@@ -4,7 +4,7 @@ export function BioSection() {
   return (
     <section className="space-y-6">
       <h2 className="font-serif text-heading-3 text-text-primary">About {SITE.shortName}</h2>
-      <div className="prose prose-pink max-w-none space-y-4 text-body text-text-secondary">
+      <div className="max-w-none space-y-4 text-body text-text-secondary">
         <p>
           {SITE.shortName} is a certified Emotional Intelligence Trainer, Counsellor, and Public Speaking Coach
           based in {SITE.location}. With over 15 years of experience, he has dedicated his career to

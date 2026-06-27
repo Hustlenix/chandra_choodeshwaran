@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { SITE } from '@/config/site'
-import { DEFAULT_SEO } from '@/config/seo'
 
 interface PageSEOProps {
   title: string
@@ -8,7 +7,6 @@ interface PageSEOProps {
   path: string
   ogType?: 'website' | 'profile' | 'article'
   keywords?: string[]
-  publishedTime?: string
   images?: { url: string; width: number; height: number }[]
 }
 
@@ -18,33 +16,30 @@ export function buildMetadata({
   path,
   ogType = 'website',
   keywords = [],
-  publishedTime,
   images,
 }: PageSEOProps): Metadata {
   const url = `${SITE.baseUrl}${path}`
-  const siteTitle = `${title} | ${SITE.name}`
+  const fullTitle = `${title} | ${SITE.name}`
 
   return {
-    title,
+    title: fullTitle,
     description,
     keywords: keywords.join(', '),
     alternates: { canonical: url },
-    robots: { index: true, follow: true },
     openGraph: {
-      title: siteTitle,
+      title: fullTitle,
       description,
       url,
       siteName: SITE.name,
       type: ogType,
-      locale: DEFAULT_SEO.locale,
-      ...(publishedTime && { publishedTime }),
-      images: images || [{ url: `${SITE.baseUrl}/images/og-default.svg`, width: 1200, height: 630 }],
+      locale: 'en_IN',
+      images: images || [{ url: `${SITE.baseUrl}/images/og-default.jpg`, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: siteTitle,
+      title: fullTitle,
       description,
-      images: images || [`${SITE.baseUrl}/images/og-default.svg`],
+      images: images || [`${SITE.baseUrl}/images/og-default.jpg`],
     },
   }
 }

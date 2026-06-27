@@ -44,8 +44,8 @@ export function SocialLinks({
             className={cn(
               'group inline-flex items-center gap-2.5 transition-all duration-300',
               showLabels
-                ? 'rounded-xl border border-white/10 px-4 py-2.5 text-white/60 hover:text-pink-300 hover:border-pink-400/30 hover:bg-white/5'
-                : 'flex items-center justify-center ' + sizeClasses[size] + ' rounded-full border border-border-light text-text-muted hover:text-pink-500 hover:border-pink-300 hover:bg-pink-50 hover:shadow-md hover:shadow-pink-400/10'
+                ? 'rounded-xl border border-white/10 px-4 py-2.5 text-white/60 hover:text-accent-300 hover:border-accent-400/30 hover:bg-white/5'
+                : 'flex items-center justify-center ' + sizeClasses[size] + ' rounded-full border border-border-light text-text-muted hover:text-accent-500 hover:border-accent-300 hover:bg-accent-50 hover:shadow-md hover:shadow-accent-400/10'
             )}
             aria-label={link.ariaLabel}
           >

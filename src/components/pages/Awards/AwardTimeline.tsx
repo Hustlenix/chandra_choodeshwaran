@@ -8,7 +8,7 @@ export function AwardTimeline() {
   return (
     <div className="relative">
       {/* Timeline line */}
-      <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-pink-200 via-pink-400 to-transparent hidden md:block" />
+      <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-accent-200 via-accent-400 to-transparent hidden md:block" />
       
       <div className="space-y-12">
         {AWARDS.map((award, i) => (
@@ -21,7 +21,7 @@ export function AwardTimeline() {
             transition={{ delay: i * 0.15, duration: 0.6 }}
           >
             {/* Timeline dot */}
-            <div className="absolute left-0 top-2 hidden h-3 w-3 -translate-x-1.5 rounded-full border-2 border-pink-400 bg-white md:block" />
+            <div className="absolute left-0 top-2 hidden h-3 w-3 -translate-x-1.5 rounded-full border-2 border-accent-400 bg-white md:block" />
             
             <AwardCard award={award} index={i} />
           </motion.div>

@@ -12,7 +12,7 @@ import EpisodeCard from './EpisodeCard'
 export default function PodcastUniverse() {
   const [activeTheme, setActiveTheme] = useState<string | null>(null)
 
-  const { badge, title, subtitle, spotifyUrl, tamilMotto, themes, episodes } =
+  const { badge, title, subtitle, spotifyUrl, themes, episodes } =
     PODCAST
 
   const filteredEpisodes = useMemo(() => {
@@ -35,13 +35,6 @@ export default function PodcastUniverse() {
       id="podcast"
       className="relative overflow-hidden bg-surface-white py-section-lg"
     >
-      {/* ── Tamil watermark ── */}
-      <div className="pointer-events-none absolute inset-0 flex select-none items-center justify-center overflow-hidden">
-        <span className="whitespace-nowrap font-serif text-[clamp(6rem,20vw,20rem)] leading-none text-text-primary/[0.02]">
-          {tamilMotto}
-        </span>
-      </div>
-
       <Container className="relative z-10">
         <SectionHeading
           badge={badge}
@@ -108,7 +101,7 @@ export default function PodcastUniverse() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="lg:sticky lg:top-24 overflow-hidden rounded-2xl border border-border-light bg-surface-blush/30 backdrop-blur-sm"
+              className="lg:sticky lg:top-24 overflow-hidden rounded-2xl border border-border-light bg-surface-blush/30"
             >
               <iframe
                 src={spotifyUrl.replace('/show/', '/embed/show/')}

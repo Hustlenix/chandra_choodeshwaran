@@ -32,8 +32,8 @@ export function EpisodeGrid() {
             onClick={() => setActiveTheme(theme.id)}
             className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
               activeTheme === theme.id
-                ? 'bg-pink-400 text-white'
-                : 'bg-pink-50 text-text-muted hover:bg-pink-100 hover:text-pink-600'
+                ? 'bg-accent-400 text-white'
+                : 'bg-accent-50 text-text-muted hover:bg-accent-100 hover:text-accent-600'
             }`}
           >
             {theme.label}
@@ -56,13 +56,13 @@ export function EpisodeGrid() {
               <Link href={`/podcast/${slug}`} className="block h-full">
                 <Card variant="interactive" padding="md" className="h-full">
                   <div className="flex items-start justify-between mb-3">
-                    <Badge variant="rose" size="sm">Ep {episode.episodeNumber}</Badge>
+                    <Badge variant="accent" size="sm">Ep {episode.episodeNumber}</Badge>
                     <span className="text-xs text-text-muted">{episode.duration}</span>
                   </div>
                   <h3 className="font-serif text-heading-4 text-text-primary mb-2">
                     {episode.title}
                     {episode.featured && (
-                      <span className="ml-2 inline-flex items-center rounded-full bg-pink-100 px-2 py-0.5 text-xs font-medium text-pink-600">
+                      <span className="ml-2 inline-flex items-center rounded-full bg-accent-100 px-2 py-0.5 text-xs font-medium text-accent-600">
                         Featured
                       </span>
                     )}
@@ -70,7 +70,7 @@ export function EpisodeGrid() {
                   <p className="text-body-sm text-text-muted line-clamp-2 mb-3">{episode.description}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {episode.themes.map((theme) => (
-                      <span key={theme} className="rounded-full bg-pink-50 px-2.5 py-0.5 text-xs text-pink-600">
+                      <span key={theme} className="rounded-full bg-accent-50 px-2.5 py-0.5 text-xs text-accent-600">
                         {themeLabels[theme] || theme}
                       </span>
                     ))}

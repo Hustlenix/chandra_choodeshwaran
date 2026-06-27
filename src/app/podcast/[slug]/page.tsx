@@ -51,7 +51,7 @@ export default async function EpisodeDetailPage({ params }: Props) {
       <BreadcrumbSchema items={[{ name: 'Home', href: '/' }, { name: 'Podcast', href: '/podcast' }, { name: episode.title, href: `/podcast/${slug}` }]} />
       <Link
         href="/podcast"
-        className="mb-8 inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-pink-500"
+        className="mb-8 inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-accent-500"
       >
         <ChevronLeft className="h-4 w-4" /> Back to Episodes
       </Link>
@@ -59,13 +59,13 @@ export default async function EpisodeDetailPage({ params }: Props) {
       <div className="grid gap-12 lg:grid-cols-2">
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <Badge variant="pink" size="md">Episode {episode.episodeNumber}</Badge>
+            <Badge variant="accent" size="md">Episode {episode.episodeNumber}</Badge>
             <span className="text-sm text-text-muted">{episode.duration}</span>
           </div>
           <h1 className="font-serif text-heading-2 text-text-primary">
             {episode.title}
             {episode.featured && (
-              <span className="ml-3 inline-flex items-center rounded-full bg-pink-100 px-3 py-1 text-sm font-medium text-pink-600 align-middle">
+              <span className="ml-3 inline-flex items-center rounded-full bg-accent-100 px-3 py-1 text-sm font-medium text-accent-600 align-middle">
                 Featured
               </span>
             )}
@@ -75,16 +75,16 @@ export default async function EpisodeDetailPage({ params }: Props) {
             {episode.themes.map((theme) => {
               const themeObj = PODCAST.themes.find(t => t.id === theme)
               return (
-                <span key={theme} className="rounded-full bg-pink-50 px-3 py-1 text-sm text-pink-600">
+                <span key={theme} className="rounded-full bg-accent-100 px-3 py-1 text-sm text-accent-600">
                   {themeObj?.label || theme}
                 </span>
               )
             })}
           </div>
           <div className="mt-8">
-            <Link href="/contact">
-              <Button variant="primary" size="lg">
-                Share Your Thoughts
+            <Link href="/connect">
+              <Button variant="secondary" size="lg">
+                Send a Message
               </Button>
             </Link>
           </div>

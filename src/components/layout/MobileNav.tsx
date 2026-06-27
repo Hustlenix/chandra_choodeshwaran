@@ -4,7 +4,6 @@ import { useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { NAV_ITEMS } from '@/config/navigation'
-import { Button } from '@/components/ui/Button'
 import { X } from 'lucide-react'
 
 interface MobileNavProps {
@@ -72,7 +71,7 @@ export default function MobileNav({ onClose }: MobileNavProps) {
         <button
           ref={closeButtonRef}
           onClick={onClose}
-          className="flex h-11 w-11 items-center justify-center rounded-lg text-text-muted hover:text-text-primary hover:bg-pink-50 focus:outline-none focus:ring-2 focus:ring-pink-400/50"
+          className="flex h-11 w-11 items-center justify-center rounded-lg text-text-muted hover:text-text-primary hover:bg-accent-50 focus:outline-none focus:ring-2 focus:ring-accent-400/50"
           aria-label="Close menu"
         >
           <X className="h-6 w-6" />
@@ -90,26 +89,13 @@ export default function MobileNav({ onClose }: MobileNavProps) {
             <Link
               href={item.href}
               onClick={onClose}
-              className="group text-3xl uppercase tracking-[0.2em] text-text-muted transition-colors duration-300 hover:text-pink-500 focus:outline-none focus:text-pink-500"
+              className="group text-3xl uppercase tracking-[0.2em] text-text-muted transition-colors duration-300 hover:text-accent-500 focus:outline-none focus:text-accent-500"
             >
               <span className="font-serif">{item.label}</span>
-              <span className="mx-auto mt-1 block h-px w-0 bg-pink-500 transition-all duration-300 group-hover:w-full group-focus:w-full" />
+              <span className="mx-auto mt-1 block h-px w-0 bg-accent-500 transition-all duration-300 group-hover:w-full group-focus:w-full" />
             </Link>
           </motion.div>
         ))}
-
-        <motion.div
-          className="mt-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          <Link href="/contact" onClick={onClose}>
-            <Button variant="primary" size="lg">
-              Book a Session
-            </Button>
-          </Link>
-        </motion.div>
       </nav>
     </motion.div>
   )
