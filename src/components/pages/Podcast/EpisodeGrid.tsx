@@ -56,7 +56,7 @@ export function EpisodeGrid() {
               <Link href={`/podcast/${slug}`} className="block h-full">
                 <Card variant="interactive" padding="md" className="h-full">
                   <div className="flex items-start justify-between mb-3">
-                    <Badge variant="accent" size="sm">Ep {episode.episodeNumber}</Badge>
+                    <Badge>Ep {episode.episodeNumber}</Badge>
                     <span className="text-xs text-text-muted">{episode.duration}</span>
                   </div>
                   <h3 className="font-serif text-heading-4 text-text-primary mb-2">

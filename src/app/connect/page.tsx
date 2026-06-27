@@ -23,7 +23,6 @@ export default function ConnectPage() {
         title="Get In Touch"
         subtitle="Whether you have a question, a speaking invitation, or simply want to connect — I'd love to hear from you."
         align="center"
-        size="md"
       />
       <div className="mx-auto max-w-lg">
         <ContactInfo />

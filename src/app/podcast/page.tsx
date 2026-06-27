@@ -25,7 +25,6 @@ export default function PodcastPage() {
         title={PODCAST.title}
         subtitle={PODCAST.subtitle}
         align="center"
-        size="md"
       />
 
       <div className="mb-12">

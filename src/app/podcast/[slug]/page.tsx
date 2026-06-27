@@ -59,7 +59,7 @@ export default async function EpisodeDetailPage({ params }: Props) {
       <div className="grid gap-12 lg:grid-cols-2">
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <Badge variant="accent" size="md">Episode {episode.episodeNumber}</Badge>
+            <Badge>Episode {episode.episodeNumber}</Badge>
             <span className="text-sm text-text-muted">{episode.duration}</span>
           </div>
           <h1 className="font-serif text-heading-2 text-text-primary">

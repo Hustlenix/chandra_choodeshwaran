@@ -1,35 +1,33 @@
 import { cn } from '@/lib/utils'
 
-interface CardProps {
-  children: React.ReactNode
-  className?: string
-  variant?: 'default' | 'elevated' | 'interactive'
-  as?: 'div' | 'article' | 'section'
-  padding?: 'none' | 'sm' | 'md' | 'lg'
-}
-
 const variants = {
-  default: 'card-premium',
-  elevated: 'card-premium hover:shadow-xl hover:shadow-accent-400/10',
-  interactive: 'card-premium hover:shadow-xl hover:shadow-accent-400/10 cursor-pointer group',
+  default: 'bg-surface-warm',
+  elevated: 'bg-white shadow-card',
+  interactive: 'bg-white shadow-control hover:shadow-card transition-shadow',
 }
 
 const paddings = {
-  none: '',
-  sm: 'p-5',
-  md: 'p-7',
-  lg: 'p-9',
+  none: 'p-0',
+  sm: 'p-4',
+  md: 'p-5',
+  lg: 'p-6',
 }
 
 export function Card({
   children,
   className,
   variant = 'default',
+  padding = 'lg',
   as: Tag = 'div',
-  padding = 'md',
-}: CardProps) {
+}: {
+  children: React.ReactNode
+  className?: string
+  variant?: 'default' | 'elevated' | 'interactive'
+  padding?: 'none' | 'sm' | 'md' | 'lg'
+  as?: 'div' | 'article' | 'section'
+}) {
   return (
-    <Tag className={cn(variants[variant], paddings[padding], className)}>
+    <Tag className={cn('rounded-card', variants[variant], paddings[padding], className)}>
       {children}
     </Tag>
   )

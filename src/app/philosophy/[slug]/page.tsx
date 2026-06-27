@@ -63,7 +63,7 @@ export default async function PillarDetailPage({ params }: Props) {
 
       <div className="grid gap-12 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <Badge variant="accent" size="md" className="mb-4">{pillar.number}</Badge>
+          <Badge className="mb-4">{pillar.number}</Badge>
           <h1 className="font-serif text-heading-2 text-text-primary">{pillar.title}</h1>
           <p className="mt-3 text-body-lg text-text-muted">{pillar.subtitle}</p>
           <div className="mt-8 space-y-4 text-body text-text-secondary leading-relaxed">
@@ -72,7 +72,7 @@ export default async function PillarDetailPage({ params }: Props) {
         </div>
 
         <div>
-          <Card variant="elevated" padding="lg">
+          <Card className="shadow-card">
             <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-50">
               <Icon className="h-8 w-8 text-accent-500" />
             </div>

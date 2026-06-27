@@ -1,8 +1,4 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import { fadeInUp } from '@/lib/animations'
 
 interface Episode {
   title: string
@@ -25,14 +21,12 @@ export default function EpisodeCard({
   featured = false,
 }: EpisodeCardProps) {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className={cn(
-        'rounded-xl border border-border-light bg-surface-white p-6 transition-all duration-300',
-        featured && 'border-l-[6px] border-accent-400 p-8'
+        'rounded-card border border-border-light bg-surface-white p-6 transition-shadow hover:shadow-card',
+        featured && 'border-l-[6px] border-accent-400 p-8',
       )}
     >
-      {/* Top section: meta + title + description */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 space-y-2">
           <div className="flex items-center gap-3">
@@ -40,7 +34,7 @@ export default function EpisodeCard({
               EP {String(episode.episodeNumber).padStart(2, '0')}
             </span>
             {featured && (
-              <span className="rounded-full bg-accent-100/50 px-3 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-accent-500">
+              <span className="rounded-pill bg-accent-100/50 px-3 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-accent-500">
                 Featured
               </span>
             )}
@@ -48,8 +42,8 @@ export default function EpisodeCard({
 
           <h3
             className={cn(
-              'font-serif leading-tight text-text-primary',
-              featured ? 'text-heading-2' : 'text-heading-3'
+              'font-display text-text-primary',
+              featured ? 'text-heading-2' : 'text-heading-3',
             )}
           >
             {episode.title}
@@ -65,13 +59,12 @@ export default function EpisodeCard({
         </span>
       </div>
 
-      {/* Bottom section: theme tags + CTA */}
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap gap-1.5">
           {episode.themes.map((theme) => (
             <span
               key={theme}
-              className="rounded-full border border-border-light px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-text-muted/60"
+              className="rounded-pill border border-border-light px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-text-muted/60"
             >
               {theme}
             </span>
@@ -83,13 +76,12 @@ export default function EpisodeCard({
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
-            'inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[11px] font-medium uppercase tracking-wider transition-all duration-300',
+            'inline-flex items-center gap-1.5 rounded-pill px-4 py-1.5 text-[11px] font-medium uppercase tracking-wider transition-colors',
             featured
               ? 'bg-accent-100/50 text-accent-500 hover:bg-accent-100/80'
-              : 'border border-border-light text-text-muted/60 hover:border-border-medium hover:text-text-primary'
+              : 'border border-border-light text-text-muted/60 hover:border-border-medium hover:text-text-primary',
           )}
         >
-          {/* Spotify icon */}
           <svg
             className="h-3.5 w-3.5"
             viewBox="0 0 24 24"
@@ -101,6 +93,6 @@ export default function EpisodeCard({
           Listen on Spotify
         </a>
       </div>
-    </motion.div>
+    </div>
   )
 }

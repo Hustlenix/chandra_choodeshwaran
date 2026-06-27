@@ -25,7 +25,6 @@ export default function AboutPage() {
         title="About Chandra Choodeshwaran M"
         subtitle="A certified emotional intelligence trainer, counsellor, and public speaking coach dedicated to helping people transform through self-awareness."
         align="center"
-        size="md"
       />
       <BioSection />
       <CredentialsGrid />

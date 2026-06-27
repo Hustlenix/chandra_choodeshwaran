@@ -1,27 +1,12 @@
 import type { Metadata, Viewport } from 'next'
-import { DM_Serif_Display, Figtree } from 'next/font/google'
+import { fontSans, fontDisplay, fontMono } from '@/lib/fonts'
 import './globals.css'
-import Providers from './providers'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { PersonSchema, PodcastSeriesSchema } from '@/components/ui/JsonLd'
-import { ScrollToTop } from '@/components/layout/ScrollToTop'
-
-const dmSerifDisplay = DM_Serif_Display({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-serif',
-  display: 'swap',
-})
-
-const figtree = Figtree({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-})
 
 export const viewport: Viewport = {
-  themeColor: '#B85A4C',
+  themeColor: '#000000',
 }
 
 export const metadata: Metadata = {
@@ -32,13 +17,10 @@ export const metadata: Metadata = {
   },
   description:
     'Helping people communicate, lead, and grow through emotional intelligence. Soft Skills Trainer in Hosur, Tamil Nadu.',
-  icons: {
-    icon: '/favicon.svg',
-  },
+  icons: { icon: '/favicon.svg' },
   openGraph: {
     title: 'Chandra Choodeshwaran M | Emotional Intelligence & Soft Skills Trainer',
-    description:
-      'Helping people communicate, lead, and grow through emotional intelligence.',
+    description: 'Helping people communicate, lead, and grow through emotional intelligence.',
     type: 'website',
     locale: 'en_IN',
     siteName: 'Chandra Choodeshwaran M',
@@ -47,38 +29,22 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Chandra Choodeshwaran M | Emotional Intelligence & Soft Skills Trainer',
-    description:
-      'Helping people communicate, lead, and grow through emotional intelligence.',
+    description: 'Helping people communicate, lead, and grow through emotional intelligence.',
     images: ['/images/og-default.svg'],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${dmSerifDisplay.variable} ${figtree.variable}`}
-    >
+    <html lang="en" className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}>
       <body>
         <PersonSchema />
         <PodcastSeriesSchema />
-        <a href="#main-content" className="skip-to-content">
-          Skip to content
-        </a>
-        <Providers>
-          <Navbar />
-          <main id="main-content">{children}</main>
-          <Footer />
-        </Providers>
-        <ScrollToTop />
+        <a href="#main-content" className="skip-to-content">Skip to content</a>
+        <Navbar />
+        <main id="main-content">{children}</main>
+        <Footer />
       </body>
     </html>
   )

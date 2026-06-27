@@ -23,7 +23,6 @@ export default function PhilosophyPage() {
         title="The Five Pillars"
         subtitle="A complete framework for human growth — five interconnected capacities that shape how we understand ourselves, relate to others, and navigate the world."
         align="center"
-        size="md"
       />
       <ServiceGrid />
       <div className="mt-16 border-t border-border-light pt-12 text-center">

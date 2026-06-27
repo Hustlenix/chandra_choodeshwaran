@@ -20,12 +20,12 @@ export function ServiceCard({ pillar }: ServiceCardProps) {
   const Icon = iconMap[pillar.visualType] || Eye
 
   return (
-    <Link href={`/services/${pillar.id}`}>
+    <Link href={`/philosophy/${pillar.id}`}>
       <Card variant="interactive" padding="lg" className="group h-full">
         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-50 transition-colors duration-300 group-hover:bg-accent-100">
           <Icon className="h-6 w-6 text-accent-500" />
         </div>
-        <Badge variant="accent" size="sm" className="mb-3">{pillar.number}</Badge>
+        <Badge className="mb-3">{pillar.number}</Badge>
         <h3 className="mb-2 font-serif text-heading-4 text-text-primary">{pillar.title}</h3>
         <p className="mb-4 text-body-sm text-text-muted line-clamp-3">{pillar.description}</p>
         <div className="flex items-center gap-1 text-sm font-medium text-accent-500">

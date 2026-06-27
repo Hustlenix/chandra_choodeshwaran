@@ -1,68 +1,39 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import { FIVE_PILLARS } from '@/content/pillars'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { cn } from '@/lib/utils'
-import { Eye, Heart, MessageCircle, Zap, TrendingUp } from 'lucide-react'
-
-const pillarIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  mirror: Eye,
-  waves: Heart,
-  network: MessageCircle,
-  compass: Zap,
-  ascent: TrendingUp,
-}
 
 export default function FivePillars() {
   return (
-    <section id="five-pillars" className="relative">
-      <div className="mx-auto max-w-[1200px] px-6 py-24 md:px-8 lg:px-12 lg:py-32">
+    <section id="five-pillars" className="py-section-lg">
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-12">
         <SectionHeading
           badge="PILLARS"
           title="The Five Pillars"
           subtitle="A complete framework for human transformation — built through a decade of training, counselling, and real-world application."
           align="center"
-          size="lg"
         />
-      </div>
 
-      {FIVE_PILLARS.map((pillar, index) => {
-        const isReversed = index % 2 !== 0
-        return (
-          <motion.section
-            key={pillar.id}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            className="relative min-h-[70vh] py-24 md:py-32"
-          >
-            <div className="mx-auto max-w-[1200px] px-6 md:px-8 lg:px-12">
+        <div className="mt-16 space-y-20">
+          {FIVE_PILLARS.map((pillar, i) => {
+            const isReversed = i % 2 !== 0
+            return (
               <div
-                className={cn(
-                  'flex flex-col gap-12 md:gap-16 lg:items-center',
-                  isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
-                )}
+                key={pillar.id}
+                className={`flex flex-col gap-8 lg:flex-row ${isReversed ? 'lg:flex-row-reverse' : ''}`}
               >
-                {/* Content */}
                 <div className="flex-1">
-                  <span className="mb-3 block font-mono text-xs uppercase tracking-[0.3em] text-accent-400/60">
+                  <span className="mb-2 block font-mono text-xs uppercase tracking-[0.3em] text-accent-400/60">
                     {pillar.number}
                   </span>
-                  <h2 className="font-serif text-heading-2 leading-tight text-text-primary sm:text-heading-1">
-                    {pillar.title}
-                  </h2>
-                  <p className="mt-2 text-lg text-accent-400/80 sm:text-xl">
-                    {pillar.subtitle}
-                  </p>
-                  <p className="mt-6 text-body-lg leading-relaxed text-text-muted">
+                  <h2 className="font-display text-heading-1 text-text-primary">{pillar.title}</h2>
+                  <p className="mt-1 text-lg text-accent-400/80">{pillar.subtitle}</p>
+                  <p className="mt-4 text-body-lg leading-relaxed text-text-muted">
                     {pillar.description}
                   </p>
                   {pillar.metrics && (
-                    <div className="mt-8 flex flex-wrap gap-6">
+                    <div className="mt-6 flex flex-wrap gap-6">
                       {pillar.metrics.map((m) => (
                         <div key={m.label}>
-                          <span className="font-serif text-3xl font-bold text-accent-500 sm:text-4xl">
+                          <span className="font-display text-3xl font-bold text-accent-500">
                             {m.value}
                           </span>
                           <p className="mt-1 text-sm text-text-muted">{m.label}</p>
@@ -72,20 +43,16 @@ export default function FivePillars() {
                   )}
                 </div>
 
-                {/* Visual column with icon */}
-                <div className="flex-1">
-                  <div className="flex aspect-square items-center justify-center rounded-3xl border border-border-light bg-accent-100/40">
-                    {(() => {
-                      const Icon = pillarIcons[pillar.visualType]
-                      return Icon ? <Icon className="h-24 w-24 text-accent-400/60" /> : null
-                    })()}
-                  </div>
+                <div className="flex flex-1 items-center justify-center rounded-card border border-border-light bg-accent-100/40 p-12">
+                  <span className="font-display text-6xl font-light text-accent-400/30">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
                 </div>
               </div>
-            </div>
-          </motion.section>
-        )
-      })}
+            )
+          })}
+        </div>
+      </div>
     </section>
   )
 }

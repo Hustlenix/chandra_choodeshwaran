@@ -24,7 +24,6 @@ export default function JourneyPage() {
         title="Professional Journey"
         subtitle="A career dedicated to understanding human potential and helping others realize theirs."
         align="center"
-        size="md"
       />
       <Timeline />
       <div className="mt-20">
@@ -33,7 +32,6 @@ export default function JourneyPage() {
           title="Areas of Expertise"
           subtitle="Three core pillars that have defined a career in training, counselling, and community leadership."
           align="center"
-          size="sm"
         />
         <div className="grid gap-8 md:grid-cols-3">
           {PROFESSIONAL_HIGHLIGHTS.map((area) => (
