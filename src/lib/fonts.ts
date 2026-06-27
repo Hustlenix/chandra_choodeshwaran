@@ -1,10 +1,10 @@
-import { Figtree, Inter, JetBrains_Mono } from 'next/font/google'
+import { EB_Garamond, Inter, JetBrains_Mono } from 'next/font/google'
 
-export const fontDisplay = Figtree({
+export const fontDisplay = EB_Garamond({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-display',
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
 })
 
 export const fontSans = Inter({

@@ -1,25 +1,21 @@
 import { Hero } from '@/components/sections/Hero/Hero'
-import OpeningStatement from '@/components/sections/OpeningStatement/OpeningStatement'
-import HumanOS from '@/components/sections/HumanOS/HumanOS'
-import FivePillars from '@/components/sections/FivePillars/FivePillars'
-import { Stats } from '@/components/sections/Stats/Stats'
-import Frameworks from '@/components/sections/Frameworks/Frameworks'
-import RecognitionJourney from '@/components/sections/RecognitionJourney/RecognitionJourney'
-import PodcastUniverse from '@/components/sections/PodcastUniverse/PodcastUniverse'
-import VoicesOfChange from '@/components/sections/VoicesOfChange/VoicesOfChange'
+import { WhoIsChandra } from '@/components/sections/Home/WhoIsChandra'
+import { PhilosophyPreview } from '@/components/sections/Home/PhilosophyPreview'
+import { FeaturedPodcast } from '@/components/sections/Home/FeaturedPodcast'
+import { SpeakingCounselling } from '@/components/sections/Home/SpeakingCounselling'
+import { TrustSocialProof } from '@/components/sections/Home/TrustSocialProof'
+import { FinalCTA } from '@/components/sections/Home/FinalCTA'
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <OpeningStatement />
-      <HumanOS />
-      <FivePillars />
-      <Stats />
-      <Frameworks />
-      <RecognitionJourney />
-      <PodcastUniverse />
-      <VoicesOfChange />
+      <WhoIsChandra />
+      <PhilosophyPreview />
+      <FeaturedPodcast />
+      <SpeakingCounselling />
+      <TrustSocialProof />
+      <FinalCTA />
     </>
   )
 }
