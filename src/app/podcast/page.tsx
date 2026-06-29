@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { EpisodeGrid } from '@/components/pages/Podcast/EpisodeGrid'
 import { SpotifyEmbed } from '@/components/pages/Podcast/SpotifyEmbed'
+import { SectionPattern } from '@/components/visual/SectionPattern'
 import { buildMetadata } from '@/lib/metadata'
 import { PODCAST } from '@/content/podcast'
 import { BreadcrumbSchema } from '@/components/ui/JsonLd'
@@ -17,7 +17,8 @@ export const metadata: Metadata = buildMetadata({
 
 export default function PodcastPage() {
   return (
-    <PageLayout background="blush">
+    <PageLayout background="blush" glow="amber">
+      <SectionPattern />
       <BreadcrumbSchema items={[{ name: 'Home', href: '/' }, { name: 'Podcast', href: '/podcast' }]} />
       <SectionHeading
         as="h1"
@@ -38,13 +39,6 @@ export default function PodcastPage() {
       </div>
 
       <EpisodeGrid />
-
-      <div className="mt-16 border-t border-border-light pt-12 text-center">
-        <p className="text-text-muted">
-          Explore my <Link href="/philosophy" className="text-accent-500 hover:underline">philosophy</Link> or{' '}
-          <Link href="/about" className="text-accent-500 hover:underline">learn about me</Link>.
-        </p>
-      </div>
     </PageLayout>
   )
 }

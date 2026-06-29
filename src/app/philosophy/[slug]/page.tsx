@@ -3,8 +3,11 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { Badge } from '@/components/ui/Badge'
-import { BreadcrumbSchema } from '@/components/ui/JsonLd'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Card } from '@/components/ui/Card'
+import { BreadcrumbSchema } from '@/components/ui/JsonLd'
+import { SectionPattern } from '@/components/visual/SectionPattern'
+import { PillarIllustration } from '@/components/visual/PillarIllustration'
 import { FIVE_PILLARS } from '@/content/pillars'
 import { buildMetadata } from '@/lib/metadata'
 import { ChevronLeft, Eye, Heart, MessageCircle, Zap, TrendingUp } from 'lucide-react'
@@ -50,9 +53,11 @@ export default async function PillarDetailPage({ params }: Props) {
   }
 
   const Icon = iconMap[pillar.visualType] || Eye
+  const relatedPillars = FIVE_PILLARS.filter((p) => p.id !== slug).slice(0, 3)
 
   return (
-    <PageLayout background="blush">
+    <PageLayout background="blush" glow="warm">
+      <SectionPattern />
       <BreadcrumbSchema items={[{ name: 'Home', href: '/' }, { name: 'Philosophy', href: '/philosophy' }, { name: pillar.title, href: `/philosophy/${slug}` }]} />
       <Link
         href="/philosophy"
@@ -63,29 +68,58 @@ export default async function PillarDetailPage({ params }: Props) {
 
       <div className="grid gap-12 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <Badge className="mb-4">{pillar.number}</Badge>
-          <h1 className="font-serif text-heading-2 text-text-primary">{pillar.title}</h1>
-          <p className="mt-3 text-body-lg text-text-muted">{pillar.subtitle}</p>
-          <div className="mt-8 space-y-4 text-body text-text-secondary leading-relaxed">
+          <div className="relative mb-8 overflow-hidden rounded-card bg-gradient-to-br from-surface-warm via-surface-white to-glow-amber/10 p-8">
+            <div className="relative z-10">
+              <Badge className="mb-4">{pillar.number}</Badge>
+              <h1 className="font-serif text-heading-2 text-text-primary">{pillar.title}</h1>
+              <p className="mt-3 text-body-lg text-text-muted">{pillar.subtitle}</p>
+            </div>
+            <div className="absolute bottom-0 right-0 h-40 w-40 opacity-30">
+              <PillarIllustration type={pillar.visualType} />
+            </div>
+          </div>
+
+          <div className="space-y-4 text-body text-text-secondary leading-relaxed">
             <p>{pillar.description}</p>
           </div>
+
+          {relatedPillars.length > 0 && (
+            <div className="mt-16">
+              <h3 className="mb-6 font-serif text-heading-3 text-text-primary">Related Pillars</h3>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {relatedPillars.map((p, i) => (
+                  <ScrollReveal key={p.id} delay={i * 50}>
+                    <Link href={`/philosophy/${p.id}`}>
+                      <Card variant="bordered-hover" padding="md" className="h-full">
+                        <Badge className="mb-2">{p.number}</Badge>
+                        <h4 className="font-serif text-heading-4 text-text-primary">{p.title}</h4>
+                        <p className="mt-1 text-body-sm text-text-muted line-clamp-2">{p.description}</p>
+                      </Card>
+                    </Link>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div>
-          <Card className="shadow-card">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-50">
-              <Icon className="h-8 w-8 text-accent-500" />
-            </div>
-            <h3 className="font-serif text-heading-4 text-text-primary">Key Metrics</h3>
-            <div className="mt-4 space-y-4">
-              {pillar.metrics.map((metric) => (
-                <div key={metric.label}>
-                  <span className="font-serif text-display-sm text-accent-500">{metric.value}</span>
-                  <p className="text-sm text-text-muted">{metric.label}</p>
-                </div>
-              ))}
-            </div>
-          </Card>
+          <ScrollReveal>
+            <Card variant="elevated" padding="lg">
+              <div className="mb-4 h-32 w-full rounded-xl bg-gradient-to-br from-accent-50 to-glow-amber/10 flex items-center justify-center">
+                <Icon className="h-12 w-12 text-accent-500/80" />
+              </div>
+              <h3 className="font-serif text-heading-4 text-text-primary">Key Metrics</h3>
+              <div className="mt-4 space-y-4">
+                {pillar.metrics.map((metric) => (
+                  <div key={metric.label}>
+                    <span className="font-serif text-display-sm text-accent-500">{metric.value}</span>
+                    <p className="text-sm text-text-muted">{metric.label}</p>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </ScrollReveal>
         </div>
       </div>
     </PageLayout>

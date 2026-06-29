@@ -42,7 +42,6 @@ export function WhoIsChandra() {
                 className="inline-flex items-center gap-2 rounded-pill bg-text-primary px-5 py-2.5 text-sm font-medium text-text-inverse transition-all hover:opacity-90"
               >
                 Read the full story
-                <span className="text-xs">→</span>
               </Link>
               <Link
                 href="/journey"

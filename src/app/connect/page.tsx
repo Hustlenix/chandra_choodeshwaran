@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { ContactInfo } from '@/components/pages/Contact/ContactInfo'
+import { ContactForm } from '@/components/pages/Contact/ContactForm'
+import { SectionPattern } from '@/components/visual/SectionPattern'
 import { buildMetadata } from '@/lib/metadata'
 import { BreadcrumbSchema } from '@/components/ui/JsonLd'
 
@@ -15,7 +17,8 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ConnectPage() {
   return (
-    <PageLayout background="white">
+    <PageLayout background="white" glow="glow">
+      <SectionPattern />
       <BreadcrumbSchema items={[{ name: 'Home', href: '/' }, { name: 'Connect', href: '/connect' }]} />
       <SectionHeading
         as="h1"
@@ -24,16 +27,13 @@ export default function ConnectPage() {
         subtitle="Whether you have a question, a speaking invitation, or simply want to connect — I'd love to hear from you."
         align="center"
       />
-      <div className="mx-auto max-w-lg">
-        <ContactInfo />
-      </div>
-      <div className="mt-16 border-t border-border-light pt-12 text-center">
-        <p className="text-text-muted">
-          Explore my{' '}
-          <Link href="/about" className="text-accent-500 hover:underline">story</Link>,{' '}
-          <Link href="/podcast" className="text-accent-500 hover:underline">listen to the podcast</Link>, or{' '}
-          <Link href="/philosophy" className="text-accent-500 hover:underline">read my philosophy</Link>.
-        </p>
+      <div className="mx-auto mt-12 grid gap-12 lg:grid-cols-2">
+        <ScrollReveal>
+          <ContactInfo />
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <ContactForm />
+        </ScrollReveal>
       </div>
     </PageLayout>
   )

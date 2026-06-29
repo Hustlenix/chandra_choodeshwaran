@@ -6,31 +6,31 @@ import { SITE } from '@/config/site'
 function Particles() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      {[...Array(6)].map((_, i) => (
+      {[...Array(10)].map((_, i) => (
         <div
           key={i}
           className="absolute rounded-full bg-glow-amber/10"
           style={{
-            width: `${60 + i * 40}px`,
-            height: `${60 + i * 40}px`,
-            left: `${15 + i * 12}%`,
-            top: `${20 + (i % 3) * 25}%`,
-            animation: `floatSlow ${6 + i * 2}s ease-in-out infinite`,
-            animationDelay: `${i * 1.2}s`,
+            width: `${40 + i * 20}px`,
+            height: `${40 + i * 20}px`,
+            left: `${10 + i * 8}%`,
+            top: `${10 + (i % 4) * 20}%`,
+            animation: `floatSlow ${7 + i * 1.5}s ease-in-out infinite`,
+            animationDelay: `${i * 0.8}s`,
           }}
         />
       ))}
       {[...Array(4)].map((_, i) => (
         <div
-          key={`small-${i}`}
+          key={`s-${i}`}
           className="absolute rounded-full bg-glow-warm/20"
           style={{
-            width: `${8 + i * 4}px`,
-            height: `${8 + i * 4}px`,
-            left: `${30 + i * 18}%`,
-            top: `${40 + (i % 2) * 30}%`,
-            animation: `floatMedium ${5 + i * 1.5}s ease-in-out infinite`,
-            animationDelay: `${i * 0.8 + 0.5}s`,
+            width: `${6 + i * 3}px`,
+            height: `${6 + i * 3}px`,
+            left: `${25 + i * 16}%`,
+            top: `${35 + (i % 2) * 28}%`,
+            animation: `floatMedium ${5 + i * 1.2}s ease-in-out infinite`,
+            animationDelay: `${i * 0.6 + 0.3}s`,
           }}
         />
       ))}
@@ -68,7 +68,7 @@ export function Hero() {
 
             <h1
               ref={titleRef}
-              className="font-display text-display font-[300] leading-[1.06] tracking-[-0.04em] text-text-primary"
+              className="font-display text-display leading-[1.06] tracking-[-0.04em] text-text-primary"
               style={{ opacity: 0, transition: 'opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s' }}
             >
               {SITE.shortName}
@@ -87,13 +87,13 @@ export function Hero() {
             >
               <a
                 href="/podcast"
-                className="inline-flex items-center justify-center rounded-pill bg-text-primary px-6 py-3 text-sm font-medium text-text-inverse transition-all hover:opacity-90 hover:shadow-glow"
+                className="inline-flex items-center justify-center rounded-pill bg-text-primary px-6 py-3 text-sm font-medium text-text-inverse transition-all duration-500 hover:opacity-90 hover:shadow-glow"
               >
                 Listen to the Podcast
               </a>
               <a
                 href="/philosophy"
-                className="inline-flex items-center justify-center rounded-pill border border-border-light/80 bg-surface-white/80 px-6 py-3 text-sm font-medium text-text-primary shadow-control backdrop-blur-sm transition-all hover:bg-surface-warm hover:shadow-warm"
+                className="inline-flex items-center justify-center rounded-pill border border-border-light/80 bg-surface-white/80 px-6 py-3 text-sm font-medium text-text-primary shadow-control backdrop-blur-sm transition-all duration-500 hover:bg-surface-warm hover:shadow-warm"
               >
                 Explore My Philosophy
               </a>

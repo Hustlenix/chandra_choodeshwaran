@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { PODCAST_EPISODES } from '@/content/podcast'
+import { PODCAST } from '@/content/podcast'
 import { SPOTIFY_SHOW_URL } from '@/config/social'
+import { Play } from 'lucide-react'
 
 export function FeaturedPodcast() {
-  const featured = PODCAST_EPISODES.find((ep) => ep.featured) ?? PODCAST_EPISODES[0]
+  const featured = PODCAST.episodes.find((ep) => ep.featured) ?? PODCAST.episodes[0]
 
   return (
     <section className="relative overflow-hidden py-section-lg">
@@ -36,16 +37,15 @@ export function FeaturedPodcast() {
                   href={SPOTIFY_SHOW_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-pill bg-text-primary px-5 py-2.5 text-sm font-medium text-text-inverse transition-all hover:opacity-90"
+                  className="inline-flex items-center gap-2 rounded-pill bg-text-primary px-5 py-2.5 text-sm font-medium text-text-inverse transition-all duration-500 hover:opacity-90 hover:shadow-glow"
                 >
                   Listen on Spotify
                 </a>
                 <Link
                   href="/podcast"
-                  className="inline-flex items-center gap-2 rounded-pill border border-border-light bg-surface-white px-5 py-2.5 text-sm font-medium text-text-primary shadow-control transition-all hover:bg-surface-warm"
+                  className="inline-flex items-center gap-2 rounded-pill border border-border-light bg-surface-white px-5 py-2.5 text-sm font-medium text-text-primary shadow-control transition-all duration-500 hover:bg-surface-warm hover:shadow-warm"
                 >
                   Browse all episodes
-                  <span className="text-xs">→</span>
                 </Link>
               </div>
             </div>
@@ -56,11 +56,9 @@ export function FeaturedPodcast() {
               <div className="aspect-square w-full max-w-[200px] mx-auto rounded-card bg-gradient-to-br from-glow-amber/20 to-surface-warm flex items-center justify-center">
                 <div className="text-center">
                   <div className="mx-auto h-16 w-16 rounded-full bg-text-primary flex items-center justify-center">
-                    <svg className="ml-1 h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+                    <Play className="ml-0.5 h-6 w-6 text-white" fill="currentColor" />
                   </div>
-                  <p className="mt-3 text-sm text-text-muted">{PODCAST_EPISODES.length} episodes</p>
+                  <p className="mt-3 text-sm text-text-muted">{PODCAST.episodes.length} episodes</p>
                 </div>
               </div>
             </div>

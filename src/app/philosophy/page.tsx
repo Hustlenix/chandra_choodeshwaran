@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { ServiceGrid } from '@/components/pages/Services/ServiceGrid'
+import { SectionPattern } from '@/components/visual/SectionPattern'
 import { buildMetadata } from '@/lib/metadata'
 import { BreadcrumbSchema } from '@/components/ui/JsonLd'
 
@@ -15,7 +15,8 @@ export const metadata: Metadata = buildMetadata({
 
 export default function PhilosophyPage() {
   return (
-    <PageLayout background="white">
+    <PageLayout background="white" glow="glow">
+      <SectionPattern />
       <BreadcrumbSchema items={[{ name: 'Home', href: '/' }, { name: 'Philosophy', href: '/philosophy' }]} />
       <SectionHeading
         as="h1"
@@ -25,13 +26,6 @@ export default function PhilosophyPage() {
         align="center"
       />
       <ServiceGrid />
-      <div className="mt-16 border-t border-border-light pt-12 text-center">
-        <p className="text-text-muted">
-          Explore the <Link href="/philosophy" className="text-accent-500 hover:underline">five pillars</Link>, learn{' '}
-          <Link href="/about" className="text-accent-500 hover:underline">about me</Link>, or listen to the{' '}
-          <Link href="/podcast" className="text-accent-500 hover:underline">podcast</Link>.
-        </p>
-      </div>
     </PageLayout>
   )
 }

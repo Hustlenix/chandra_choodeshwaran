@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { PODCAST } from '@/content/podcast'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 
@@ -25,11 +25,12 @@ export function EpisodeGrid() {
   return (
     <div className="space-y-8">
       {/* Theme filter */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter episodes by theme">
         {PODCAST.themes.map((theme) => (
           <button
             key={theme.id}
             onClick={() => setActiveTheme(theme.id)}
+            aria-pressed={activeTheme === theme.id}
             className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
               activeTheme === theme.id
                 ? 'bg-accent-400 text-white'
@@ -42,19 +43,13 @@ export function EpisodeGrid() {
       </div>
 
       {/* Episode grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3" role="list">
         {episodes.map((episode, i) => {
           const slug = episode.title.toLowerCase().replace(/\s+/g, '-')
           return (
-            <motion.div
-              key={episode.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05, duration: 0.4 }}
-            >
-              <Link href={`/podcast/${slug}`} className="block h-full">
-                <Card variant="interactive" padding="md" className="h-full">
+            <ScrollReveal key={episode.title} delay={i * 50} className="h-full">
+              <Link href={`/podcast/${slug}`} className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 rounded-card">
+                <Card variant="bordered-hover" padding="md" className="h-full">
                   <div className="flex items-start justify-between mb-3">
                     <Badge>Ep {episode.episodeNumber}</Badge>
                     <span className="text-xs text-text-muted">{episode.duration}</span>
@@ -77,7 +72,7 @@ export function EpisodeGrid() {
                   </div>
                 </Card>
               </Link>
-            </motion.div>
+            </ScrollReveal>
           )
         })}
       </div>

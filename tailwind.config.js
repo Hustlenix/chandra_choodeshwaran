@@ -7,14 +7,14 @@ module.exports = {
     extend: {
       colors: {
         accent: {
-          50: '#f0f4ff',
-          100: '#dbe4ff',
-          200: '#bac8ff',
-          400: '#0447ff',
-          500: '#0338cc',
-          600: '#022999',
-          700: '#011b66',
-          900: '#000a33',
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          400: '#f59e0b',
+          500: '#d97706',
+          600: '#b45309',
+          700: '#92400e',
+          900: '#78350f',
         },
         glow: {
           warm: '#f5e6d3',
@@ -35,7 +35,7 @@ module.exports = {
         border: {
           light: '#e5e5e5',
           medium: '#d0cecc',
-          accent: '#0447ff',
+          accent: '#f59e0b',
         },
       },
       fontFamily: {

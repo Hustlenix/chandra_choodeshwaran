@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BioSection } from '@/components/pages/About/BioSection'
 import { CredentialsGrid } from '@/components/pages/About/CredentialsGrid'
+import { SectionPattern } from '@/components/visual/SectionPattern'
 import { buildMetadata } from '@/lib/metadata'
 import { BreadcrumbSchema } from '@/components/ui/JsonLd'
 
@@ -17,7 +18,8 @@ export const metadata: Metadata = buildMetadata({
 
 export default function AboutPage() {
   return (
-    <PageLayout background="blush">
+    <PageLayout background="blush" glow="warm">
+      <SectionPattern />
       <BreadcrumbSchema items={[{ name: 'Home', href: '/' }, { name: 'About', href: '/about' }]} />
       <SectionHeading
         as="h1"
@@ -26,15 +28,12 @@ export default function AboutPage() {
         subtitle="A certified emotional intelligence trainer, counsellor, and public speaking coach dedicated to helping people transform through self-awareness."
         align="center"
       />
-      <BioSection />
-      <CredentialsGrid />
-      <div className="mt-16 border-t border-border-light pt-12 text-center">
-        <p className="text-text-muted">
-          Explore my <Link href="/philosophy" className="text-accent-500 hover:underline">philosophy</Link>,{' '}
-          <Link href="/journey" className="text-accent-500 hover:underline">professional journey</Link>, or{' '}
-          <Link href="/podcast" className="text-accent-500 hover:underline">listen to the podcast</Link>.
-        </p>
-      </div>
+      <ScrollReveal>
+        <BioSection />
+      </ScrollReveal>
+      <ScrollReveal delay={100}>
+        <CredentialsGrid />
+      </ScrollReveal>
     </PageLayout>
   )
 }

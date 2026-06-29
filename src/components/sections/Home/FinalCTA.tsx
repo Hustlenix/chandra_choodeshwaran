@@ -34,8 +34,7 @@ export function FinalCTA() {
               href="/philosophy"
               className="inline-flex items-center gap-2 rounded-pill bg-text-primary px-6 py-3 text-sm font-medium text-text-inverse transition-all hover:opacity-90"
             >
-              Explore the philosophy
-              <span className="text-xs">→</span>
+                Explore the philosophy
             </Link>
             <Link
               href="/connect"

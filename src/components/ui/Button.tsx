@@ -12,8 +12,8 @@ interface ButtonProps {
 }
 
 const variants = {
-  primary: 'bg-text-primary text-text-inverse hover:opacity-90',
-  secondary: 'bg-surface-white text-text-primary border border-border-light shadow-control hover:bg-surface-warm',
+  primary: 'bg-text-primary text-text-inverse hover:opacity-90 hover:shadow-glow',
+  secondary: 'bg-surface-white text-text-primary border border-border-light shadow-control hover:bg-surface-warm hover:shadow-warm',
   ghost: 'text-text-secondary hover:text-text-primary',
 }
 
@@ -24,7 +24,7 @@ const sizes = {
 }
 
 export function Button({ children, variant = 'primary', size = 'md', href, className, onClick, type = 'button' }: ButtonProps) {
-  const cls = cn('inline-flex items-center justify-center rounded-pill font-medium transition-colors', variants[variant], sizes[size], className)
+  const cls = cn('inline-flex items-center justify-center rounded-pill font-medium transition-all duration-500', variants[variant], sizes[size], className)
 
   if (href) {
     if (href.startsWith('http') || href.startsWith('mailto')) {
